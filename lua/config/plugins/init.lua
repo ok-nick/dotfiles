@@ -1,35 +1,54 @@
 local path = "config/plugins/"
 
--- All active plugins listed here, each module should return a packer.use compatible parameter
--- Each plugin is loaded in the order of which they are defined
 return {
+	-- performance
 	require(path .. "impatient"),
 	require(path .. "filetype"),
 	require(path .. "fixcursorhold"),
+	-- diagnostics
+	require(path .. "lsp/lsp-installer"),
 	require(path .. "lsp/lspconfig"),
-	require(path .. "luasnip"),
+	require(path .. "lsp/null-ls"),
+	require(path .. "rust-tools"),
+	-- completion
 	require(path .. "cmp/cmp"),
-	require(path .. "cmp/luasnip"),
 	require(path .. "cmp/buffer"),
 	require(path .. "cmp/git"),
 	require(path .. "cmp/lsp"),
 	require(path .. "cmp/spell"),
-	require(path .. "lsp/lsp-installer"),
-	require(path .. "rust-tools"),
-	require(path .. "crates"),
-	-- require(path .. "neo-tree"),
-	require(path .. "todo-comments"),
-	require(path .. "treesitter"),
-	require(path .. "telescope"),
-	require(path .. "gitsigns"),
-	require(path .. "autopairs"),
+	-- require(path .. "cmp/luasnip"),
+	require(path .. "luasnip"),
+	-- require(path .. "autopairs"),
 	require(path .. "endwise"),
-	require(path .. "lsp/fidget"),
 	require(path .. "sleuth"),
+	-- fzf
+	require(path .. "telescope"),
+	require(path .. "fzf-native"),
+	-- session management
+	-- TODO: https://github.com/rmagatti/auto-session/issues/64
+	--	require(path .. "auto-session"),
+	--	require(path .. "session-lens"),
+	-- require(path .. "telescope-project"), -- do I need this if I have auto-session?
+	-- preview
+	require(path .. "markdown-composer"),
+	-- info
+	require(path .. "crates"),
+	require(path .. "lsp/fidget"),
+	-- git
+	require(path .. "gitsigns"),
 	require(path .. "fugitive"),
+	-- motions
+	-- TODO: below, doc keybinds
+	-- require(path .. "treesitter-textobjects"),
+	-- require(path .. "comments"),
+	-- require(path .. "matchup"),
+	-- looks
+	--	require(path .. "todo-comments"), -- kinda useful for telescopoe searching, but I could just grep
+	require(path .. "treesitter"),
 	require(path .. "indent-blankline"),
-	require(path .. "lsp/null-ls"),
-	-- require(path .. "dressing"), -- TODO: not sure what difference this makes yet
-	require(path .. "themes/vim-deus"),
+	-- themes
+	--	require(path .. "themes/vim-deus"),
 	require(path .. "themes/kanagawa"),
+	-- to make my life difficult
+	require(path .. "hardtime"),
 }

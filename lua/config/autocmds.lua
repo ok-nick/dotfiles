@@ -12,7 +12,7 @@ augroup END
 -- vim.cmd([[ au InsertEnter * set norelativenumber ]])
 -- vim.cmd([[ au InsertLeave * set relativenumber ]])
 
--- replace netrw with telescope-file-browser.nvim
+-- replace netrw with telescope
 vim.cmd([[
-	autocmd! VimEnter * if isdirectory(expand('%:p')) | exe 'cd %:p:h' | exe 'bd!'| exe 'Telescope file_browser' | endif
+	autocmd! VimEnter * if isdirectory(expand('%:p')) | exe 'cd %:p:h' | exe 'bd!'| exe 'Telescope find_files' | endif
 ]])

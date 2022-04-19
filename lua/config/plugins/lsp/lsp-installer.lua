@@ -29,18 +29,18 @@ return {
 		local map = vim.api.nvim_buf_set_keymap
 		local default = { noremap = true, silent = true }
 		local function on_attach()
-			map(0, "n", "<leader>wD", "<cmd>lua vim.lsp.buf.declaration()<CR>", default)
-			map(0, "n", "<leader>wd", "<cmd>lua vim.lsp.buf.definition()<CR>", default)
+			map(0, "n", "<leader>wa", "<cmd>lua vim.lsp.buf.declaration()<CR>", default)
+			map(0, "n", "<leader>wg", "<cmd>lua vim.lsp.buf.definition()<CR>", default)
 			map(0, "n", "<leader>wh", "<cmd>lua vim.lsp.buf.hover()<CR>", default)
 			map(0, "n", "<leader>wi", "<cmd>lua vim.lsp.buf.implementation()<CR>", default)
 			map(0, "n", "<leader>ws", "<cmd>lua vim.lsp.buf.signature_help()<CR>", default)
 			map(0, "n", "<leader>wwa", "<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>", default)
 			map(0, "n", "<leader>wwr", "<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>", default)
-			map(0, "n", "<leader>wl", "<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>", default)
-			map(0, "n", "<leader>wtd", "<cmd>lua vim.lsp.buf.type_definition()<CR>", default)
-			map(0, "n", "<leader>wr", "<cmd>lua vim.lsp.buf.rename()<CR>", default)
+			map(0, "n", "<leader>ww", "<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>", default)
+			map(0, "n", "<leader>wt", "<cmd>lua vim.lsp.buf.type_definition()<CR>", default)
+			map(0, "n", "<leader>wm", "<cmd>lua vim.lsp.buf.rename()<CR>", default)
 			map(0, "n", "<leader>we", "<cmd>lua vim.lsp.buf.code_action()<CR>", default)
-			map(0, "n", "<leader>wR", "<cmd>lua vim.lsp.buf.references()<CR>", default)
+			map(0, "n", "<leader>wl", "<cmd>lua vim.lsp.buf.references()<CR>", default)
 			map(0, "n", "<leader>wf", "<cmd>lua vim.lsp.buf.formatting()<CR>", default)
 		end
 

@@ -35,7 +35,7 @@ return {
 		-- expand tabs to spaces
 		expandtab = true,
 		-- use four spaces by default
-		tabstop = 4,
+		tabstop = 4, -- vim-sleuth covers this?
 		shiftwidth = 4,
 		softtabstop = 4,
 		-- minimum number of lines to display above and below the cursor

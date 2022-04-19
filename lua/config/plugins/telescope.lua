@@ -1,4 +1,3 @@
--- TODO: this is erroring on install for some reason
 return {
 	"nvim-telescope/telescope.nvim",
 	required = { "nvim-lua/plenary.nvim", "nvim-treesitter/nvim-treesitter" },
@@ -9,7 +8,15 @@ return {
 	after = { "plenary.nvim", "nvim-treesitter" },
 	config = function()
 		local telescope = require("telescope")
+		local actions = require("telescope.actions")
 		telescope.setup({
+			defaults = {
+				mappings = {
+					i = {
+						["<esc>"] = actions.close,
+					},
+				},
+			},
 			extensions = {
 				fzf = {
 					fuzzy = true,
@@ -17,23 +24,7 @@ return {
 					override_file_sorter = true,
 					case_mode = "smart_case",
 				},
-				file_browser = {},
 			},
 		})
 	end,
-	{ -- increases the performance of telescope
-		"nvim-telescope/telescope-fzf-native.nvim",
-		requires = "telescope.nvim",
-		run = "make",
-		config = function()
-			require("telescope").load_extension("fzf")
-		end,
-	},
-	{ -- file explorer for telescope, uses fd-find
-		"nvim-telescope/telescope-file-browser.nvim",
-		requires = "telescope.nvim",
-		config = function()
-			require("telescope").load_extension("file_browser")
-		end,
-	},
 }

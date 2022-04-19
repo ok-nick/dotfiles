@@ -1,6 +1,8 @@
 return {
 	"jose-elias-alvarez/null-ls.nvim",
 	requires = "nvim-lua/plenary.nvim",
+	-- TODO: for now this is the only file type it's used for
+	ft = "lua",
 	-- TODO: for some reason this makes it fail to install
 	-- run = {
 	-- 	"cargo install stylua",
