@@ -1,0 +1,74 @@
+shell:
+  program: C:\Program Files\PowerShell\7\pwsh.exe
+
+key_bindings:
+  - { key: Back, mods: Control|Shift, action: Quit }
+  - { key: Return, mods: Control|Shift, action: SpawnNewInstance }
+
+schemes:
+  deus: &deus
+    primary:
+      background: '#2c323b'
+      foreground: '#eaeaea'
+    normal:
+      black:   '#242a32'
+      red:     '#d54e53'
+      green:   '#98c379'
+      yellow:  '#e5c07b'
+      blue:    '#83a598'
+      magenta: '#c678dd'
+      cyan:    '#70c0ba'
+      white:   '#eaeaea'
+    bright:
+      black:   '#666666'
+      red:     '#ec3e45'
+      green:   '#90c966'
+      yellow:  '#edbf69'
+      blue:    '#73ba9f'
+      magenta: '#c858e9'
+      cyan:    '#2bcec2'
+      white:   '#ffffff'
+  kanagawa: &kanagawa
+    primary:
+      background: '0x1f1f28'
+      foreground: '0xdcd7ba'
+
+    normal:
+      black:   '0x090618'
+      red:     '0xc34043'
+      green:   '0x76946a'
+      yellow:  '0xc0a36e'
+      blue:    '0x7e9cd8'
+      magenta: '0x957fb8'
+      cyan:    '0x6a9589'
+      white:   '0xc8c093'
+    bright:
+      black:   '0x727169'
+      red:     '0xe82424'
+      green:   '0x98bb6c'
+      yellow:  '0xe6c384'
+      blue:    '0x7fb4ca'
+      magenta: '0x938aa9'
+      cyan:    '0x7aa89f'
+      white:   '0xdcd7ba'
+    selection:
+      background: '0x2d4f67'
+      foreground: '0xc8c093'
+    indexed_colors:
+      - { index: 16, color: '0xffa066' }
+      - { index: 17, color: '0xff5d62' }
+
+colors: *kanagawa
+
+font:
+  normal:
+    family: IBM Plex Mono
+    style: Regular
+  bold:
+    style: Bold
+  italic:
+    style: Italic
+  bold_italic:
+    style: Bold Italic
+
+  size: 11.0

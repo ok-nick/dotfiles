@@ -1,6 +1,9 @@
 return {
 	-- commands to call
-	commands = {},
+	commands = {
+		"let g:did_load_filetypes = 0",
+		"let g:do_filetype_lua = 1",
+	},
 	-- editor options
 	editor_options = {
 		-- enables spell checking
@@ -14,8 +17,8 @@ return {
 		-- better indenting
 		smartindent = true,
 		-- opens horizontal windows at the bottom-right instead of the top-left
-		splitbelow = true,
-		splitright = true,
+		--	splitbelow = true,
+		--	splitright = true,
 		-- allows the mouse to be used in any mode
 		-- mouse = "a",
 		-- always display the sign column with a fixed offset
@@ -48,6 +51,8 @@ return {
 		foldmethod = "indent",
 		-- fold levels below this number will be closed (not sure what this really means?)
 		foldlevel = 999,
+		-- limit the amount of auto-complete entries
+		pumheight = 10,
 	},
 	-- options that apply globally
 	global_options = {},

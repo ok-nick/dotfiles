@@ -3,7 +3,7 @@ local path = "config/plugins/"
 return {
 	-- performance
 	require(path .. "impatient"),
-	require(path .. "filetype"),
+	-- require(path .. "filetype"),
 	require(path .. "fixcursorhold"),
 	-- diagnostics
 	require(path .. "lsp/lsp-installer"),
@@ -26,11 +26,12 @@ return {
 	require(path .. "fzf-native"),
 	-- session management
 	-- TODO: https://github.com/rmagatti/auto-session/issues/64
-	--	require(path .. "auto-session"),
-	--	require(path .. "session-lens"),
+	-- require(path .. "auto-session"),
+	-- require(path .. "session-lens"),
 	-- require(path .. "telescope-project"), -- do I need this if I have auto-session?
 	-- preview
-	require(path .. "markdown-composer"),
+	-- unmaintained and setting the env variable is conflicting
+	-- require(path .. "markdown-composer"),
 	-- info
 	require(path .. "crates"),
 	require(path .. "lsp/fidget"),

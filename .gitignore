@@ -1,2 +1,3 @@
-plugin
-sessions
+nvim/plugin
+nvim/sessions
+junctions.txt
