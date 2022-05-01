@@ -3,7 +3,6 @@ local path = "config/plugins/"
 return {
 	-- performance
 	require(path .. "impatient"),
-	-- require(path .. "filetype"),
 	require(path .. "fixcursorhold"),
 	-- diagnostics
 	require(path .. "lsp/lsp-installer"),
@@ -18,9 +17,8 @@ return {
 	require(path .. "cmp/spell"),
 	-- require(path .. "cmp/luasnip"),
 	require(path .. "luasnip"),
-	-- require(path .. "autopairs"),
-	require(path .. "endwise"),
 	require(path .. "sleuth"),
+	require(path .. "dirtytalk"),
 	-- fzf
 	require(path .. "telescope"),
 	require(path .. "fzf-native"),
@@ -28,10 +26,9 @@ return {
 	-- TODO: https://github.com/rmagatti/auto-session/issues/64
 	-- require(path .. "auto-session"),
 	-- require(path .. "session-lens"),
-	-- require(path .. "telescope-project"), -- do I need this if I have auto-session?
+	-- require(path .. "telescope-project"),
 	-- preview
-	-- unmaintained and setting the env variable is conflicting
-	-- require(path .. "markdown-composer"),
+	require(path .. "markdown-composer"),
 	-- info
 	require(path .. "crates"),
 	require(path .. "lsp/fidget"),
@@ -39,12 +36,12 @@ return {
 	require(path .. "gitsigns"),
 	require(path .. "fugitive"),
 	-- motions
+	require(path .. "sandwich"),
 	-- TODO: below, doc keybinds
-	-- require(path .. "treesitter-textobjects"),
-	-- require(path .. "comments"),
+	require(path .. "treesitter-textobjects"),
+	require(path .. "comment"),
 	-- require(path .. "matchup"),
 	-- looks
-	--	require(path .. "todo-comments"), -- kinda useful for telescopoe searching, but I could just grep
 	require(path .. "treesitter"),
 	require(path .. "indent-blankline"),
 	-- themes

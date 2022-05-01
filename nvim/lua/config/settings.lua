@@ -1,6 +1,7 @@
 return {
 	-- commands to call
 	commands = {
+		-- uses the new neovim filetype module
 		"let g:did_load_filetypes = 0",
 		"let g:do_filetype_lua = 1",
 	},
@@ -9,7 +10,7 @@ return {
 		-- enables spell checking
 		spell = true,
 		-- sets the spelling language to United States, English
-		spelllang = "en_us",
+		spelllang = "en_us,programming",
 		-- wait x milliseconds before writing the file to disk
 		updatetime = 300,
 		-- use highlight colors based off color scheme

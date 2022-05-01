@@ -1,10 +1,10 @@
 return {
 	"euclio/vim-markdown-composer",
 	ft = "markdown",
-	-- this plugin requires the binary to be installed in the default directory
-	-- by default I store them in a global folder which is why setting the env variable is necessary
-	run = { "set CARGO_TARGET_DIR=target", "cargo build --release" },
+	run = { "cargo build --release" },
 	config = function()
+		-- I have cargo set to compile everything in a global folder
+		vim.g.markdown_composer_binary = "%USERPROFILE%/Documents/crate_targets"
 		vim.g.markdown_composer_autostart = 0
 	end,
 }
