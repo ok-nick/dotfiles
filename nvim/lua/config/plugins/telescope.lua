@@ -17,6 +17,12 @@ return {
 					},
 				},
 			},
+			pickers = {
+				find_files = {
+					find_command = { "rg", "--files", "--iglob", "!.git", "--hidden" },
+					no_ignore = true,
+				},
+			},
 			extensions = {
 				fzf = {
 					fuzzy = true,

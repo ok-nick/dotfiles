@@ -6,31 +6,31 @@ return {
 		-- map <leader> to <leader> for `showcmd`
 		{ "n", "<space>", "<leader>", { silent = true } },
 		-- open telescope live grep
-		{ "n", "<leader>fg", "<cmd>Telescope live_grep<CR>", default },
+		{ "n", "<leader>tg", "<cmd>Telescope live_grep<CR>", default },
 		-- open telescope buffers
-		{ "n", "<leader>fb", "<cmd>Telescope buffers<CR>", default },
+		{ "n", "<leader>tb", "<cmd>Telescope buffers<CR>", default },
 		-- open telescope find files
-		{ "n", "<leader>ff", "<cmd>Telescope find_files<CR>", default },
+		{ "n", "<leader>tf", "<cmd>Telescope find_files<CR>", default },
 		-- open telescope quick fix
-		{ "n", "<leader>fq", "<cmd>Telescope quickfix<CR>", default },
+		{ "n", "<leader>tq", "<cmd>Telescope quickfix<CR>", default },
 		-- open telescope command history
-		{ "n", "<leader>fh", "<cmd>Telescope command_history<CR>", default },
+		{ "n", "<leader>th", "<cmd>Telescope command_history<CR>", default },
 		-- open telescope old files
-		{ "n", "<leader>fo", "<cmd>Telescope oldfiles<CR>", default },
+		{ "n", "<leader>to", "<cmd>Telescope oldfiles<CR>", default },
 		-- open telescope treesitter
-		{ "n", "<leader>ft", "<cmd>Telescope treesitter<CR>", default },
+		{ "n", "<leader>ts", "<cmd>Telescope treesitter<CR>", default },
 		-- open telescope loclist (quickfix of current window)
-		{ "n", "<leader>fl", "<cmd>Telescope loclist<CR>", default },
+		{ "n", "<leader>tl", "<cmd>Telescope loclist<CR>", default },
 		-- open telescope spell suggest
-		{ "n", "<leader>fn", "<cmd>Telescope spell_suggest<CR>", default },
+		{ "n", "<leader>tn", "<cmd>Telescope spell_suggest<CR>", default },
 		-- open telescope current buffer fuzzy find
-		{ "n", "<leader>fw", "<cmd>Telescope current_buffer_fuzzy_find<CR>", default },
+		{ "n", "<leader>tw", "<cmd>Telescope current_buffer_fuzzy_find<CR>", default },
 		-- open telescope current buffer tags
-		{ "n", "<leader>fa", "<cmd>Telescope current_buffer_tags<CR>", default },
+		{ "n", "<leader>ta", "<cmd>Telescope current_buffer_tags<CR>", default },
 		-- open telescope at last state
-		{ "n", "<leader>fr", "<cmd>Telescope resume<CR>", default },
-		-- open telescope sessions
-		{ "n", "<leader>fs", "<cmd>Telescope session-lens search_session<CR>", default },
+		{ "n", "<leader>tr", "<cmd>Telescope resume<CR>", default },
+		-- open telescope diagnostics
+		{ "n", "<leader>td", "<cmd>Telescope diagnostics<CR>", default },
 		-- sync packer
 		{ "n", "<leader>ps", "<cmd>PackerSync<CR>", default },
 		-- compile packer
@@ -38,11 +38,15 @@ return {
 		-- profile packer
 		{ "n", "<leader>pp", "<cmd>PackerProfile<CR>", default },
 		-- open diagnostics in floating window
-		{ "n", "<leader>wd", ":lua vim.diagnostic.open_float()<CR>", default },
+		{ "n", "<space>e", ":lua vim.diagnostic.open_float()<CR>", default },
 		-- go to next diagnostic
-		{ "n", "<leader>wn", ":lua vim.diagnostic.goto_next()<CR>", default },
+		{ "n", "[d", ":lua vim.diagnostic.goto_next()<CR>", default },
 		-- go to previous diagnostic
-		{ "n", "<leader>wp", ":lua vim.diagnostic.goto_prev()<CR>", default },
+		{ "n", "]d", ":lua vim.diagnostic.goto_prev()<CR>", default },
+		-- add all diagnostics to the quickfix list
+		{ "n", "<space>a", ":lua vim.diagnostic.setqflist()<CR>", default },
+		-- add buffer diagnostics to the location list
+		{ "n", "<space>q", ":lua vim.diagnostic.setloclist()<CR>", default },
 	},
 	buffer = {
 		-- more in config/plugins/lsp/lsp-installer

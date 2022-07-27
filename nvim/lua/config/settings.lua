@@ -1,9 +1,13 @@
 return {
 	-- commands to call
 	commands = {
-		-- uses the new neovim filetype module
-		"let g:did_load_filetypes = 0",
-		"let g:do_filetype_lua = 1",
+		-- uses the new neovim filetype module (buggy)
+		-- "let g:did_load_filetypes = 0",
+		-- "let g:do_filetype_lua = 1",
+		-- limit the size of netrw to 15% of the screen
+		-- "let g:netrw_winsize = 15",
+		-- remove the banner
+		"let g:netrw_banner = 0",
 	},
 	-- editor options
 	editor_options = {
@@ -12,7 +16,7 @@ return {
 		-- sets the spelling language to United States, English
 		spelllang = "en_us,programming",
 		-- wait x milliseconds before writing the file to disk
-		updatetime = 300,
+		updatetime = 150,
 		-- use highlight colors based off color scheme
 		termguicolors = true,
 		-- better indenting
@@ -20,8 +24,6 @@ return {
 		-- opens horizontal windows at the bottom-right instead of the top-left
 		--	splitbelow = true,
 		--	splitright = true,
-		-- allows the mouse to be used in any mode
-		-- mouse = "a",
 		-- always display the sign column with a fixed offset
 		signcolumn = "yes:1",
 		-- enable completion popup menu
@@ -32,8 +34,6 @@ return {
 		fileencoding = "utf-8",
 		-- enable line numbers
 		number = true,
-		-- enable relative line numbers
-		-- relativenumber = true,
 		-- highlight the current line
 		cursorline = true,
 		-- expand tabs to spaces
@@ -43,17 +43,21 @@ return {
 		shiftwidth = 4,
 		softtabstop = 4,
 		-- minimum number of lines to display above and below the cursor
-		scrolloff = 5,
+		-- scrolloff = 1,
 		-- always show the command while typing in visual mode
-		showcmd = true,
+		-- showcmd = true,
 		-- disable beeping and use visuals instead
-		visualbell = true,
+		-- visualbell = true,
 		-- folding section is based off indents
 		foldmethod = "indent",
 		-- fold levels below this number will be closed (not sure what this really means?)
 		foldlevel = 999,
 		-- limit the amount of auto-complete entries
-		pumheight = 10,
+		pumheight = 5,
+		-- disable highlighting of every match in a search
+		hlsearch = false,
+		-- persist undo history
+		undofile = true,
 	},
 	-- options that apply globally
 	global_options = {},

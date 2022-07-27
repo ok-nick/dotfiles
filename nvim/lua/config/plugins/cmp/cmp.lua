@@ -1,9 +1,37 @@
 -- Load up the autocompletion engine
 return {
 	"hrsh7th/nvim-cmp",
-	after = "LuaSnip",
+	requires = {
+		"hrsh7th/cmp-nvim-lsp",
+		"f3fora/cmp-spell",
+		"hrsh7th/cmp-path",
+		"hrsh7th/cmp-buffer",
+		"saadparwaiz1/cmp_luasnip",
+		"hrsh7th/cmp-cmdline",
+		"hrsh7th/cmp-nvim-lsp-signature-help",
+		{
+			"Saecki/crates.nvim",
+			tag = "v0.2.1",
+			requires = "nvim-lua/plenary.nvim",
+			after = "plenary.nvim",
+		},
+		{
+			"David-Kunz/cmp-npm",
+			requires = "nvim-lua/plenary.nvim",
+			after = "plenary.nvim",
+		},
+	},
+	after = { "LuaSnip", "crates.nvim", "cmp-npm" },
 	config = function()
-		-- https://github.com/hrsh7th/nvim-cmp/wiki/Example-mappings#super-tab-like-mapping
+		require("crates").setup({
+			null_ls = {
+				enabled = true,
+				name = "crates.nvim",
+			},
+		})
+		require("cmp-npm").setup({})
+
+		-- https://github.com/hrsh7th/nvim-cmp/wiki/Example-mappings#luasnip
 		local function has_words_before()
 			local line, col = unpack(vim.api.nvim_win_get_cursor(0))
 			return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
@@ -18,19 +46,14 @@ return {
 				end,
 			},
 			mapping = {
-				["<C-z>"] = cmp.mapping.select_prev_item(),
-				["<C-x>"] = cmp.mapping.select_next_item(),
-				["<C-o>"] = cmp.mapping.scroll_docs(-4),
-				["<C-p>"] = cmp.mapping.scroll_docs(4),
+				["<C-b>"] = cmp.mapping.scroll_docs(-4),
+				["<C-f>"] = cmp.mapping.scroll_docs(4),
 				["<C-Space>"] = cmp.mapping.complete(),
-				["<C-f>"] = cmp.mapping({
+				["<C-e>"] = cmp.mapping({
 					i = cmp.mapping.abort(),
 					c = cmp.mapping.close(),
 				}),
-				["<CR>"] = cmp.mapping.confirm({
-					behavior = cmp.ConfirmBehavior.Insert,
-					select = false,
-				}),
+				["<CR>"] = cmp.mapping.confirm({ select = false }),
 				["<Tab>"] = cmp.mapping(function(fallback)
 					if cmp.visible() then
 						cmp.select_next_item()
@@ -53,14 +76,41 @@ return {
 					end
 				end, { "i", "s" }),
 			},
-			sources = {
+			sources = cmp.config.sources({
 				{ name = "nvim_lsp" },
 				-- { name = "luasnip" },
+				{ name = "cmdline" },
+				{ name = "nvim_lsp_signature_help" },
+				{ name = "crates" },
+				{ name = "npm", keyword_length = 4 },
 				{ name = "path" },
+				-- { name = "spell" },
+			}, {
 				{ name = "buffer" },
-				{ name = "spell" },
-				{ name = "cmp_git" },
+			}),
+		})
+
+		cmp.setup.cmdline("/", {
+			mapping = cmp.mapping.preset.cmdline(),
+			sources = {
+				{ name = "buffer" },
 			},
+		})
+
+		cmp.setup.cmdline("?", {
+			mapping = cmp.mapping.preset.cmdline(),
+			sources = {
+				{ name = "buffer" },
+			},
+		})
+
+		cmp.setup.cmdline(":", {
+			mapping = cmp.mapping.preset.cmdline(),
+			sources = cmp.config.sources({
+				{ name = "path" },
+			}, {
+				{ name = "cmdline", keyword_pattern = [=[[^[:blank:]\!]*]=] },
+			}),
 		})
 	end,
 }

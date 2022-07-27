@@ -1,4 +1,3 @@
-require("impatient")
 require("setup/packer")
 require("setup/settings")
 require("setup/keymap")
@@ -8,10 +7,6 @@ require("config/autocmds")
 -- use the `where cargo` command to ensure cargo exists and make and other stuff
 -- fzf-native requires "make" and "mingw"
 
--- is this superseded by treesitter-textobjects?
--- https://github.com/machakann/vim-sandwich
-
--- considering https://github.com/lewis6991/spellsitter.nvim
 -- considering https://github.com/michaelb/sniprun
 
 -- maybe https://github.com/danth/pathfinder.vim

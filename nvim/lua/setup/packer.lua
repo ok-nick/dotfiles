@@ -35,6 +35,7 @@ local function setup_packer()
 		-- TODO: setting this breaks neo-tree, https://github.com/nvim-neo-tree/neo-tree.nvim/issues/200
 		-- I think it also just breaks packer from compiling on startup in-general
 		-- compile_path = util.join_paths(vim.fn.stdpath("data"), "site", "pack", "compiled.lua"),
+		autoremove = true,
 	})
 end
 

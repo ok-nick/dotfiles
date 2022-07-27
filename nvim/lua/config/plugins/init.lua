@@ -5,16 +5,10 @@ return {
 	require(path .. "impatient"),
 	require(path .. "fixcursorhold"),
 	-- diagnostics
-	require(path .. "lsp/lsp-installer"),
-	require(path .. "lsp/lspconfig"),
-	require(path .. "lsp/null-ls"),
-	require(path .. "rust-tools"),
+	require(path .. "lsp/lsp"),
+	require(path .. "spellsitter"),
 	-- completion
 	require(path .. "cmp/cmp"),
-	require(path .. "cmp/buffer"),
-	require(path .. "cmp/git"),
-	require(path .. "cmp/lsp"),
-	require(path .. "cmp/spell"),
 	-- require(path .. "cmp/luasnip"),
 	require(path .. "luasnip"),
 	require(path .. "sleuth"),
@@ -29,9 +23,6 @@ return {
 	-- require(path .. "telescope-project"),
 	-- preview
 	require(path .. "markdown-composer"),
-	-- info
-	require(path .. "crates"),
-	require(path .. "lsp/fidget"),
 	-- git
 	require(path .. "gitsigns"),
 	require(path .. "fugitive"),
