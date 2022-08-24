@@ -1,7 +1,11 @@
 return {
 	"nvim-treesitter/nvim-treesitter",
-	run = { "cargo install tree-sitter-cli" },
+	run = function()
+		require("nvim-treesitter.install").update({ with_sync = true })
+	end,
 	config = function()
+		-- https://github.com/nvim-treesitter/nvim-treesitter/wiki/Windows-support#troubleshooting
+		require("nvim-treesitter.install").compilers = { "clang" }
 		require("nvim-treesitter.configs").setup({
 			ensure_installed = {
 				"rust",
@@ -23,7 +27,11 @@ return {
 				-- "todotxt" -- TODO: need this?
 			},
 			highlight = { enable = true },
+			-- TODO: not quite sure what this does
+			indent = { enable = true },
 			-- TODO: tons of other configs I could setup here
+			-- https://github.com/nvim-treesitter/nvim-treesitter-textobjects#text-objects-move
+			-- should setup ^
 			textobjects = {
 				select = {
 					enable = true,
@@ -35,14 +43,14 @@ return {
 						["il"] = "@class.outer",
 						["ab"] = "@block.outer",
 						["ib"] = "@block.inner",
-						["c"] = "@comment.outer",
-						["st"] = "@statement.outer",
+						["ao"] = "@comment.outer",
+						["at"] = "@statement.outer",
 						["ac"] = "@call.outer",
 						["ic"] = "@call.inner",
 						["aa"] = "@parameter.outer",
 						["ia"] = "@parameter.inner",
-						["ao"] = "@conditional.outer",
-						["io"] = "@conditional.inner",
+						["ai"] = "@conditional.outer",
+						["ii"] = "@conditional.inner",
 					},
 				},
 			},

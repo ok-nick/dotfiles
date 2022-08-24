@@ -11,12 +11,23 @@ return {
 	},
 	-- editor options
 	editor_options = {
+		-- disables end of line, vim-sleuth automatically handles this
+		endofline = false,
+		fixendofline = false,
+		-- expand tabs to spaces
+		expandtab = true,
+		-- use four spaces by default
+		tabstop = 4,
+		shiftwidth = 4,
+		softtabstop = 4,
 		-- enables spell checking
 		spell = true,
 		-- sets the spelling language to United States, English
 		spelllang = "en_us,programming",
 		-- wait x milliseconds before writing the file to disk
 		updatetime = 150,
+		-- limits the width of formatting text to 100
+		textwidth = 100,
 		-- use highlight colors based off color scheme
 		termguicolors = true,
 		-- better indenting
@@ -36,12 +47,6 @@ return {
 		number = true,
 		-- highlight the current line
 		cursorline = true,
-		-- expand tabs to spaces
-		expandtab = true,
-		-- use four spaces by default
-		tabstop = 4, -- vim-sleuth covers this?
-		shiftwidth = 4,
-		softtabstop = 4,
 		-- minimum number of lines to display above and below the cursor
 		-- scrolloff = 1,
 		-- always show the command while typing in visual mode

@@ -4,12 +4,13 @@ return {
 	-- performance
 	require(path .. "impatient"),
 	require(path .. "fixcursorhold"),
+	-- package manager
+	require(path .. "mason"),
 	-- diagnostics
-	require(path .. "lsp/lsp"),
+	require(path .. "lsp"),
 	require(path .. "spellsitter"),
 	-- completion
-	require(path .. "cmp/cmp"),
-	-- require(path .. "cmp/luasnip"),
+	require(path .. "cmp"),
 	require(path .. "luasnip"),
 	require(path .. "sleuth"),
 	require(path .. "dirtytalk"),
@@ -27,6 +28,7 @@ return {
 	require(path .. "gitsigns"),
 	require(path .. "fugitive"),
 	-- motions
+	-- TODO: migrate to nvim-surround
 	require(path .. "sandwich"),
 	-- TODO: below, doc keybinds
 	require(path .. "treesitter-textobjects"),
@@ -36,7 +38,6 @@ return {
 	require(path .. "treesitter"),
 	require(path .. "indent-blankline"),
 	-- themes
-	--	require(path .. "themes/vim-deus"),
 	require(path .. "themes/kanagawa"),
 	-- to make my life difficult
 	require(path .. "hardtime"),

@@ -16,10 +16,12 @@ return {
 						["<esc>"] = actions.close,
 					},
 				},
+				-- TODO: these don't work
+				file_ignore_patterns = { "%.git$", "node_modules$", "target$" },
 			},
 			pickers = {
 				find_files = {
-					find_command = { "rg", "--files", "--iglob", "!.git", "--hidden" },
+					hidden = true,
 					no_ignore = true,
 				},
 			},
