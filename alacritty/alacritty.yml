@@ -1,6 +1,9 @@
 shell:
   program: C:\Program Files\PowerShell\7\pwsh.exe
 
+# TODO: do %USERPROFILE%
+working_directory: C:\Users\nicky
+
 key_bindings:
   - { key: Back, mods: Control|Shift, action: Quit }
   - { key: Return, mods: Control|Shift, action: SpawnNewInstance }

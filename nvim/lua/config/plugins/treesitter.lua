@@ -24,10 +24,8 @@ return {
 				"python",
 				"java",
 				"scheme",
-				-- "todotxt" -- TODO: need this?
 			},
 			highlight = { enable = true },
-			-- TODO: not quite sure what this does
 			indent = { enable = true },
 			-- TODO: tons of other configs I could setup here
 			-- https://github.com/nvim-treesitter/nvim-treesitter-textobjects#text-objects-move

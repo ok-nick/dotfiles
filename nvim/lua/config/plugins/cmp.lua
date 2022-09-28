@@ -11,7 +11,7 @@ return {
 		"hrsh7th/cmp-nvim-lsp-signature-help",
 		{
 			"Saecki/crates.nvim",
-			tag = "v0.2.1",
+			tag = "v0.3.0",
 			requires = "nvim-lua/plenary.nvim",
 			after = "plenary.nvim",
 		},
@@ -45,6 +45,9 @@ return {
 					require("luasnip").lsp_expand(args.body)
 				end,
 			},
+			experimental = {
+				ghost_text = true,
+			},
 			mapping = {
 				["<C-b>"] = cmp.mapping.scroll_docs(-4),
 				["<C-f>"] = cmp.mapping.scroll_docs(4),
@@ -55,6 +58,7 @@ return {
 				}),
 				["<CR>"] = cmp.mapping.confirm({ select = false }),
 				["<Tab>"] = cmp.mapping(function(fallback)
+					-- TODO: if current line only has indents then cancel
 					if cmp.visible() then
 						cmp.select_next_item()
 					elseif luasnip.expand_or_jumpable() then
@@ -79,7 +83,7 @@ return {
 			sources = cmp.config.sources({
 				{ name = "nvim_lsp" },
 				-- { name = "luasnip" },
-				{ name = "cmdline" },
+				-- { name = "cmdline" },
 				{ name = "nvim_lsp_signature_help" },
 				{ name = "crates" },
 				{ name = "npm", keyword_length = 4 },

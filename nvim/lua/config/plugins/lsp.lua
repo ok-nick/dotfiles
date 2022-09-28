@@ -66,14 +66,12 @@ return {
 	{
 		"jose-elias-alvarez/null-ls.nvim",
 		requires = "nvim-lua/plenary.nvim",
-		after = "mason-tool-installer.nvim",
-		ft = { "lua", "luau" },
+		after = "gitsigns.nvim",
 		config = function()
 			local null_ls = require("null-ls")
 			null_ls.setup({
 				root_dir = require("null-ls.utils").root_pattern(
 					".null-ls-root",
-					"Makefile",
 					".git",
 					"stylua.toml",
 					"selene.toml",
@@ -83,9 +81,15 @@ return {
 				sources = {
 					null_ls.builtins.formatting.stylua,
 					null_ls.builtins.diagnostics.selene,
-					-- TODO: setup prettier for yaml and json and root_dir for it, make sure it
-					-- doesn't conflict with eslint plugin
-					-- null_ls.builtins.formatting.prettier
+					null_ls.builtins.formatting.black,
+					-- null_ls.builtins.code_actions.gitsigns,
+					-- null_ls.builtins.diagnostics.vale.with({
+					-- 	extra_filetypes = { "text" },
+					-- }),
+					-- TODO: make sure it doesn't conflict with slint from lspconfig
+					null_ls.builtins.formatting.prettierd.with({
+						disabled_filetypes = { "markdown" },
+					}),
 				},
 				on_attach = on_attach,
 			})
@@ -93,7 +97,6 @@ return {
 	},
 	{
 		"neovim/nvim-lspconfig",
-		requires = { "williamboman/mason.nvim", "williamboman/mason-lspconfig.nvim" },
 		after = { "mason.nvim", "mason-lspconfig.nvim", "cmp-nvim-lsp" },
 		config = function()
 			local mason = require("mason-lspconfig")
@@ -178,13 +181,14 @@ return {
 						run = "onSave",
 					},
 				},
-				taplo = { settings = {} },
+				pyright = {},
+				taplo = {},
 				jsonls = {
 					capabilities = { textDocument = { completion = { completionItem = { snippetSupport = true } } } },
-					settings = {},
 				},
-				yamlls = {
-					settings = {},
+				yamlls = {},
+				grammarly = {
+					filetypes = { "asciidoc", "markdown", "text", "tex" },
 				},
 			}
 
@@ -203,6 +207,7 @@ return {
 					end,
 					root_dir = options.root_dir,
 					settings = options.settings,
+					filetypes = options.filetypes,
 				})
 			end
 		end,

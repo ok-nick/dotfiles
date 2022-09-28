@@ -27,7 +27,7 @@ return {
 		-- wait x milliseconds before writing the file to disk
 		updatetime = 150,
 		-- limits the width of formatting text to 100
-		textwidth = 100,
+		-- textwidth = 100,
 		-- use highlight colors based off color scheme
 		termguicolors = true,
 		-- better indenting

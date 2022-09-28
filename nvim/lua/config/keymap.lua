@@ -64,4 +64,6 @@ return {
 	{ "n", "<leader>a", ":lua vim.diagnostic.setqflist()<CR>", default },
 	-- add buffer diagnostics to the location list
 	{ "n", "<leader>q", ":lua vim.diagnostic.setloclist()<CR>", default },
+	-- zen mode
+	{ "n", "<leader>zm", require("zen-mode").toggle, default },
 }

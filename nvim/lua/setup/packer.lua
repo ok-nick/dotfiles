@@ -12,11 +12,13 @@ local function install_packer()
 end
 
 local function add_packer()
+	-- TODO: dodcs say this is only required if packer is installed as "opt"
 	vim.api.nvim_command("packadd packer.nvim")
 end
 
 local function setup_packer()
 	local util = require("packer.util")
+	-- TODO: do I need this? I can pass it through .startup()
 	require("packer").init({
 		display = {
 			-- use a floating window
