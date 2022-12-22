@@ -18,15 +18,18 @@ return {
 				"typescript",
 				"javascript",
 				"comment",
+				"bash",
 				"c",
 				"c_sharp",
 				"cpp",
 				"python",
 				"java",
 				"scheme",
+				"html",
 			},
 			highlight = { enable = true },
 			indent = { enable = true },
+			-- yati = { enable = true },
 			-- TODO: tons of other configs I could setup here
 			-- https://github.com/nvim-treesitter/nvim-treesitter-textobjects#text-objects-move
 			-- should setup ^

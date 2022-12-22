@@ -8,7 +8,6 @@ return {
 	require(path .. "mason"),
 	-- diagnostics
 	require(path .. "lsp"),
-	require(path .. "spellsitter"),
 	-- completion
 	require(path .. "cmp"),
 	require(path .. "luasnip"),
@@ -28,15 +27,17 @@ return {
 	require(path .. "gitsigns"),
 	require(path .. "fugitive"),
 	-- motions
-	-- TODO: migrate to nvim-surround
-	require(path .. "sandwich"),
+	require(path .. "surround"),
+	-- require(path .. "sandwich"), -- using nvim-surround
 	-- TODO: below, doc keybinds
 	require(path .. "treesitter-textobjects"),
 	require(path .. "comment"),
 	-- require(path .. "matchup"),
 	-- looks
 	require(path .. "treesitter"),
+	-- require(path .. "yati"),
 	require(path .. "indent-blankline"),
+	require(path .. "zen-mode"),
 	-- themes
 	require(path .. "themes/kanagawa"),
 	-- to make my life difficult

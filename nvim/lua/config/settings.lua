@@ -37,6 +37,8 @@ return {
 		--	splitright = true,
 		-- always display the sign column with a fixed offset
 		signcolumn = "yes:1",
+		-- disables mouse by default in Neovim
+		mouse = "",
 		-- enable completion popup menu
 		completeopt = "menu,menuone,noselect",
 		-- output Utf-8 in the terminal

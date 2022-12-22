@@ -13,6 +13,6 @@ augroup END
 -- vim.cmd([[ au InsertLeave * set relativenumber ]])
 
 -- replace netrw with telescope
-vim.cmd([[
-	autocmd! VimEnter * if isdirectory(expand('%:p')) | exe 'cd %:p:h' | exe 'bd!'| exe 'Telescope find_files' | endif
-]])
+-- vim.cmd([[
+-- 	autocmd! VimEnter * if isdirectory(expand('%:p')) | exe 'cd %:p:h' | exe 'bd!'| exe 'Telescope find_files' | endif
+-- ]])

@@ -16,14 +16,16 @@ function on_attach(client, bufnr)
 	map("n", "<leader>rn", vim.lsp.buf.rename, bufopts)
 	map("n", "<leader>ca", vim.lsp.buf.code_action, bufopts)
 	map("n", "gr", vim.lsp.buf.references, bufopts)
-	map("n", "<leader>f", vim.lsp.buf.formatting, bufopts)
+	map("n", "<leader>f", function()
+		vim.lsp.buf.format({ async = true })
+	end, bufopts)
 
-	if client.resolved_capabilities.document_formatting then
+	if client.server_capabilities.documentFormattingProvider then
 		-- format on save
 		vim.cmd([[
 			augroup LspFormatting
 				autocmd! * <buffer>
-				autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()
+				autocmd BufWritePre <buffer> lua vim.lsp.buf.format()
 			augroup END
 		]])
 	end
@@ -80,13 +82,18 @@ return {
 				),
 				sources = {
 					null_ls.builtins.formatting.stylua,
-					null_ls.builtins.diagnostics.selene,
+					null_ls.builtins.diagnostics.selene.with({
+						method = null_ls.methods.DIAGNOSTICS_ON_SAVE,
+					}),
 					null_ls.builtins.formatting.black,
+					null_ls.builtins.code_actions.eslint_d,
+					null_ls.builtins.diagnostics.eslint_d.with({
+						method = null_ls.methods.DIAGNOSTICS_ON_SAVE,
+					}),
 					-- null_ls.builtins.code_actions.gitsigns,
 					-- null_ls.builtins.diagnostics.vale.with({
 					-- 	extra_filetypes = { "text" },
 					-- }),
-					-- TODO: make sure it doesn't conflict with slint from lspconfig
 					null_ls.builtins.formatting.prettierd.with({
 						disabled_filetypes = { "markdown" },
 					}),
@@ -96,13 +103,13 @@ return {
 		end,
 	},
 	{
+		"b0o/schemastore.nvim",
+	},
+	{
 		"neovim/nvim-lspconfig",
-		after = { "mason.nvim", "mason-lspconfig.nvim", "cmp-nvim-lsp" },
+		after = { "mason.nvim", "mason-lspconfig.nvim", "cmp-nvim-lsp", "schemastore.nvim" },
 		config = function()
-			local mason = require("mason-lspconfig")
-			mason.setup({
-				automatic_installation = true,
-			})
+			-- vim.diagnostic.config({ virtual_text = false })
 
 			local servers = {
 				rust_analyzer = {
@@ -132,8 +139,8 @@ return {
 				sumneko_lua = {
 					on_attach = function(client)
 						-- using StyLua from null-ls instead
-						client.resolved_capabilities.document_formatting = false
-						client.resolved_capabilities.document_range_formatting = false
+						client.server_capabilities.documentFormattingProvider = false
+						client.server_capabilities.documentRangeFormattingProvider = false
 					end,
 					settings = {
 						Lua = {
@@ -172,32 +179,40 @@ return {
 						},
 					},
 				},
-				eslint = {
-					on_attach = function(client)
-						client.resolved_capabilities.document_formatting = true
-						client.resolved_capabilities.document_range_formatting = true
-					end,
-					settings = {
-						run = "onSave",
-					},
-				},
 				pyright = {},
-				taplo = {},
+				-- TODO: Schemas: https://taplo.tamasfe.dev/cli/usage/validation.html
+				taplo = {
+					on_attach = function(client)
+						-- For some reason formatting capabilities aren't specified by default.
+						client.server_capabilities.documentFormattingProvider = true
+						client.server_capabilities.documentRangeFormattingProvider = true
+					end,
+				},
 				jsonls = {
 					capabilities = { textDocument = { completion = { completionItem = { snippetSupport = true } } } },
+					setings = {
+						json = {
+							schemas = require("schemastore").json.schemas(),
+							validate = { enable = true },
+						},
+					},
 				},
-				yamlls = {},
+				yamlls = {
+					-- TODO: https://github.com/b0o/SchemaStore.nvim/pull/10
+				},
+				-- TODO: or use vale configured properly
 				grammarly = {
 					filetypes = { "asciidoc", "markdown", "text", "tex" },
+					init_options = {
+						clientId = require("secrets").grammarly,
+					},
 				},
 			}
 
 			local lspconfig = require("lspconfig")
 			for server, options in pairs(servers) do
 				lspconfig[server].setup({
-					capabilities = require("cmp_nvim_lsp").update_capabilities(
-						vim.tbl_extend("force", vim.lsp.protocol.make_client_capabilities(), options.capabilities or {})
-					),
+					capabilities = require("cmp_nvim_lsp").default_capabilities(),
 					on_attach = function(client, bufnr)
 						if options.on_attach then
 							options.on_attach(client, bufnr)
@@ -208,6 +223,7 @@ return {
 					root_dir = options.root_dir,
 					settings = options.settings,
 					filetypes = options.filetypes,
+					init_options = options.init_options,
 				})
 			end
 		end,

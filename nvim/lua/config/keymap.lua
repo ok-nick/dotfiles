@@ -36,6 +36,7 @@ return {
 	{ "n", "<leader>to", themed_picker("oldfiles"), default },
 	-- open telescope treesitter
 	{ "n", "<leader>ts", themed_picker("treesitter"), default },
+	-- TODO: https://github.com/syphar/dotfiles/blob/ddfd8996cd5ae8574d6eb6ab9326aaee00d785f0/.config/nvim/lua/dc/lsp/init.lua#L100-L106
 	-- open telescope loclist (quickfix of current window)
 	{ "n", "<leader>tl", themed_picker("loclist"), default },
 	-- open telescope spell suggest

@@ -16,11 +16,20 @@ return {
 	-- 	end,
 	-- },
 	{
+		"williamboman/mason-lspconfig.nvim",
+		config = function()
+			require("mason-lspconfig").setup({
+				automatic_installation = true,
+			})
+		end,
+	},
+	{
 		"jayp0521/mason-null-ls.nvim",
 		after = { "mason.nvim", "null-ls.nvim" },
 		config = function()
-			local mason_null_ls = require("mason-null-ls")
-			require("mason-null-ls").setup({})
+			require("mason-null-ls").setup({
+				automatic_installation = true,
+			})
 		end,
 	},
 }

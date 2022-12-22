@@ -11,7 +11,7 @@ return {
 		"hrsh7th/cmp-nvim-lsp-signature-help",
 		{
 			"Saecki/crates.nvim",
-			tag = "v0.3.0",
+			tag = "*",
 			requires = "nvim-lua/plenary.nvim",
 			after = "plenary.nvim",
 		},
@@ -81,12 +81,12 @@ return {
 				end, { "i", "s" }),
 			},
 			sources = cmp.config.sources({
+				{ name = "crates" },
+				{ name = "npm", keyword_length = 4 },
 				{ name = "nvim_lsp" },
 				-- { name = "luasnip" },
 				-- { name = "cmdline" },
 				{ name = "nvim_lsp_signature_help" },
-				{ name = "crates" },
-				{ name = "npm", keyword_length = 4 },
 				-- { name = "path" },
 				-- { name = "spell" },
 			}, {
