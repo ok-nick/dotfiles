@@ -1,3 +1,0 @@
-return {
-	"ajmwagar/vim-deus",
-}

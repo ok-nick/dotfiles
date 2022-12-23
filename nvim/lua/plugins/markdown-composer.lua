@@ -2,7 +2,12 @@ return {
 	"euclio/vim-markdown-composer",
 	ft = "markdown",
 	-- TODO: this just doesn't run
-	run = { "cargo build --release" },
+	build = function()
+		local job = require("plenary.job")
+		job:new({
+			command = "cargo build --release",
+		}):sync()
+	end,
 	config = function()
 		-- I have cargo set to compile everything in a global folder
 		-- TODO: set to %USERPROFILE%

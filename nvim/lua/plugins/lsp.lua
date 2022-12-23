@@ -34,15 +34,14 @@ end
 return {
 	{
 		"j-hui/fidget.nvim",
-		after = "nvim-lspconfig",
+		dependencies = { "neovim/nvim-lspconfig" },
 		config = function()
 			require("fidget").setup({})
 		end,
 	},
 	{
 		"simrat39/rust-tools.nvim",
-		requires = { "mfussenegger/nvim-dap", "nvim-lua/plenary.nvim" },
-		after = { "nvim-lspconfig", "mason-lspconfig.nvim" },
+		dependencies = { "neovim/nvim-lspconfig" },
 		config = function()
 			require("rust-tools").setup({
 				tools = {
@@ -67,8 +66,7 @@ return {
 	},
 	{
 		"jose-elias-alvarez/null-ls.nvim",
-		requires = "nvim-lua/plenary.nvim",
-		after = "gitsigns.nvim",
+		dependencies = { "nvim-lua/plenary.nvim", "lewis6991/gitsigns.nvim" },
 		config = function()
 			local null_ls = require("null-ls")
 			null_ls.setup({
@@ -107,7 +105,7 @@ return {
 	},
 	{
 		"neovim/nvim-lspconfig",
-		after = { "mason.nvim", "mason-lspconfig.nvim", "cmp-nvim-lsp", "schemastore.nvim" },
+		dependencies = { "hrsh7th/cmp-nvim-lsp", "b0o/schemastore.nvim", "williamboman/mason-lspconfig.nvim" },
 		config = function()
 			-- vim.diagnostic.config({ virtual_text = false })
 
@@ -162,6 +160,7 @@ return {
 							},
 							workspace = {
 								library = vim.api.nvim_get_runtime_file("", true),
+								checkThirdParty = false,
 							},
 							telemetry = {
 								enable = false,
@@ -169,6 +168,7 @@ return {
 						},
 					},
 				},
+				luau_lsp = {},
 				clangd = {
 					settings = {
 						cmd = {

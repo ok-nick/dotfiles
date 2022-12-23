@@ -16,10 +16,7 @@ local function themed_picker(picker)
 	end
 end
 
--- set leader key
-vim.g.mapleader = " "
-
-return {
+local keymaps = {
 	-- unbind default mapping for space key
 	{ "n", " ", "", default },
 	-- open telescope live grep
@@ -68,3 +65,7 @@ return {
 	-- zen mode
 	{ "n", "<leader>zm", require("zen-mode").toggle, default },
 }
+
+for _, map in ipairs(keymaps) do
+	vim.keymap.set(unpack(map))
+end
