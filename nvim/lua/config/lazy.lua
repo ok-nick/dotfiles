@@ -19,6 +19,7 @@ require("lazy").setup("plugins", {
 	},
 	checker = {
 		enabled = true,
+		notify = false,
 	},
 	performance = {
 		rtp = {
@@ -33,4 +34,30 @@ require("lazy").setup("plugins", {
 			},
 		},
 	},
+	ui = {
+		icons = {
+			cmd = "⌘",
+			config = "🛠",
+			event = "📅",
+			ft = "📂",
+			init = "⚙",
+			keys = "🗝",
+			plugin = "🔌",
+			runtime = "💻",
+			source = "📄",
+			start = "🚀",
+			task = "📌",
+		},
+	},
 })
+
+vim.keymap.set("n", "<leader>lh", "<cmd>Lazy home<cr>")
+vim.keymap.set("n", "<leader>lp", "<cmd>Lazy profile<cr>")
+vim.keymap.set("n", "<leader>lu", "<cmd>Lazy update<cr>")
+vim.keymap.set("n", "<leader>ll", "<cmd>Lazy log<cr>")
+
+-- for _, mode in ipairs(require("lazy.view").modes) do
+-- 	if mode.name == "help" then
+-- 		mode.key = "g?"
+-- 	end
+-- end

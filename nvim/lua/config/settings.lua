@@ -3,7 +3,7 @@ local commands = {
 	"let g:netrw_banner = 0",
 }
 local editor_options = {
-	-- disables end of line (vim-sleuth automatically handles this)
+	-- preserves end of line (vim-sleuth automatically handles this)
 	endofline = false,
 	fixendofline = false,
 	-- expand tabs to spaces
@@ -26,7 +26,7 @@ local editor_options = {
 	-- disables mouse
 	mouse = "",
 	-- enable completion popup menu
-	completeopt = "menu,menuone,noselect",
+	completeopt = "menu,menuone,noinsert,noselect",
 	-- output Utf-8 in the terminal
 	encoding = "utf-8",
 	-- force file writes to use Utf-8

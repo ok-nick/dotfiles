@@ -6,8 +6,8 @@ shell:
 # TODO: do %USERPROFILE%
 working_directory: C:\Users\nicky
 
-window:
-  decorations: none
+# window:
+#   decorations: none
 
 key_bindings:
   - { key: Back, mods: Control|Shift, action: Quit }

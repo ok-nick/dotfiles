@@ -40,18 +40,10 @@ local keymaps = {
 	{ "n", "<leader>tn", themed_picker("spell_suggest"), default },
 	-- open telescope current buffer fuzzy find
 	{ "n", "<leader>tw", themed_picker("current_buffer_fuzzy_find"), default },
-	-- open telescope current buffer tags
-	{ "n", "<leader>ta", themed_picker("current_buffer_tags"), default },
 	-- open telescope at last state
 	{ "n", "<leader>tr", themed_picker("resume"), default },
 	-- open telescope diagnostics
 	{ "n", "<leader>td", themed_picker("diagnostics"), default },
-	-- sync packer
-	{ "n", "<leader>ps", "<cmd>PackerSync<CR>", default },
-	-- compile packer
-	{ "n", "<leader>pc", "<cmd>PackerCompile<CR>", default },
-	-- profile packer
-	{ "n", "<leader>pp", "<cmd>PackerProfile<CR>", default },
 	-- open diagnostics in floating window
 	{ "n", "<leader>e", ":lua vim.diagnostic.open_float()<CR>", default },
 	-- go to next diagnostic

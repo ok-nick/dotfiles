@@ -1,14 +1,14 @@
 -- set leader key (needs to be called before lazy)
 vim.g.mapleader = " "
 
+-- for some reason I have to load `settings` before `lazy`, otherwise it will error when a plugin needs to be installed
+require("config/settings")
 require("config/lazy")
 require("config/autocmds")
-require("config/settings")
 require("config/mappings")
 
 -- add lazy loading for plugins, many of them only activate on specific file types
 -- use the `where cargo` command to ensure cargo exists and make and other stuff
--- fzf-native requires "make" and "mingw"
 
 -- considering https://github.com/michaelb/sniprun
 
