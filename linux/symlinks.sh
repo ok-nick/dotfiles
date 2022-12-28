@@ -1,3 +1,5 @@
+#!/usr/bin/bash
+
 ln -sn $DOTFILES/alacritty ~/.config/alacritty
 ln -sn $DOTFILES/nvim ~/.config/nvim
 ln -sn $DOTFILES/vale/.vale.ini ~/.vale.ini
