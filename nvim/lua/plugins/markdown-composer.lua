@@ -1,4 +1,5 @@
 return {
+	enabled = false, -- TODO: support linux
 	"euclio/vim-markdown-composer",
 	ft = "markdown",
 	build = function()

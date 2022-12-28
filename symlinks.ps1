@@ -5,7 +5,7 @@ New-Item -ItemType SymbolicLink -Path "$env:UserProfile\AppData\Roaming\alacritt
 New-Item -ItemType SymbolicLink -Path "$env:UserProfile\AppData\Local\nvim" -Target (Resolve-Path -Path ".\nvim")
 
 # vale config
-New-Item -ItemType SymbolicLink -Path "$env:UserProfile\.vale.ini" -Target (Resolve-Path -Path ".\value\.vale.ini")
+New-Item -ItemType SymbolicLink -Path "$env:UserProfile\.vale.ini" -Target (Resolve-Path -Path ".\vale\.vale.ini")
 
 # komorebi config
 New-Item -ItemType SymbolicLink -Path "$env:UserProfile\komorebi" -Target (Resolve-Path -Path ".\komorebi")

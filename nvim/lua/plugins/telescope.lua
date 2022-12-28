@@ -3,13 +3,6 @@ return {
 		"nvim-telescope/telescope-fzf-native.nvim",
 		dependencies = { "nvim-lua/plenary.nvim", "nvim-telescope/telescope.nvim" },
 		build = "make",
-		-- build = function()
-		-- 	local job = require("plenary.job")
-		-- 	job:new({
-		-- 		command = "make",
-		-- 		cwd = vim.fn.stdpath("data") .. "/lazy/telescope-fzf-native.nvim",
-		-- 	}):sync()
-		-- end,
 		config = function()
 			require("telescope").load_extension("fzf")
 		end,
