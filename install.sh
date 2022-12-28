@@ -2,8 +2,8 @@
 
 if [[ "$OSTYPE" == "win32" ]]; then
     pwsh ./windows/install.ps1
-else;
+else
     ./linux/install.sh
 fi
 
-./cross-platform/install.sh
+./cross_platform/install.sh
