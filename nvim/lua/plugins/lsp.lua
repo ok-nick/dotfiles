@@ -1,33 +1,46 @@
 function on_attach(client, bufnr)
-	local map = vim.keymap.set
-	local bufopts = { noremap = true, silent = true, buffer = bufnr }
-
-	map("n", "gD", vim.lsp.buf.declaration, bufopts)
-	map("n", "gd", vim.lsp.buf.definition, bufopts)
-	map("n", "K", vim.lsp.buf.hover, bufopts)
-	map("n", "gi", vim.lsp.buf.implementation, bufopts)
-	map("n", "<C-k>", vim.lsp.buf.signature_help, bufopts)
-	map("n", "<leader>wa", vim.lsp.buf.add_workspace_folder, bufopts)
-	map("n", "<leader>wr", vim.lsp.buf.remove_workspace_folder, bufopts)
-	map("n", "<leader>wl", function()
+	local bufopts = { buffer = bufnr }
+	vim.keymap.set("n", "gD", vim.lsp.buf.declaration, bufopts)
+	vim.keymap.set("n", "gd", vim.lsp.buf.definition, bufopts)
+	vim.keymap.set("n", "K", vim.lsp.buf.hover, bufopts)
+	vim.keymap.set("n", "gi", vim.lsp.buf.implementation, bufopts)
+	vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, bufopts)
+	vim.keymap.set("n", "<leader>wa", vim.lsp.buf.add_workspace_folder, bufopts)
+	vim.keymap.set("n", "<leader>wr", vim.lsp.buf.remove_workspace_folder, bufopts)
+	vim.keymap.set("n", "<leader>wl", function()
 		print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
 	end, bufopts)
-	map("n", "<leader>D", vim.lsp.buf.type_definition, bufopts)
-	map("n", "<leader>rn", vim.lsp.buf.rename, bufopts)
-	map("n", "<leader>ca", vim.lsp.buf.code_action, bufopts)
-	map("n", "gr", vim.lsp.buf.references, bufopts)
-	map("n", "<leader>f", function()
+	vim.keymap.set("n", "<leader>D", vim.lsp.buf.type_definition, bufopts)
+	vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, bufopts)
+	vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, bufopts)
+	vim.keymap.set("n", "gr", vim.lsp.buf.references, bufopts)
+	vim.keymap.set("n", "<leader>f", function()
 		vim.lsp.buf.format({ async = true })
 	end, bufopts)
 
+	vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float)
+	vim.keymap.set("n", "]d", vim.diagnostic.goto_next)
+	vim.keymap.set("n", "[d", vim.diagnostic.goto_prev)
+	vim.keymap.set("n", "<leader>a", vim.diagnostic.setqflist)
+	vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist)
+
+	-- automatically update loclist/qfixlist with diagnostics
+	vim.api.nvim_create_autocmd({ "DiagnosticChanged" }, {
+		callback = function()
+			vim.diagnostic.setloclist({ open = false })
+			vim.diagnostic.setqflist({ open = false })
+		end,
+	})
+
 	if client.server_capabilities.documentFormattingProvider then
 		-- format on save
-		vim.cmd([[
-			augroup LspFormatting
-				autocmd! * <buffer>
-				autocmd BufWritePre <buffer> lua vim.lsp.buf.format()
-			augroup END
-		]])
+		vim.api.nvim_create_autocmd({ "BufWritePre" }, {
+			callback = function()
+				vim.lsp.buf.format({
+					bufnr = bufnr,
+				})
+			end,
+		})
 	end
 end
 
@@ -180,6 +193,16 @@ return {
 					},
 				},
 				pyright = {},
+				omnisharp = {
+					settings = {
+						-- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#omnisharp
+						cmd = {
+							"dotnet",
+							vim.fn.stdpath("data") .. "/mason/packages/omnisharp/OmniSharp.dll",
+						},
+						enable_roslyn_analyzers = true,
+					},
+				},
 				-- TODO: Schemas: https://taplo.tamasfe.dev/cli/usage/validation.html
 				taplo = {
 					on_attach = function(client)

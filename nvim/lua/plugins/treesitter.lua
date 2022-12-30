@@ -5,17 +5,15 @@ return {
 	{
 		"nvim-treesitter/nvim-treesitter",
 		-- TODO: https://github.com/folke/lazy.nvim/issues/143
-		-- build = "cargo install tree-sitter-cli",
-		build = function()
-			require("nvim-treesitter.install").update({ with_sync = true })
-		end,
+		build = {
+			"cargo install tree-sitter-cli",
+			function()
+				require("nvim-treesitter.install").update({ with_sync = true })
+			end,
+		},
 		config = function()
 			-- https://github.com/nvim-treesitter/nvim-treesitter/wiki/Windows-support#troubleshooting
 			require("nvim-treesitter.install").compilers = { "clang" }
-
-			-- custom parser path so they are cached separately from plugins
-			local parser_path = vim.fn.stdpath("data") .. "/site"
-			vim.opt.runtimepath:append(parser_path)
 
 			require("nvim-treesitter.configs").setup({
 				ensure_installed = {
@@ -25,6 +23,7 @@ return {
 					"regex",
 					"toml",
 					"markdown",
+					"markdown_inline",
 					"yaml",
 					"typescript",
 					"javascript",
@@ -37,9 +36,9 @@ return {
 					"java",
 					"scheme",
 					"html",
+					"help",
 				},
 				auto_install = true,
-				parser_install_dir = parser_path,
 
 				highlight = { enable = true },
 				indent = { enable = true },

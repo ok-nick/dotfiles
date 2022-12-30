@@ -56,8 +56,6 @@ vim.keymap.set("n", "<leader>lp", "<cmd>Lazy profile<cr>")
 vim.keymap.set("n", "<leader>lu", "<cmd>Lazy update<cr>")
 vim.keymap.set("n", "<leader>ll", "<cmd>Lazy log<cr>")
 
--- for _, mode in ipairs(require("lazy.view").modes) do
--- 	if mode.name == "help" then
--- 		mode.key = "g?"
--- 	end
--- end
+-- https://github.com/folke/lazy.nvim/issues/120#issuecomment-1364482723
+-- same key as mason's help menu to avoid overriding the `?` navigational key
+require("lazy.view.config").commands.help.key = "g?"

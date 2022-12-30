@@ -1,10 +1,6 @@
 shell:
   program: C:\Program Files\PowerShell\7\pwsh.exe
   args: ["-nologo"]
-  # program: C:\Program Files\Git\bin\bash.exe
-
-# TODO: do %USERPROFILE%
-working_directory: C:\Users\nicky
 
 # window:
 #   decorations: none

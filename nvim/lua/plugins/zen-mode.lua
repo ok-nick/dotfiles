@@ -1,7 +1,8 @@
 return {
 	"folke/zen-mode.nvim",
 	config = function()
-		require("zen-mode").setup({
+		local zen_mode = require("zen-mode")
+		zen_mode.setup({
 			plugins = {
 				options = {
 					number = false,
@@ -9,5 +10,7 @@ return {
 				gitsigns = { enabled = false },
 			},
 		})
+
+		vim.keymap.set("n", "<leader>zm", zen_mode.toggle)
 	end,
 }

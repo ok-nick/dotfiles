@@ -1,3 +1,5 @@
+-- remove the original mapping for space
+vim.keymap.set("n", " ", "")
 -- set leader key (needs to be called before lazy)
 vim.g.mapleader = " "
 
