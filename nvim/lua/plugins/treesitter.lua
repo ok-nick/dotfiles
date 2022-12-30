@@ -40,6 +40,7 @@ return {
 					"java",
 					"scheme",
 					"html",
+					"sxhkdrc",
 				},
 				auto_install = true,
 				parser_install_dir = parser_path,

@@ -1,7 +1,9 @@
 fish_add_path ~/.local/share/neovim/bin
+fish_add_path ~/.local/bin
 
-set -Ux EDITOR nvim
-set -Ux DOTFILES ~/dotfiles
+set -x EDITOR ~/.local/share/neovim/bin/nvim
+set -x DOTFILES ~/dotfiles
+set -x SXHKD_SHELL /usr/bin/bash
 
 source $DOTFILES/fish/themes/kanagawa.fish
 

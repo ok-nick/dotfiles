@@ -8,3 +8,6 @@ ln -sn $DOTFILES/firefox ~/.mozilla/firefox/*.default-release
 ln -sn $DOTFILES/tridactyl ~/.config/tridactyl
 ln -sn $DOTFILES/fish ~/.config/fish
 ln -sn $DOTFILES/cargo ~/.cargo
+ln -sn $DOTFILES/bspwm ~/.config/bspwm
+ln -sn $DOTFILES/sxhkd ~/.config/sxhkd
+

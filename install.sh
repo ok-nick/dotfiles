@@ -1,9 +1,15 @@
 #!/usr/bin/bash
 
 if [[ "$OSTYPE" == "win32" ]]; then
-    pwsh ./windows/install.ps1
+    for s in ./windows/*.ps1; do
+        pwsh $s
+    done
 else
-    ./linux/install.sh
+    for s in ./linux/*.sh; do
+        $s
+    done
 fi
 
-./cross_platform/install.sh
+for s in ./cross_platform/*.sh; do
+    $s
+done
