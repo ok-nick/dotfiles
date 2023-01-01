@@ -1,2 +1,2 @@
 [build]
-target-dir = "Documents/crate_targets"
+target-dir = "crate_targets"

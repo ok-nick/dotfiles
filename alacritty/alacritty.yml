@@ -1,6 +1,6 @@
-shell:
-  program: C:\Program Files\PowerShell\7\pwsh.exe
-  args: ["-nologo"]
+# shell:
+# program: C:\Program Files\PowerShell\7\pwsh.exe
+# args: ["-nologo"]
 
 # window:
 #   decorations: none

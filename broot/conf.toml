@@ -1,3 +1,4 @@
+imports = ["kanagawa.toml"]
 default_flags = "g"
 capture_mouse = false
 
@@ -6,7 +7,7 @@ key = "ctrl-l"
 internal = ":panel_right_no_open"
 
 [[verbs]]
-key = "ctrl-backspace"
+key = "ctrl-h"
 internal = ":panel_left_no_open"
 
 [[verbs]]

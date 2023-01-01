@@ -1,0 +1,8 @@
+New-Item -ItemType SymbolicLink -Path "$env:UserProfile\AppData\Roaming\alacritty" -Target "$env:DOTFILES\alacritty"
+New-Item -ItemType SymbolicLink -Path "$env:UserProfile\AppData\Local\nvim" -Target "$env:DOTFILES\nvim"
+New-Item -ItemType SymbolicLink -Path "$env:UserProfile\.vale.ini" -Target "$env:DOTFILES\vale\.vale.ini"
+New-Item -ItemType SymbolicLink -Path "$env:UserProfile\komorebi" -Target "$env:DOTFILES\komorebi"
+New-Item -ItemType SymbolicLink -Path "$env:UserProfile\AppData\Roaming\dystroy\broot\config\conf.toml" -Target "$env:DOTFILES\broot\conf.toml"
+New-Item -ItemType SymbolicLink -Path ((Resolve-Path -Relative "$env:UserProfile\AppData\Roaming\Mozilla\Firefox\Profiles\*.default-release") + "\chrome") -Target "$env:DOTFILES\firefox"
+New-Item -ItemType SymbolicLink -Path "$env:UserProfile\.tridactylrc" -Target "$env:DOTFILES\tridactyl\tridactylrc"
+New-Item -ItemType SymbolicLink -Path "$env:UserProfile\.cargo" -Target "$env:DOTFILES\cargo"
