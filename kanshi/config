@@ -1,0 +1,13 @@
+profile docked {
+   output eDP-1 position 0,2520 mode 1920x1080@300.185Hz disable
+   output DP-1 position 0,1080 mode 2560x1440@143.999Hz enable
+   output DP-2 position 2560,1080 mode 2560x1440@143.999Hz enable
+   output HDMI-A-1 position 1600,0 mode 1920x1080@120.000Hz enable
+
+   exec swaymsg focus output DP-2
+}
+
+profile undocked {
+   output eDP-1 position 0,0 mode 1920x1080@300.185Hz enable
+}
+

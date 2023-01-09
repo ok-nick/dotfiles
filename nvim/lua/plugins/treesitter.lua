@@ -48,7 +48,7 @@ return {
 				auto_install = true,
 
 				highlight = { enable = true },
-				indent = { enable = true },
+				indent = { enable = false },
 				-- TODO: tons of other configs I could setup here
 				-- https://github.com/nvim-treesitter/nvim-treesitter-textobjects#text-objects-move
 				-- should setup ^

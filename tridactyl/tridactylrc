@@ -10,10 +10,10 @@ command translate js let googleTranslateCallback = document.createElement('scrip
 
 bind gd tabduplicate
 
-bind / fillcmdline find
-bind ? fillcmdline find --reverse
-bind n findnext --search-from-view
-bind N findnext --search-from-view --reverse
-bind gn findselect
-bind gN composite findnext --search-from-view --reverse; findselect
-bind <C-[> nohlsearch
+" bind / fillcmdline find
+" bind ? fillcmdline find --reverse
+" bind n findnext --search-from-view
+" bind N findnext --search-from-view --reverse
+" bind gn findselect
+" bind gN composite findnext --search-from-view --reverse; findselect
+" bind <C-[> nohlsearch

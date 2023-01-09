@@ -1,0 +1,13 @@
+[Unit]
+Description=CEC toggle
+ConditionPathExists=/usr/bin/cec-client
+Before=poweroff.target reboot.target
+
+[Service]
+Type=oneshot
+RemainAfterExit=true
+ExecStart=bash -c "echo 'on 0.0.0.0' | cec-client --single-command --type r --base 0 --port 4 /dev/ttyACM0"
+ExecStop=bash -c "echo 'standby 0.0.0.0' | cec-client --single-command --type r --base 0 --port 4 /dev/ttyACM0"
+
+[Install]
+WantedBy=multi-user.target

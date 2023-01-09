@@ -25,23 +25,23 @@ function on_attach(client, bufnr)
 	vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist)
 
 	-- automatically update loclist/qfixlist with diagnostics
-	vim.api.nvim_create_autocmd({ "DiagnosticChanged" }, {
-		callback = function()
-			vim.diagnostic.setloclist({ open = false })
-			vim.diagnostic.setqflist({ open = false })
-		end,
-	})
+	-- vim.api.nvim_create_autocmd({ "DiagnosticChanged" }, {
+	-- 	callback = function()
+	-- 		vim.diagnostic.setloclist({ open = false })
+	-- 		vim.diagnostic.setqflist({ open = false })
+	-- 	end,
+	-- })
 
-	if client.server_capabilities.documentFormattingProvider then
-		-- format on save
-		vim.api.nvim_create_autocmd({ "BufWritePre" }, {
-			callback = function()
-				vim.lsp.buf.format({
-					bufnr = bufnr,
-				})
-			end,
-		})
-	end
+	-- 	if client.server_capabilities.documentFormattingProvider then
+	-- 		-- format on save
+	-- 		vim.api.nvim_create_autocmd({ "BufWritePre" }, {
+	-- 			callback = function()
+	-- 				vim.lsp.buf.format({
+	-- 					bufnr = bufnr,
+	-- 				})
+	-- 			end,
+	-- 		})
+	-- 	end
 end
 
 return {
@@ -53,6 +53,7 @@ return {
 		end,
 	},
 	{
+		enabled = false, -- TODO: BUGGY
 		"simrat39/rust-tools.nvim",
 		dependencies = { "neovim/nvim-lspconfig" },
 		config = function()
@@ -142,6 +143,9 @@ return {
 							lens = {
 								implementations = false,
 							},
+							cargo = {
+								allFeatures = true,
+							},
 							importPrefix = "crate",
 							importEnforceGranularity = true,
 						},
@@ -193,6 +197,7 @@ return {
 					},
 				},
 				pyright = {},
+				jdtls = {},
 				omnisharp = {
 					settings = {
 						-- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#omnisharp
