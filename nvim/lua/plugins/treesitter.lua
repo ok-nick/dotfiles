@@ -55,7 +55,8 @@ return {
 				textobjects = {
 					select = {
 						enable = true,
-						lookahead = true,
+						-- TODO: pressing tab makes it jump to the next object, very annoying
+						lookahead = false,
 						keymaps = {
 							["af"] = "@function.outer",
 							["if"] = "@function.inner",

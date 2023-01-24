@@ -1,0 +1,19 @@
+# This file contains fish universal variable definitions.
+# VERSION: 3.0
+SETUVAR --export MOZ_ENABLE_WAYLAND:1
+SETUVAR --export WLR_DRM_NO_MODIFIERS:0
+SETUVAR --export WLR_NO_HARDWARE_CURSORS:1
+SETUVAR --export WLR_RENDERER:vulkan
+SETUVAR __fish_initialized:3400
+SETUVAR fish_color_cancel:\x2dr
+SETUVAR fish_color_cwd:green
+SETUVAR fish_color_cwd_root:red
+SETUVAR fish_color_history_current:\x2d\x2dbold
+SETUVAR fish_color_host:normal
+SETUVAR fish_color_host_remote:yellow
+SETUVAR fish_color_status:red
+SETUVAR fish_color_user:brgreen
+SETUVAR fish_color_valid_path:\x2d\x2dunderline
+SETUVAR fish_key_bindings:fish_default_key_bindings
+SETUVAR fish_pager_color_selected_background:\x2dr
+SETUVAR fish_user_paths:/home/nicky/\x2elocal/bin\x1e/home/nicky/\x2elocal/share/neovim/bin\x1e/home/nicky/\x2ecargo/bin

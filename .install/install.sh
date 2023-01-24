@@ -9,6 +9,6 @@ else
     sudo bash ./linux/systemd.sh
 fi
 
-for s in ./cross_platform/*.sh; do
+for s in ./base/*.sh; do
     $s
 done

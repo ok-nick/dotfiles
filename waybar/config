@@ -1,0 +1,57 @@
+{
+    "modules-left": [
+        "custom/system76-power-graphics",
+        "custom/system76-power-profile",
+        "network",
+        /* "wireplumber", */
+        "backlight"
+    ],
+    "modules-center": [
+        "sway/workspaces"
+    ],
+    "modules-right": [
+        "battery",
+        "cpu",
+        "memory",
+        "custom/gpu",
+        "clock"
+    ],
+    "clock": {
+        "interval": 1,
+        "format": "{:%d %b %H:%M:%S}"
+    },
+    "cpu": {
+        "interval": 1,
+        "format": "CPU {avg_frequency},{usage}%"
+    },
+    "memory": {
+        "interval": 1,
+        "format": "RAM {used},{percentage}%"
+    },
+    "backlight": {
+        "format": "BKL {percent}%"
+    },
+    "wireplumber": {
+        "format": "VOL {volume}%"
+    },
+    "battery": {
+        "interval": 1,
+        "format": "BAT {power},{capacity}%"
+    },
+    "network": {
+        "format": "NET {essid}"
+    },
+    "custom/gpu": {
+        /* "interval": 1, */
+        /* "exec": "nvidia-smi --query-gpu utilization.gpu --format csv,noheader,nounits", */
+        /* "format": "GPU {}%" */
+    },
+    "custom/system76-power-graphics": {
+        "interval": "once",
+        "exec": "system76-power graphics",
+    },
+    "custom/system76-power-profile": {
+        "interval": "once",
+        "exec": "system76-power profile | rg '^Power Profile: ([^\n]+)' -r '$1' | awk '{print tolower($0)}'"
+    }
+}

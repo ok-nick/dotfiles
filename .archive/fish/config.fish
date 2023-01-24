@@ -7,12 +7,18 @@ set -Ux MOZ_ENABLE_WAYLAND 1
 
 set -x EDITOR ~/.local/share/neovim/bin/nvim
 set -x DOTFILES ~/dotfiles
+set -x WALLPAPER ~/Wallpapers/default.png
 # gpg agent for signing git commits
 set -x GPG_TTY (tty)
 # for ssh agent to be used with gnome-keyring
 set -x SSH_AUTH_SOCK $XDG_RUNTIME_DIR/gcr/ssh
 # use bash for sxhkd scripting
 set -x SXHKD_SHELL /usr/bin/bash
+# use dark theme for GTK apps
+set -x GTK_THEME Adwaita:dark
+
+# removes the startup message
+set -gx fish_greeting ""
 
 # $PATH variables
 fish_add_path ~/.local/share/neovim/bin
@@ -29,6 +35,7 @@ if status --is-login
         exec sway --unsupported-gpu
     end
 
+    # TODO: systemd this
     # passes environment variables to dbus, required for gnome-keyring
     dbus-update-activation-environment DISPLAY XAUTHORITY WAYLAND_DISPLAY
     # starts up gnome-keyring with ssh key support
@@ -46,3 +53,9 @@ end
 # wasmer shell completions
 export WASMER_DIR="~/.wasmer"
 [ -s "$WASMER_DIR/wasmer.sh" ] && source "$WASMER_DIR/wasmer.sh"
+
+set -gx WASMTIME_HOME "$HOME/.wasmtime"
+
+string match -r ".wasmtime" "$PATH" > /dev/null; or set -gx PATH "$WASMTIME_HOME/bin" $PATH
+
+thefuck --alias | source

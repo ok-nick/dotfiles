@@ -10,10 +10,9 @@ set $right l
 # Terminal emulator
 set $term alacritty
 # Application launcher
-# set $menu ulauncher-toggle | xargs swaymsg exec --
-set $menu ulauncher | xargs swaymsg exec --
+set $menu sirula
 
-### OUTPUT
+### SYSTEM
 
 # Disable laptop monitor when lid is closed
 # bindswitch --reload --locked lid:on output eDP-1 disable
@@ -22,45 +21,25 @@ set $menu ulauncher | xargs swaymsg exec --
 # exec_always ~/.config/sway/clamshell.sh
 
 # Load kanshi (display config) 
-exec kanshi
-# Load ulauncher into memory
-# exec ulauncher --hide-window 1
+exec_always pkill kanshi; exec kanshi
+# Notifications
+exec mako
 
-# Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-# output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
+output * bg $WALLPAPER fill
+
+input "1267:12454:ELAN0406:00_04F3:30A6_Touchpad" {
+    accel_profile flat
+    pointer_accel 1
+    dwt enabled
+    middle_emulation disabled
+
+}
 
 ### SWAY CONFIG
 # Font
 font pango:IBM Plex Mono Regular 8
 # Disable focus following mouse
 focus_follows_mouse no
-
-### Idle configuration
-
-# Example configuration:
-#
-# exec swayidle -w \
-#          timeout 300 'swaylock -f -c 000000' \
-#          timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
-#          before-sleep 'swaylock -f -c 000000'
-#
-# This will lock your screen after 300 seconds of inactivity, then turn off
-# your displays after another 300 seconds, and turn your screens back on when
-# resumed. It will also lock your screen before your computer goes to sleep.
-
-### Input configuration
-#
-# Example configuration:
-#
-#   input "2:14:SynPS/2_Synaptics_TouchPad" {
-#       dwt enabled
-#       tap enabled
-#       natural_scroll enabled
-#       middle_emulation enabled
-#   }
-#
-# You can get the names of your inputs by running: swaymsg -t get_inputs
-# Read `man 5 sway-input` for more information about this section.
 
 # KEYBINDS
 
@@ -95,19 +74,14 @@ bindsym XF86AudioMute exec wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
 bindsym XF86AudioMicMute exec wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle
 
 # Brightness control
-# TODO: 1-10 is its own range from 10-100, make script
-bindsym XF86MonBrightnessDown exec light -U 2
-bindsym XF86MonBrightnessUp exec light -A 2
+bindsym XF86MonBrightnessDown exec light -U 5
+bindsym XF86MonBrightnessUp exec light -A 5
 
-#
-# Moving around:
-#
 # Move your focus around
 bindsym $mod+$left focus left
 bindsym $mod+$down focus down
 bindsym $mod+$up focus up
 bindsym $mod+$right focus right
-# Or use $mod+[up|down|left|right]
 bindsym $mod+Left focus left
 bindsym $mod+Down focus down
 bindsym $mod+Up focus up
@@ -118,14 +92,11 @@ bindsym $mod+Shift+$left move left
 bindsym $mod+Shift+$down move down
 bindsym $mod+Shift+$up move up
 bindsym $mod+Shift+$right move right
-# Ditto, with arrow keys
 bindsym $mod+Shift+Left move left
 bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
-#
-# Workspaces:
-#
+
 # Switch to workspace
 bindsym $mod+1 workspace number 1
 bindsym $mod+2 workspace number 2
@@ -137,6 +108,7 @@ bindsym $mod+7 workspace number 7
 bindsym $mod+8 workspace number 8
 bindsym $mod+9 workspace number 9
 bindsym $mod+0 workspace number 10
+
 # Move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace number 1
 bindsym $mod+Shift+2 move container to workspace number 2
@@ -148,18 +120,19 @@ bindsym $mod+Shift+7 move container to workspace number 7
 bindsym $mod+Shift+8 move container to workspace number 8
 bindsym $mod+Shift+9 move container to workspace number 9
 bindsym $mod+Shift+0 move container to workspace number 10
-# Note: workspaces can have any name you want, not just numbers.
-# We just use 1-10 as the default.
-#
-# Layout stuff:
-#
-# You can "split" the current object of your focus with
-# $mod+b or $mod+v, for horizontal and vertical splits
-# respectively.
+
+# Temporarily hide workspace
+bindsym $mod+x workspace ""
+bindsym --release $mod+x workspace back_and_forth
+
+# Incrementally switch between workspaces
+bindsym $mod+Tab workspace next
+bindsym $mod+Shift+Tab workspace prev
+
+# Open container in horizontal/vertical layout
 bindsym $mod+b splith
 bindsym $mod+v splitv
 
-# Switch the current container between different layout styles
 bindsym $mod+s layout stacking
 bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
@@ -175,11 +148,6 @@ bindsym $mod+space focus mode_toggle
 
 # Move focus to the parent container
 bindsym $mod+a focus parent
-#
-# Scratchpad:
-#
-# Sway has a "scratchpad", which is a bag of holding for windows.
-# You can send windows there and get them back later.
 
 # Move the currently focused window to the scratchpad
 bindsym $mod+Shift+minus move scratchpad
@@ -187,9 +155,7 @@ bindsym $mod+Shift+minus move scratchpad
 # Show the next scratchpad window or hide the focused scratchpad window.
 # If there are multiple scratchpad windows, this command cycles through them.
 bindsym $mod+minus scratchpad show
-#
-# Resizing containers:
-#
+
 mode "resize" {
     # left will shrink the containers width
     # right will grow the containers width
@@ -212,25 +178,13 @@ mode "resize" {
 }
 bindsym $mod+r mode "resize"
 
-#
-# Status Bar:
-#
-# Read `man 5 sway-bar` for more information about this section.
+### BAR
+
 bar {
-    position top
-
-    # When the status_command prints a new line to stdout, swaybar updates.
-    # The default just shows the current date and time.
-    status_command while date +'%Y-%m-%d %I:%M:%S %p'; do sleep 1; done
-
-    colors {
-            statusline #ffffff
-            background #323232
-            inactive_workspace #32323200 #32323200 #5c5c5c
-    }
+    swaybar_command waybar
 }
 
-# RULES
+### RULES
 
 for_window {
     [app_id="ulauncher"] floating enable, border none

@@ -53,7 +53,6 @@ return {
 		end,
 	},
 	{
-		enabled = false, -- TODO: BUGGY
 		"simrat39/rust-tools.nvim",
 		dependencies = { "neovim/nvim-lspconfig" },
 		config = function()
@@ -98,6 +97,8 @@ return {
 						method = null_ls.methods.DIAGNOSTICS_ON_SAVE,
 					}),
 					null_ls.builtins.formatting.black,
+					-- null_ls.builtins.diagnostics.markdownlint,
+					-- null_ls.builtins.formatting.markdownlint,
 					null_ls.builtins.code_actions.eslint_d,
 					null_ls.builtins.diagnostics.eslint_d.with({
 						method = null_ls.methods.DIAGNOSTICS_ON_SAVE,
@@ -120,6 +121,12 @@ return {
 	{
 		"neovim/nvim-lspconfig",
 		dependencies = { "hrsh7th/cmp-nvim-lsp", "b0o/schemastore.nvim", "williamboman/mason-lspconfig.nvim" },
+		-- build = {
+		-- 	"npm install -g remark-github",
+		-- 	"npm install -g remark-gfm",
+		-- 	"npm install -g remark-breaks",
+		-- 	"npm install -g remark-preset-lint-recommended",
+		-- },
 		config = function()
 			-- vim.diagnostic.config({ virtual_text = false })
 
@@ -228,6 +235,19 @@ return {
 				yamlls = {
 					-- TODO: https://github.com/b0o/SchemaStore.nvim/pull/10
 				},
+				-- https://github.com/unifiedjs/unified-language-server/issues/44#issuecomment-1379667410
+				-- remark_ls = {
+				-- 	settings = {
+				-- 		-- https://github.com/unifiedjs/unified-engine/blob/main/doc/options.md
+				-- 		processor = "remark",
+				-- 		plugins = {
+				-- 			"remark-github",
+				-- 			"remark-gfm",
+				-- 			"remark-breaks",
+				-- 			"remark-preset-lint-recommended",
+				-- 		},
+				-- 	},
+				-- },
 				-- TODO: or use vale configured properly
 				grammarly = {
 					filetypes = { "asciidoc", "markdown", "text", "tex" },
