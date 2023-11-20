@@ -1,0 +1,57 @@
+@import 'mocha.css';
+
+* {
+  border: none;
+  border-radius: 0;
+  font-family: "Montserrat", "Material Icons Outlined", sans-serif;
+  font-size: 16px;
+}
+
+window#waybar {
+  background-color: @base;
+}
+
+tooltip {
+  color: @text;
+  background-color: alpha(@base, 0.5);
+  border: 2px solid @blue;
+}
+
+#workspaces button,
+#tags button {
+  padding: 0 5px;
+  background: transparent;
+  color: @blue;
+}
+#workspaces button.active, /* active is for hyprland, focused is for sway */
+#workspaces button.focused {
+  color: @text;
+  background: alpha(@blue, 0.5);
+}
+#workspaces button.urgent {
+  color: @text;
+  background: alpha(@maroon, 0.5);
+}
+/* River tags have to be in order because multiple can be true at once */
+#tags button.occupied {
+  color: @text;
+  background: alpha(@sky, 0.5);
+}
+#tags button.focused {
+  color: @text;
+  background: alpha(@blue, 0.5);
+}
+#tags button.urgent {
+  color: @text;
+  background: alpha(@maroon, 0.5);
+}
+
+#battery, #wireplumber, #backlight, #network, #bluetooth, #cpu, #memory, #temperature, #clock, #tray, #submap, #mode, #scratchpad, #tags, #window {
+	padding: 0 2px;
+}
+
+#submap,
+#mode {
+  background: @base;
+}
+

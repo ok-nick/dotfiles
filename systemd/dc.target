@@ -1,4 +1,0 @@
-[Unit]
-Description=On DC power
-DefaultDependencies=no
-StopWhenUnneeded=yes

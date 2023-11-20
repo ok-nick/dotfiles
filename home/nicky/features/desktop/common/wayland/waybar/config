@@ -1,0 +1,107 @@
+{
+    "layer": "top",
+    "position": "top",
+    "height": 26, // Waybar height (to be removed for auto height)
+    "spacing": 4, // Gaps between modules (4px)
+    "modules-left": [
+        "hyprland/workspaces",
+    ],
+    "modules-center": [
+        "hyprland/window"
+    ],
+    "modules-right": [
+        "memory",
+        "cpu",
+        "temperature",
+        "backlight",
+        "bluetooth",
+        "network",
+        "wireplumber",
+        "battery",
+        "clock",
+        "tray"
+    ],
+    "hyprland/workspaces": {
+        "on-click": "activate",
+    },
+    "hyprland/window": {
+        "format": "{initialTitle}",
+    },
+    "wireplumber": {
+        "format": "{icon}",
+        "format-muted": "",
+        "format-icons": ["", ""],
+        "on-click": "pavucontrol"
+    },
+    "network": {
+        "format-ethernet": "",
+        "format-wifi": "{icon}",
+        "format-linked": "",
+        "format-disconnected": "",
+        "format-icons": ["", "", "", ""],
+        "on-click": "nm-connection-editor" 
+    },
+    "bluetooth": {
+        "format": "",
+        "format-disabled": "",
+        "format-off": "",
+        "format-connected": "{num_connections} ",
+        "on-click": "blueman-manager"
+    },
+    "cpu": {
+        "format": "{usage}%  "
+    },
+    "temperature": {
+        "hwmon-path": "/sys/class/hwmon/hwmon5/temp1_input",
+        "critical-threshold": 80,
+        "format": "{temperatureC}°C ",
+    },
+    "memory": {
+        "format": "{percentage}%  ",
+        "tooltip-format": "{used:0.1f}GiB/{total:0.1f}GiB\n(Swap: {swapUsed:0.1f}GiB/{swapTotal:0.1f}GiB)"
+    },
+    "clock": {
+        "interval": 1,
+        "format": "{:%a %e %b %H:%M:%S %p}",
+        "format-alt": " {:%Y-%m-%d %H:%M}",
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+    },
+    "tray": {
+        "icon-size": 21,
+        "spacing": 10
+    },
+    "backlight": {
+        "format": "{icon}",
+        "format-icons": [
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+        ]
+    },
+    "battery": {
+        "interval": 1,
+        "states": {
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{capacity}% {icon} {power:04.1f}",
+        "format-unknown": "{capacity}% ",
+        "format-charging": "{capacity}% ",
+        "format-icons": [
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+        ]
+    },
+}
