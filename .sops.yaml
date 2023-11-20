@@ -1,0 +1,10 @@
+keys:
+  - &users:
+    - &nicky TODO
+creation_rules:
+  - path_regex: hosts/icarus/secrets.yaml$
+    key_groups:
+    - pgp:
+      - *icarus
+      age:
+      - *nicky
