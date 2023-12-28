@@ -4,13 +4,38 @@
   ...
 }: {
   imports = [
-    ./global
+    ../shared/nix.nix
 
-    # ./features/desktop/sway.nix
-    ./features/desktop/hyprland.nix
-    # ./features/desktop/wayfire.nix
-    ./features/dev
-    ./features/games
+    ../shared/desktop/wms/hyprland
+    # ../shared/desktop/wms/sway
+    ../shared/desktop/wayland.nix
+
+    ../shared/desktop
+    ../shared/desktop/discord.nix
+    ../shared/desktop/firefox.nix
+    ../shared/desktop/font.nix
+    ../shared/desktop/gtk.nix
+    ../shared/desktop/imv.nix
+    ../shared/desktop/mpv.nix
+    ../shared/desktop/qt.nix
+
+    ../shared/dev/alacritty.nix
+    ../shared/dev/bottom.nix
+    ../shared/dev/broot.nix
+    ../shared/dev/editorconfig.nix
+    ../shared/dev/fenix.nix
+    ../shared/dev/fish.nix
+    ../shared/dev/git.nix
+    ../shared/dev/gpg.nix
+    ../shared/dev/helix.nix
+    ../shared/dev/neovim
+    ../shared/dev/ssh.nix
+    ../shared/dev/starship.nix
+    ../shared/dev/tools.nix
+    ../shared/dev/zsh.nix
+
+    ../shared/games/minecraft.nix
+    ../shared/games/roblox.nix
   ];
 
   wallpaper = "/persist/work/smiley.png";
@@ -25,7 +50,7 @@
   };
 
   # TODO: move this
-  home.packages = with pkgs; [cachix element-desktop];
+  home.packages = with pkgs; [cachix element-desktop google-chrome];
 
   # TODO: https://wiki.hyprland.org/Configuring/Multi-GPU/
 
@@ -39,14 +64,14 @@
   # TODO: make a module for nvidia
   programs.mpv.config.hwdec = lib.mkForce "nvdec";
 
-  wayland.windowManager.hyprland = {
-    enableNvidiaPatches = true;
-    # extraConfig = ''
-    #   workspace = name:1, default:true, monitor:Microstep MSI MPG27CQ 0x00000156
-    #   workspace = name:2, default:true, monitor:Microstep MSI MPG27CQ 0x00000034
-    #   workspace = name:3, default:true, monitor:VIZIO, Inc M422i-B1 0x01010101
-    # '';
-  };
+  # wayland.windowManager.hyprland = {
+  # enableNvidiaPatches = true;
+  # extraConfig = ''
+  #   workspace = name:1, default:true, monitor:Microstep MSI MPG27CQ 0x00000156
+  #   workspace = name:2, default:true, monitor:Microstep MSI MPG27CQ 0x00000034
+  #   workspace = name:3, default:true, monitor:VIZIO, Inc M422i-B1 0x01010101
+  # '';
+  # };
 
   # TODO: I should be able to define my monitor config and it auto applies to autorandr or kanshi
   # https://gitlab.com/w0lff/shikane/-/tree/master/
@@ -167,4 +192,7 @@
     # TODO: set this on DC, set nvidia on AC
     __EGL_VENDOR_LIBRARY_FILENAMES = /run/opengl-driver/share/glvnd/egl_vendor.d/50_mesa.json;
   };
+
+  # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
+  home.stateVersion = "23.11";
 }
