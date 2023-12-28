@@ -3,6 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    # nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-23.05-darwin";
     nixpkgs-untested.url = "github:nixos/nixpkgs/nixpkgs-unstable";
 
     home-manager = {
@@ -12,9 +13,9 @@
 
     hardware.url = "github:nixos/nixos-hardware";
 
-    hyprland.url = "github:hyprwm/Hyprland";
+    # hyprland.url = "github:hyprwm/Hyprland";
     hyprland-contrib.url = "github:hyprwm/contrib";
-    xdg-desktop-portal-hyprland.url = "github:hyprwm/xdg-desktop-portal-hyprland";
+    # xdg-desktop-portal-hyprland.url = "github:hyprwm/xdg-desktop-portal-hyprland";
 
     helix.url = "github:helix-editor/helix";
 
@@ -29,16 +30,20 @@
 
     sops-nix.url = "github:Mic92/sops-nix";
 
-    yap-my-classes.url = "git+file:///persist/temp/ubh-fall2022-repotemplate-ok-nick";
-
     # fufexan.url = "github:fufexan/dotfiles";
     # gross.url = "github:fufexan/gross";
+
+    nix-darwin = {
+      url = "github:LnL7/nix-darwin";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
     self,
     nixpkgs,
     home-manager,
+    nix-darwin,
     ...
   } @ inputs: let
     inherit (self) outputs;
@@ -49,7 +54,15 @@
     nixosConfigurations = {
       icarus = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs;};
-        modules = [./hosts/icarus];
+        modules = [./hosts/nixos/icarus];
+      };
+    };
+
+    darwinConfigurations = {
+      mapro = nix-darwin.lib.darwinSystem {
+        specialArgs = {inherit inputs outputs;};
+        system = "aarch64-darwin";
+        modules = [./hosts/nix-darwin/mapro];
       };
     };
 
@@ -58,6 +71,11 @@
         extraSpecialArgs = {inherit inputs outputs;};
         pkgs = nixpkgs.legacyPackages.x86_64-linux;
         modules = [./home/nicky/icarus.nix];
+      };
+      "nicky@mapro" = home-manager.lib.homeManagerConfiguration {
+        extraSpecialArgs = {inherit inputs outputs;};
+        pkgs = nixpkgs.legacyPackages.aarch64-darwin;
+        modules = [./home/nicky/mapro.nix];
       };
     };
   };
