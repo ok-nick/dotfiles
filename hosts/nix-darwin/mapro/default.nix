@@ -68,7 +68,15 @@ in {
     };
     ".GlobalPreferences" = {
       # disable mouse acceleration
-      # "com.apple.mouse.scaling" = -1;
+      "com.apple.mouse.scaling" = -1.0;
+    };
+    "com.apple.desktopservices" = {
+      # prevent .DS_Store files from being created on network/usb drives
+      DSDontWriteNetworkStores = true;
+      DSDontWriteUSBStores = true;
+    };
+    "com.apple.Safari" = {
+      IncludeDevelopMenu = true;
     };
     loginwindow = {
       GuestEnabled = false;

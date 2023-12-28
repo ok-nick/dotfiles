@@ -13,6 +13,8 @@
 
   programs.fish = {
     enable = true;
+    # https://github.com/LnL7/nix-darwin/pull/647#issuecomment-1628359005
+    useBabelfish = true;
     # https://github.com/MercuryTechnologies/nix-your-shell#fish
     promptInit = ''
       if command -q nix-your-shell
