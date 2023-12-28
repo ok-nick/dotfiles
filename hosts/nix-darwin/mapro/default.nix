@@ -3,10 +3,11 @@
   name = "mapro";
 in {
   imports = [
-    ../../shared/modules.nix
+    ../../shared/nix.nix
     ../../shared/sops.nix
 
     ../shared/nix.nix
+    ../shared/modules.nix
     ../shared/homebrew.nix
     ../shared/fish.nix
     ../shared/shell.nix

@@ -1,7 +1,6 @@
 {
   pkgs,
   inputs,
-  config,
   ...
 }: {
   imports = [
@@ -15,12 +14,13 @@
 
     ./hardware-configuration.nix
 
-    ../../shared/modules.nix
+    ../../shared/nix.nix
     ../../shared/sops.nix
 
     ../shared/users/nicky.nix
 
     ../shared/nix.nix
+    ../shared/modules.nix
     ../shared/network.nix
     ../shared/razer.nix
     ../shared/cec.nix

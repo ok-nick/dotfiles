@@ -49,6 +49,7 @@
     inherit (self) outputs;
   in {
     nixosModules = import ./modules/nixos;
+    nixDarwinModules = import ./modules/nix-darwin;
     homeManagerModules = import ./modules/home-manager;
 
     nixosConfigurations = {
