@@ -8,6 +8,9 @@
       # TODO; interferes with vim ctrl+w+l move focus window
       # lctrl - l : open -a ScreenSaverEngine
 
+      # toggles yabai on/off (aka bsp/float)
+      alt - t : [ "$(yabai -m query --spaces --space | ${pkgs.jq}/bin/jq -r '.type')" = "bsp" ] && yabai -m space --layout float || yabai -m space --layout bsp
+
       # TODO: multi monitor
       # https://github.com/alacritty/alacritty/issues/3333#issuecomment-586516098
       alt - h : yabai -m window --focus west || yabai -m display --focus west

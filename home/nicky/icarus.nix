@@ -22,6 +22,7 @@
     ../shared/dev/alacritty.nix
     ../shared/dev/bottom.nix
     ../shared/dev/broot.nix
+    ../shared/dev/direnv.nix
     ../shared/dev/editorconfig.nix
     ../shared/dev/fenix.nix
     ../shared/dev/fish.nix

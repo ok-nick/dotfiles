@@ -173,10 +173,16 @@ in {
             languages = {
               nix = [
                 {
-                  lintCommand = "statix check --stdin -format=errfmt";
+                  # https://github.com/creativenull/efmls-configs-nvim/blob/ddc7c542aaad21da594edba233c15ae3fad01ea0/lua/efmls-configs/linters/statix.lua
+                  lintCommand = "statix check --stdin --format=errfmt";
                   lintStdIn = true;
-                  # TODO
-                  lintFormats = [""];
+                  lintIgnoreExitCode = true;
+                  lintFormats = ["<stdin>>%l:%c:%t:%n:%m"];
+                  rootMarkers = [
+                    "flake.nix"
+                    "shell.nix"
+                    "default.nix"
+                  ];
                 }
               ];
             };
@@ -263,8 +269,7 @@ in {
         }
         {
           name = "nix";
-          language-servers = ["nil" "statix" "deadnix"];
-          # language-servers = ["nixd" "statix" "deadnix"];
+          language-servers = ["nil" "statix"];
           auto-format = true;
           formatter = {command = "alejandra";};
         }

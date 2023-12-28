@@ -1,7 +1,16 @@
-{pkgs, lib, ...}: {
-  home.packages = with pkgs; [
-    discord-canary
-  ];
+{
+  pkgs,
+  lib,
+  ...
+}: {
+  home.packages = with pkgs;
+    lib.optionals pkgs.stdenv.isLinux [
+      # discord-canary works much better on linux
+      discord-canary
+    ]
+    ++ lib.optionals pkgs.stdenv.isDarwin [
+      discord
+    ];
 
   # Discord wants latest version
   # https://nixos.wiki/wiki/Discord

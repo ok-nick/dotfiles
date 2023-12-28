@@ -1,4 +1,4 @@
-{pkgs, ...}: let
+let
   # TODO: make module var
   name = "mapro";
 in {
@@ -13,6 +13,7 @@ in {
     ../shared/shell.nix
     ../shared/skhd.nix
     ../shared/yabai.nix
+    ../shared/apps.nix
 
     ../shared/users/nicky.nix
   ];
@@ -31,7 +32,6 @@ in {
   # system.keyboard.enableKeyMapping = true;
 
   homebrew = {
-    enable = true;
     brews = [
       "mas"
     ];
@@ -53,6 +53,9 @@ in {
   # home-manager, programs.zsh.enableCompletion
   environment.pathsToLink = ["/share/zsh"];
 
+  # TODO: will there be conflicts?
+  # environment.systemPackages = with pkgs; [coreutils];
+
   system.defaults = {
     NSGlobalDomain = {
       ApplePressAndHoldEnabled = false;
@@ -70,13 +73,15 @@ in {
       # disable mouse acceleration
       "com.apple.mouse.scaling" = -1.0;
     };
-    "com.apple.desktopservices" = {
-      # prevent .DS_Store files from being created on network/usb drives
-      DSDontWriteNetworkStores = true;
-      DSDontWriteUSBStores = true;
-    };
-    "com.apple.Safari" = {
-      IncludeDevelopMenu = true;
+    CustomUserPreferences = {
+      "com.apple.desktopservices" = {
+        # prevent .DS_Store files from being created on network/usb drives
+        DSDontWriteNetworkStores = true;
+        DSDontWriteUSBStores = true;
+      };
+      # "com.apple.Safari" = {
+      # IncludeDevelopMenu = true;
+      # };
     };
     loginwindow = {
       GuestEnabled = false;
@@ -91,10 +96,14 @@ in {
       # hide desktop icons
       CreateDesktop = false;
 
+      # when searching, search current folder by default
+      FXDefaultSearchScope = "SCcf";
+
       # column view by default
       FXPreferredViewStyle = "clmw";
 
-      # FXEnableExtensionChangeWarning = false;
+      # resmoves that annoying file extension change warning
+      FXEnableExtensionChangeWarning = false;
     };
     dock = {
       autohide = true;

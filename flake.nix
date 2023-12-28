@@ -3,9 +3,12 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    # nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-23.05-darwin";
     nixpkgs-untested.url = "github:nixos/nixpkgs/nixpkgs-unstable";
 
+    nix-darwin = {
+      url = "github:LnL7/nix-darwin";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -15,28 +18,15 @@
 
     # hyprland.url = "github:hyprwm/Hyprland";
     hyprland-contrib.url = "github:hyprwm/contrib";
-    # xdg-desktop-portal-hyprland.url = "github:hyprwm/xdg-desktop-portal-hyprland";
-
     helix.url = "github:helix-editor/helix";
-
-    # https://github.com/phush0/razer-laptop-control-no-dkms/pull/30
-    razer-laptop-control.url = "github:ok-nick/razer-laptop-control-no-dkms";
-
+    razer-laptop-control.url = "github:Razer-Linux/razer-laptop-control-no-dkms";
     fenix.url = "github:nix-community/fenix";
-
     nixd.url = "github:nix-community/nixd";
-
     typst-lsp.url = "github:nvarner/typst-lsp";
-
     sops-nix.url = "github:Mic92/sops-nix";
-
     # fufexan.url = "github:fufexan/dotfiles";
     # gross.url = "github:fufexan/gross";
-
-    nix-darwin = {
-      url = "github:LnL7/nix-darwin";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    mac-app-util.url = "github:hraban/mac-app-util";
   };
 
   outputs = {

@@ -1,11 +1,15 @@
 {
-  programs.fish.loginShellInit = ''
-    # homebrew needs to be manually configured...
-    fish_add_path /opt/homebrew/bin
-  '';
+  environment.systemPath = [/opt/homebrew/bin];
 
-  # TODO: does this work for all shells?
-  # environment.shellInit = ''
-  #   export PATH=$PATH:/opt/homebrew/bin
-  # '';
+  homebrew = {
+    enable = true;
+    # use the nix brewfile for everything homebrew commands
+    global.brewfile = true;
+    onActivation = {
+      # updates stuff on rebuild
+      autoUpdate = true;
+      # cleanup stuff not defined in nix config
+      cleanup = "zap";
+    };
+  };
 }

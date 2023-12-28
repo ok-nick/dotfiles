@@ -5,6 +5,7 @@
     mutableUsers = false;
     users = {
       nicky = {
+        initalPassword = "1234";
         isNormalUser = true;
         shell = pkgs.fish;
         extraGroups = [
