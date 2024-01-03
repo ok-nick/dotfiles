@@ -9,6 +9,7 @@
     # https://github.com/bandithedoge/nixpkgs-firefox-darwin
     # ../shared/desktop/firefox.nix
     ../shared/desktop/font.nix
+    ../shared/desktop/karabiner.nix
 
     ../shared/dev/alacritty.nix
     ../shared/dev/bottom.nix
@@ -29,6 +30,12 @@
 
   # wallpaper = "/persist/work/smiley.png";
   terminal = "${pkgs.alacritty}/bin/alacritty";
+
+  # https://github.com/nix-community/comma
+  # pretty cool stuff
+
+  # TODO: slows down terminal considerably
+  # programs.nix-index.enable = true;
 
   # TODO: move this
   home.packages = with pkgs; [

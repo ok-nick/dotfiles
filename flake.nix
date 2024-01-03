@@ -42,6 +42,8 @@
     nixDarwinModules = import ./modules/nix-darwin;
     homeManagerModules = import ./modules/home-manager;
 
+    overlays = import ./overlays {inherit inputs;};
+
     nixosConfigurations = {
       icarus = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs;};

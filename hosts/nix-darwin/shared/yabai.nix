@@ -4,7 +4,8 @@
     config = {
       layout = "bsp";
       window_topmost = true;
-      mouse_modifier = "alt";
+      # alt key interferes
+      mouse_modifier = "ctrl";
     };
     # TODO: broken
     # add for get info menu in finder as well, and activity monitor popup
@@ -18,6 +19,7 @@
       yabai -m rule --add app="^Finder$" manage=off
       yabai -m rule --add app="^Discord$" title="^Discord Updater$" manage=off
       yabai -m rule --add app="^Discord Canary$" title="^Discord Updater$" manage=off
+      yabai -m rule --add app="^Minecraft$" manage=off
     '';
   };
 }

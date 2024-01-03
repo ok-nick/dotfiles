@@ -30,6 +30,7 @@
       tesseract
       nix-tree
       ookla-speedtest
+      p7zip
     ]
     ++ lib.optionals pkgs.stdenv.isLinux [
       yubikey-manager-qt # TODO: move to feature

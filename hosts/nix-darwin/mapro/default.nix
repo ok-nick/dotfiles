@@ -1,4 +1,8 @@
-let
+{
+  pkgs,
+  outputs,
+  ...
+}: let
   # TODO: make module var
   name = "mapro";
 in {
@@ -14,6 +18,7 @@ in {
     ../shared/skhd.nix
     ../shared/yabai.nix
     ../shared/apps.nix
+    ../shared/karabiner.nix
 
     ../shared/users/nicky.nix
   ];
@@ -26,10 +31,12 @@ in {
   };
   system.defaults.smb.NetBIOSName = name;
 
-  # security.pam.enableSudoTouchIdAuth = true;
+  nixpkgs.overlays = [
+    outputs.overlays.additions
+    outputs.overlays.modifications
+  ];
 
-  # TODO: map cmd + d to spotlight or alt+d
-  # system.keyboard.enableKeyMapping = true;
+  # security.pam.enableSudoTouchIdAuth = true;
 
   homebrew = {
     brews = [
@@ -38,10 +45,13 @@ in {
     casks = [
       "firefox" # platform not supported in nixpkgs
       "microsoft-office" # not packaged in nixpkgs
+      "yubico-yubikey-manager" # platform not supported in nixpkgs
+      "karabiner-elements"
     ];
     masApps = {
       Xcode = 497799835; # homebrew itself needs it
       Bitwarden = 1352778147; # for safari extension
+      AdGuard = 1440147259; # for safari extension
     };
   };
 
@@ -56,6 +66,7 @@ in {
   # TODO: will there be conflicts?
   # environment.systemPackages = with pkgs; [coreutils];
 
+  # TODO: disable adding period on double space (and externel monitor auto off thing)
   system.defaults = {
     NSGlobalDomain = {
       ApplePressAndHoldEnabled = false;
@@ -81,6 +92,11 @@ in {
       };
       # "com.apple.Safari" = {
       # IncludeDevelopMenu = true;
+      # };
+      #  TODO:
+      # "com.apple.screensaver" = {
+      #   askForPassword = 1;
+      #   askForPasswordDelay = 0;
       # };
     };
     loginwindow = {
