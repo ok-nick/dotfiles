@@ -4,8 +4,8 @@
     config = {
       layout = "bsp";
       window_topmost = true;
-      # alt key interferes
-      mouse_modifier = "ctrl";
+      # we remap it to option+click with karabiner (since we also need to unbind the macos default)
+      mouse_modifier = "fn";
     };
     # TODO: broken
     # add for get info menu in finder as well, and activity monitor popup

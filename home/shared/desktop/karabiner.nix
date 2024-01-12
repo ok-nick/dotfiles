@@ -25,6 +25,18 @@
             };
             mouse_flip_vertical_wheel = true;
           }
+          # flip scroll direction on mouse
+          {
+            ignore = false;
+            identifiers = {
+              is_game_pad = false;
+              is_keyboard = false;
+              is_pointing_device = true;
+              product_id = 8209;
+              vendor_id = 9610;
+            };
+            mouse_flip_vertical_wheel = true;
+          }
         ];
 
         complex_modifications = {
@@ -59,6 +71,41 @@
                     {
                       key_code = "right_arrow";
                       modifiers = ["left_option"];
+                    }
+                  ];
+                }
+              ];
+            }
+            {
+              description = "ctrl+shift+left and ctrl+shift+right to select left/right word";
+              manipulators = [
+                {
+                  type = "basic";
+                  from = {
+                    key_code = "left_arrow";
+                    modifiers = {
+                      mandatory = ["left_control" "left_shift"];
+                    };
+                  };
+                  to = [
+                    {
+                      key_code = "left_arrow";
+                      modifiers = ["left_option" "left_shift"];
+                    }
+                  ];
+                }
+                {
+                  type = "basic";
+                  from = {
+                    key_code = "right_arrow";
+                    modifiers = {
+                      mandatory = ["left_control" "left_shift"];
+                    };
+                  };
+                  to = [
+                    {
+                      key_code = "right_arrow";
+                      modifiers = ["left_option" "left_shift"];
                     }
                   ];
                 }
@@ -124,7 +171,7 @@
               ];
             }
             {
-              description = "disable hide applications";
+              description = "disable hide application cmd+h";
               manipulators = [
                 {
                   type = "basic";
@@ -140,7 +187,47 @@
             }
 
             {
-              description = "yabai move left 1";
+              description = "change hide application to yabai move modifier option+button1";
+              manipulators = [
+                {
+                  type = "basic";
+                  from = {
+                    pointing_button = "button1";
+                    modifiers = {
+                      mandatory = ["left_option"];
+                    };
+                  };
+                  to = [
+                    {
+                      pointing_button = "button1";
+                      modifiers = ["fn"];
+                    }
+                  ];
+                }
+              ];
+            }
+            {
+              description = "change hide application to yabai resize modifier option+button2";
+              manipulators = [
+                {
+                  type = "basic";
+                  from = {
+                    pointing_button = "button2";
+                    modifiers = {
+                      mandatory = ["left_option"];
+                    };
+                  };
+                  to = [
+                    {
+                      pointing_button = "button2";
+                      modifiers = ["fn"];
+                    }
+                  ];
+                }
+              ];
+            }
+            {
+              description = "yabai focus left 1";
               manipulators = [
                 {
                   type = "basic";
@@ -159,7 +246,7 @@
               ];
             }
             {
-              description = "yabai move left 2";
+              description = "yabai focus left 2";
               manipulators = [
                 {
                   type = "basic";
@@ -178,7 +265,7 @@
               ];
             }
             {
-              description = "yabai move right 1";
+              description = "yabai focus right 1";
               manipulators = [
                 {
                   type = "basic";
@@ -197,7 +284,7 @@
               ];
             }
             {
-              description = "yabai move right 2";
+              description = "yabai focus right 2";
               manipulators = [
                 {
                   type = "basic";
@@ -216,7 +303,7 @@
               ];
             }
             {
-              description = "yabai move up 1";
+              description = "yabai focus up 1";
               manipulators = [
                 {
                   type = "basic";
@@ -235,7 +322,7 @@
               ];
             }
             {
-              description = "yabai move up 2";
+              description = "yabai focus up 2";
               manipulators = [
                 {
                   type = "basic";
@@ -254,7 +341,7 @@
               ];
             }
             {
-              description = "yabai move down 1";
+              description = "yabai focus down 1";
               manipulators = [
                 {
                   type = "basic";
@@ -273,7 +360,7 @@
               ];
             }
             {
-              description = "yabai move down 2";
+              description = "yabai focus down 2";
               manipulators = [
                 {
                   type = "basic";
@@ -286,6 +373,158 @@
                   to = [
                     {
                       shell_command = "${pkgs.yabai}/bin/yabai -m window --focus south || ${pkgs.yabai}/bin/yabai -m display --focus south";
+                    }
+                  ];
+                }
+              ];
+            }
+            {
+              description = "yabai move left 1";
+              manipulators = [
+                {
+                  type = "basic";
+                  from = {
+                    key_code = "left_arrow";
+                    modifiers = {
+                      mandatory = ["${mod}" "left_shift"];
+                    };
+                  };
+                  to = [
+                    {
+                      shell_command = "${pkgs.yabai}/bin/yabai -m window --warp west";
+                    }
+                  ];
+                }
+              ];
+            }
+            {
+              description = "yabai move left 2";
+              manipulators = [
+                {
+                  type = "basic";
+                  from = {
+                    key_code = "h";
+                    modifiers = {
+                      mandatory = ["${mod}" "left_shift"];
+                    };
+                  };
+                  to = [
+                    {
+                      shell_command = "${pkgs.yabai}/bin/yabai -m window --warp west";
+                    }
+                  ];
+                }
+              ];
+            }
+            {
+              description = "yabai move right 1";
+              manipulators = [
+                {
+                  type = "basic";
+                  from = {
+                    key_code = "right_arrow";
+                    modifiers = {
+                      mandatory = ["${mod}" "left_shift"];
+                    };
+                  };
+                  to = [
+                    {
+                      shell_command = "${pkgs.yabai}/bin/yabai -m window --warp east";
+                    }
+                  ];
+                }
+              ];
+            }
+            {
+              description = "yabai move right 2";
+              manipulators = [
+                {
+                  type = "basic";
+                  from = {
+                    key_code = "l";
+                    modifiers = {
+                      mandatory = ["${mod}" "left_shift"];
+                    };
+                  };
+                  to = [
+                    {
+                      shell_command = "${pkgs.yabai}/bin/yabai -m window --warp east";
+                    }
+                  ];
+                }
+              ];
+            }
+            {
+              description = "yabai move up 1";
+              manipulators = [
+                {
+                  type = "basic";
+                  from = {
+                    key_code = "up_arrow";
+                    modifiers = {
+                      mandatory = ["${mod}" "left_shift"];
+                    };
+                  };
+                  to = [
+                    {
+                      shell_command = "${pkgs.yabai}/bin/yabai -m window --warp north";
+                    }
+                  ];
+                }
+              ];
+            }
+            {
+              description = "yabai move up 2";
+              manipulators = [
+                {
+                  type = "basic";
+                  from = {
+                    key_code = "k";
+                    modifiers = {
+                      mandatory = ["${mod}" "left_shift"];
+                    };
+                  };
+                  to = [
+                    {
+                      shell_command = "${pkgs.yabai}/bin/yabai -m window --warp north";
+                    }
+                  ];
+                }
+              ];
+            }
+            {
+              description = "yabai move down 1";
+              manipulators = [
+                {
+                  type = "basic";
+                  from = {
+                    key_code = "down_arrow";
+                    modifiers = {
+                      mandatory = ["${mod}" "left_shift"];
+                    };
+                  };
+                  to = [
+                    {
+                      shell_command = "${pkgs.yabai}/bin/yabai -m window --warp south";
+                    }
+                  ];
+                }
+              ];
+            }
+            {
+              description = "yabai move down 2";
+              manipulators = [
+                {
+                  type = "basic";
+                  from = {
+                    key_code = "j";
+                    modifiers = {
+                      mandatory = ["${mod}" "left_shift"];
+                    };
+                  };
+                  to = [
+                    {
+                      shell_command = "${pkgs.yabai}/bin/yabai -m window --warp south";
                     }
                   ];
                 }
