@@ -25,10 +25,8 @@ rustPlatform.buildRustPackage rec {
 
   # required for rust-openssl dependency to build
   OPENSSL_NO_VENDOR = 1;
-  # Work around https://github.com/NixOS/nixpkgs/issues/166205.
-  NIX_LDFLAGS =
-    "-L${lib.getLib json_c}/lib"
-    + lib.optionalString (stdenv.cc.isClang && stdenv.cc.libcxx != null) " -l${stdenv.cc.libcxx.cxxabi.libName}";
+  # work around https://github.com/NixOS/nixpkgs/issues/166205
+  NIX_LDFLAGS = lib.optionalString (stdenv.cc.isClang && stdenv.cc.libcxx != null) " -l${stdenv.cc.libcxx.cxxabi.libName}";
 
   nativeBuildInputs = [
     git
@@ -46,9 +44,9 @@ rustPlatform.buildRustPackage rec {
 
   # TODO: not sure why this test fails, even when manually downloading the image and testing it
   #       however, using other images w/ manifests or the prebuilt binaries seem to work fine
-  # checkFlags = [
-  #   "--skip=tool_info"
-  # ];
+  checkFlags = [
+    "--skip=tool_info"
+  ];
 
   doInstallCheck = true;
   installCheckPhase = ''

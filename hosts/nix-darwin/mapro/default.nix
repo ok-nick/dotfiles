@@ -36,10 +36,8 @@ in {
     outputs.overlays.modifications
   ];
 
-  environment.systemPackages = [
-    # TODO: WIP
-    # pkgs.xmp-toolkit-sdk
-    pkgs.c2patool
+  environment.systemPackages = with pkgs; [
+    c2patool
   ];
 
   # security.pam.enableSudoTouchIdAuth = true;
