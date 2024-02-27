@@ -36,17 +36,32 @@ in {
     outputs.overlays.modifications
   ];
 
+  environment.systemPackages = [
+    # TODO: WIP
+    # pkgs.xmp-toolkit-sdk
+    pkgs.c2patool
+  ];
+
   # security.pam.enableSudoTouchIdAuth = true;
 
   homebrew = {
     brews = [
       "mas"
+
+      "spim" # platform not supported in nixpkgs
     ];
     casks = [
       "firefox" # platform not supported in nixpkgs
+      # TODO: to prevent microsoft-autoupdate from running do below (automate it)
+      # sudo rm -rf /Library/Application\ Support/Microsoft/MAU2.0
+      # sudo rm /Library/LaunchAgents/com.microsoft.update.agent.plist
+      # sudo rm /Library/LaunchDaemons/com.microsoft.autoupdate.helper.plist
       "microsoft-office" # not packaged in nixpkgs
       "yubico-yubikey-manager" # platform not supported in nixpkgs
-      "karabiner-elements"
+      "karabiner-elements" # not packaged in nixpkgs
+
+      "qtspim" # platform not supported in nixpkgs
+      "google-chrome" # platform not supported in nixpkgs
     ];
     masApps = {
       Xcode = 497799835; # homebrew itself needs it

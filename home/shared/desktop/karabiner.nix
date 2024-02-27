@@ -170,21 +170,21 @@
                 }
               ];
             }
-            {
-              description = "disable hide application cmd+h";
-              manipulators = [
-                {
-                  type = "basic";
-                  from = {
-                    key_code = "h";
-                    modifiers = {
-                      mandatory = ["left_command"];
-                    };
-                  };
-                  to = [];
-                }
-              ];
-            }
+            # {
+            #   description = "disable hide application cmd+h";
+            #   manipulators = [
+            #     {
+            #       type = "basic";
+            #       from = {
+            #         key_code = "h";
+            #         modifiers = {
+            #           mandatory = ["left_command"];
+            #         };
+            #       };
+            #       to = [];
+            #     }
+            #   ];
+            # }
 
             {
               description = "change hide application to yabai move modifier option+button1";
@@ -607,6 +607,25 @@
                   to = [
                     {
                       shell_command = "\"[ \"bsp\" = \"bsp\" ] && ${pkgs.yabai}/bin/yabai -m space --layout float || ${pkgs.yabai}/bin/yabai -m space --layout bsp";
+                    }
+                  ];
+                }
+              ];
+            }
+            {
+              description = "yabai toggle split";
+              manipulators = [
+                {
+                  type = "basic";
+                  from = {
+                    key_code = "v";
+                    modifiers = {
+                      mandatory = ["${mod}"];
+                    };
+                  };
+                  to = [
+                    {
+                      shell_command = "${pkgs.yabai}/bin/yabai -m window --toggle split";
                     }
                   ];
                 }

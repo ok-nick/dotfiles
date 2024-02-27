@@ -75,6 +75,10 @@ in {
             check = {
               command = "clippy";
               # allFeatures = true;
+              targets = [
+                "aarch64-apple-darwin"
+                "x86_64-pc-windows-msvc"
+              ];
             };
             #     rustfmt = {
             #       enableRangeFormatting = true;
