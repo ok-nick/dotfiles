@@ -50,6 +50,12 @@ in {
         #   "diff"
         # ];
       };
+      # only works in modes, not things like fuzzy searching
+      # keys = {
+      #   insert = {
+      #     "C-[" = "normal_mode";
+      #   };
+      # };
     };
     languages = {
       grammar = [

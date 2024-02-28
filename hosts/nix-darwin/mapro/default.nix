@@ -129,7 +129,7 @@ in {
       FXDefaultSearchScope = "SCcf";
 
       # column view by default
-      FXPreferredViewStyle = "clmw";
+      FXPreferredViewStyle = "clmv";
 
       # resmoves that annoying file extension change warning
       FXEnableExtensionChangeWarning = false;

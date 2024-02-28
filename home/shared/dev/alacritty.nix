@@ -2,19 +2,7 @@
   programs.alacritty = {
     enable = true;
     settings = {
-      window.decorations = "none";
-      keybindings = [
-        {
-          key = "Back";
-          mods = "Control|Shift";
-          action = "Quit";
-        }
-        {
-          key = "Return";
-          mods = "Control|Shift";
-          action = "SpawnNewInstance";
-        }
-      ];
+      window.decorations = "buttonless";
       font = {
         size = 12;
         normal = {

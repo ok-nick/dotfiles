@@ -164,7 +164,8 @@
                   to = [
                     {
                       # TODO: for some reason yabai doesn't register the window when using ${pkgs.alacritty}/bin/alacritty
-                      shell_command = "/usr/bin/open -na /Applications/Alacritty.app";
+                      # shell_command = "/usr/bin/open -na /Applications/Alacritty.app";
+                      shell_command = "/usr/bin/open -na ${config.home.profileDirectory}/applications/Alacritty.app";
                     }
                   ];
                 }
@@ -185,6 +186,25 @@
             #     }
             #   ];
             # }
+            {
+              description = "C-[ to ESC";
+              manipulators = [
+                {
+                  type = "basic";
+                  from = {
+                    key_code = "open_bracket";
+                    modifiers = {
+                      mandatory = ["left_control"];
+                    };
+                  };
+                  to = [
+                    {
+                      "key_code" = "escape";
+                    }
+                  ];
+                }
+              ];
+            }
 
             {
               description = "change hide application to yabai move modifier option+button1";

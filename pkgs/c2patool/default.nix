@@ -7,7 +7,6 @@
   darwin,
   openssl,
   pkg-config,
-  json_c,
   git,
 }:
 rustPlatform.buildRustPackage rec {
@@ -21,10 +20,11 @@ rustPlatform.buildRustPackage rec {
     sha256 = "sha256-BmuNXIUHOmSdw+Fzk9CwlW9Piyh5iyddbqjqkzwcGnw=";
   };
 
-  cargoSha256 = "sha256-m/48yUN4o4Fp+i0OAkVjltkmQ5TIbG4299LNLXiMYbU=";
+  cargoHash = "sha256-xsZ+0sL8D3NURRYv967PaMATPxVyLBamDh0Ze5xjy4E=";
 
   # required for rust-openssl dependency to build
   OPENSSL_NO_VENDOR = 1;
+
   # work around https://github.com/NixOS/nixpkgs/issues/166205
   NIX_LDFLAGS = lib.optionalString (stdenv.cc.isClang && stdenv.cc.libcxx != null) " -l${stdenv.cc.libcxx.cxxabi.libName}";
 
@@ -42,10 +42,9 @@ rustPlatform.buildRustPackage rec {
       darwin.apple_sdk.frameworks.Carbon
     ];
 
-  # TODO: not sure why this test fails, even when manually downloading the image and testing it
-  #       however, using other images w/ manifests or the prebuilt binaries seem to work fine
-  checkFlags = [
-    "--skip=tool_info"
+  cargoPatches = [
+    # currently, there is an issue with older versions of the c2pa dependency, so we artificially update it here
+    ./update-c2pa-rs.patch
   ];
 
   doInstallCheck = true;

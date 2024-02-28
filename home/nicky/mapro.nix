@@ -37,12 +37,15 @@
   # TODO: slows down terminal considerably
   # programs.nix-index.enable = true;
 
+  # TODO: search "darwin" in home manager options
+
   # TODO: move this
   home.packages = with pkgs; [
     cachix
     element-desktop
     zoom-us
     slack
+    # alt-tab-macos
   ];
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
