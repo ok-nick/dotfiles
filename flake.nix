@@ -72,14 +72,17 @@
     };
 
     # TODO: make function to auto create this
+    # also, read github ci for why home manager configs are commented
     checks = {
       aarch64-darwin = {
         "mapro" = self.darwinConfigurations.mapro.system;
 
-        "nicky@mapro" = self.homeConfigurations."nicky@mapro".activationPackage;
+        # "nicky@mapro" = self.homeConfigurations."nicky@mapro".activationPackage;
       };
       x86_64-linux = {
-        "nicky@icarus" = self.homeConfigurations."nicky@icarus".activationPackage;
+        # nixos configs are checked by default
+
+        # "nicky@icarus" = self.homeConfigurations."nicky@icarus".activationPackage;
       };
     };
   };
