@@ -1,9 +1,4 @@
 {pkgs, ...}: {
-  imports = [
-    ./common
-    ./common/wayland
-  ];
-
   home.packages = with pkgs; [wayfire];
 
   xdg.configFile."wayfire.ini".text = ''

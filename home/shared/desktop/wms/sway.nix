@@ -3,11 +3,6 @@
   config,
   ...
 }: {
-  imports = [
-    ./common
-    ./common/wayland
-  ];
-
   wayland.windowManager = {
     sway = {
       enable = true;
