@@ -70,5 +70,17 @@
         modules = [./home/nicky/mapro.nix];
       };
     };
+
+    # TODO: make function to auto create this
+    checks = {
+      aarch64-darwin = {
+        "mapro" = self.darwinConfigurations.mapro.system;
+
+        "nicky@mapro" = self.homeConfigurations."nicky@mapro".activationPackage;
+      };
+      x86_64-linux = {
+        "nicky@icarus" = self.homeConfigurations."nicky@icarus".activationPackage;
+      };
+    };
   };
 }

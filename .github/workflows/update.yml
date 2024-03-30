@@ -1,0 +1,28 @@
+name: update
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 0 * * 0" # Sunday at midnight
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # install nix
+      - uses: DeterminateSystems/nix-installer-action@main
+      # cache packages
+      - uses: DeterminateSystems/magic-nix-cache-action@main
+      # info on flake dependencies beforehand
+      - uses: DeterminateSystems/flake-checker-action@main
+        env:
+          FLAKE_CHECKER_NO_TELEMETRY: true
+        # TODO: run `nix flake check` on all platforms and if it works after update, submit PR
+        # update flake and send PR
+      - uses: DeterminateSystems/update-flake-lock@main
+        with:
+          pr-title: "Update flake.lock"
+          pr-labels: bot
+          # https://github.com/DeterminateSystems/update-flake-lock?tab=readme-ov-file#with-a-personal-authentication-token
+          token: ${{ secrets.GH_TOKEN_FOR_UPDATES }}
