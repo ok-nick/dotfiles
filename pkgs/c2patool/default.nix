@@ -25,9 +25,6 @@ rustPlatform.buildRustPackage rec {
   # required for rust-openssl dependency to build
   OPENSSL_NO_VENDOR = 1;
 
-  # work around https://github.com/NixOS/nixpkgs/issues/166205
-  NIX_LDFLAGS = lib.optionalString (stdenv.cc.isClang && stdenv.cc.libcxx != null) " -l${stdenv.cc.libcxx.cxxabi.libName}";
-
   nativeBuildInputs = [
     git
     pkg-config
@@ -64,6 +61,6 @@ rustPlatform.buildRustPackage rec {
     ];
     maintainers = with maintainers; [ok-nick];
     mainProgram = "c2patool";
-    platforms = lib.platforms.darwin;
+    platforms = lib.platforms.unix;
   };
 }

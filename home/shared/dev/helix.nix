@@ -2,22 +2,7 @@
   pkgs,
   inputs,
   ...
-}: let
-  # kinda annoying but it'll have to do
-  # TODO: make sure to keep it updated for now
-  typst-ts-rev = "791cac478226e3e78809b67ff856010bde709594";
-in {
-  # copy queries folder according to instructions
-  # https://github.com/uben0/tree-sitter-typst/tree/master#helix
-  xdg.configFile."helix/runtime/queries/typst" = let
-    repo = builtins.fetchGit {
-      url = "https://github.com/uben0/tree-sitter-typst";
-      rev = typst-ts-rev;
-    };
-  in {
-    source = "${repo}/queries";
-  };
-
+}: {
   programs.helix = {
     enable = true;
     defaultEditor = true;
@@ -58,23 +43,10 @@ in {
       # };
     };
     languages = {
-      grammar = [
-        {
-          name = "typst";
-          source = {
-            git = "https://github.com/uben0/tree-sitter-typst";
-            rev = typst-ts-rev;
-          };
-        }
-      ];
-
       language-server = {
         jdt-language-server = {
           command = "jdt-language-server";
           args = ["-data" "."];
-        };
-        typst-lsp = {
-          command = "typst-lsp";
         };
         rust-analyzer = {
           config = {
@@ -138,39 +110,27 @@ in {
             };
           };
         };
-        eslint-javascript = {
-          command = "efm-langserver";
+        eslint = {
+          # https://github.com/helix-editor/helix/issues/3520#issuecomment-1439987347
+          command = "vscode-eslint-language-server";
+          args = ["--stdio"];
           config = {
-            languages = {
-              javascript = [
-                {
-                  lintCommand = "eslint -f visualstudio --stdin --stdin-filename \${INPUT}";
-                  lintIgnoreExitCode = true;
-                  lintStdIn = true;
-                  lintFormats = [
-                    "%f(%l,%c): %tarning %m"
-                    "%f(%l,%c): %rror %m"
-                  ];
-                }
-              ];
+            validate = "on";
+            rulesCustomizations = [];
+            run = "onSave";
+            problems = {shortenToSingleLine = false;};
+            nodePath = "";
+            experimental = {
+              useFlatConfig = false;
             };
-          };
-        };
-        eslint-typescript = {
-          command = "efm-langserver";
-          config = {
-            languages = {
-              typescript = [
-                {
-                  lintCommand = "eslint -f visualstudio --stdin --stdin-filename \${INPUT}";
-                  lintIgnoreExitCode = true;
-                  lintStdIn = true;
-                  lintFormats = [
-                    "%f(%l,%c): %tarning %m"
-                    "%f(%l,%c): %rror %m"
-                  ];
-                }
-              ];
+            codeAction = {
+              disableRuleComment = {
+                enable = false;
+                location = "separateLine";
+              };
+              showDocumentation = {
+                enable = false;
+              };
             };
           };
         };
@@ -255,7 +215,7 @@ in {
         }
         {
           name = "typescript";
-          language-servers = ["typescript-language-server" "eslint-typescript"];
+          language-servers = ["typescript-language-server" "eslint"];
           auto-format = true;
           formatter = {
             command = "prettier";
@@ -264,7 +224,7 @@ in {
         }
         {
           name = "javascript";
-          language-servers = ["typescript-language-server" "eslint-javascript"];
+          language-servers = ["typescript-language-server" "eslint"];
           auto-format = true;
           formatter = {
             command = "prettier";
@@ -299,24 +259,6 @@ in {
         }
         {
           name = "typst";
-          scope = "source.typst";
-          injection-regex = "^typ(st)?$";
-          file-types = ["typ"];
-          comment-token = "//";
-          indent = {
-            tab-width = 2;
-            unit = "  ";
-          };
-          auto-pairs = {
-            "(" = ")";
-            "{" = "}";
-            "[" = "]";
-            "\"" = "\"";
-            "`" = "`";
-            "$" = "$";
-          };
-          roots = ["typst.toml"];
-          language-servers = ["typst-lsp"];
           auto-format = true;
           formatter = {
             command = "typst-fmt";

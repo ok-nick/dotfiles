@@ -22,7 +22,6 @@
     razer-laptop-control.url = "github:Razer-Linux/razer-laptop-control-no-dkms";
     fenix.url = "github:nix-community/fenix";
     nixd.url = "github:nix-community/nixd";
-    typst-lsp.url = "github:nvarner/typst-lsp";
     sops-nix.url = "github:Mic92/sops-nix";
     # fufexan.url = "github:fufexan/dotfiles";
     # gross.url = "github:fufexan/gross";

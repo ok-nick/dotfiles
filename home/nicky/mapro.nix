@@ -10,6 +10,7 @@
     # ../shared/desktop/firefox.nix
     ../shared/desktop/font.nix
     ../shared/desktop/karabiner.nix
+    ../shared/desktop/witch.nix
 
     ../shared/dev/alacritty.nix
     ../shared/dev/bottom.nix
@@ -31,6 +32,25 @@
   # wallpaper = "/persist/work/smiley.png";
   terminal = "${pkgs.alacritty}/bin/alacritty";
 
+  # https://gist.github.com/trusktr/1e5e516df4e8032cbc3d
+  # https://gist.github.com/Jimbly/9471958
+  # https://gist.github.com/hym3242/4ade5dbcabbe547f3d78687897b8ddfe
+  # https://gist.github.com/hym3242/8e8bc10a2fed8e55973c500f1798c234
+  # targets.darwin.keybindings = {
+  #   # ctrl + delete
+  #   "^\UF728" = "deleteWordBackward:";
+  #   # ctrl + left arrow
+  #   "^\UF702" = "moveWordBackward:";
+  #   # ctrl + right arrow
+  #   "^\UF703" = "moveWordForward:";
+  #   # shift + ctrl + left arrow
+  #   "$^\UF702" = "moveWordBackwardAndModifySelection:";
+  #   # shift + ctrl + right arrow
+  #   "$^\UF703" = "moveWordForwardAndModifySelection:";
+
+  #   # TODO: ^[ ^] move par
+  # };
+
   # https://github.com/nix-community/comma
   # pretty cool stuff
 
@@ -45,7 +65,6 @@
     element-desktop
     zoom-us
     slack
-    # alt-tab-macos
   ];
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion

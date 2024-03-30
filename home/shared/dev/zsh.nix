@@ -6,7 +6,7 @@
   programs.zsh = {
     # TODO: other opts not in nix from original config
     enable = true;
-    enableAutosuggestions = true;
+    autosuggestion.enable = true;
     syntaxHighlighting = {
       enable = true;
     };

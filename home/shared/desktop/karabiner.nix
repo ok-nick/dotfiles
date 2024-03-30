@@ -171,6 +171,28 @@
                 }
               ];
             }
+            {
+              description = "OCR via Tesseract";
+              manipulators = [
+                {
+                  type = "basic";
+                  from = {
+                    key_code = "o";
+                    modifiers = {
+                      mandatory = ["${mod}" "left_shift"];
+                    };
+                  };
+                  to = let
+                    img_path = "${config.home.homeDirectory}/Library/Caches/tesseract.png";
+                  in [
+                    {
+                      shell_command = "screencapture -i ${img_path} && ${pkgs.tesseract}/bin/tesseract ${img_path} stdout | tr -d \\f | pbcopy
+";
+                    }
+                  ];
+                }
+              ];
+            }
             # {
             #   description = "disable hide application cmd+h";
             #   manipulators = [

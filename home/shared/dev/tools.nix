@@ -1,8 +1,4 @@
-{
-  pkgs,
-  inputs,
-  ...
-}: {
+{pkgs, ...}: {
   programs = {
     java.enable = true;
     zoxide.enable = true;
@@ -10,63 +6,90 @@
 
   home.packages = with pkgs;
     [
-      maven
+      # cli tools
       gnumake
-      inputs.nixd.packages.${pkgs.hostPlatform.system}.default
-      python311Packages.jupyter # TODO: temp
+      # python311Packages.jupyter
       sqlx-cli
-      cargo-shuttle
+      # cargo-shuttle
       unzip
       zip
       fzf
       tree-sitter
-      typst
       # postman
       ripgrep
       fd
       jetbrains.idea-community
       thefuck
 
-      efm-langserver
-      nodejs
-      gcc
-      python311
-      python311Packages.pip
-      ruff
-      ruff-lsp
-      # inputs.typst-lsp.packages.${pkgs.hostPlatform.system}.default
-      typst-lsp
-      typst-fmt
-      lldb
-      lua-language-server
-      selene
-      stylua
+      # misc
+      vscode-langservers-extracted # many lsps
+      efm-langserver # generic lsp
+      lldb # debugger
+
+      # C/C++
+      gcc # compiler
+      clang-tools # compiler/formatter/etc.
+
+      # typst
+      typst # compiler
+      typst-lsp # lsp
+      typst-fmt # formatter
+
+      # lua
+      lua-language-server # lsp
       # TODO: luau-lsp
-      nodePackages_latest.eslint_d
-      nodePackages_latest.prettier
-      nodePackages_latest.typescript-language-server
-      # clang-tools # outdated
-      clang-tools_16
-      omnisharp-roslyn
-      nodePackages_latest.pyright
-      black
-      jdt-language-server
-      taplo
+      selene # linter
+      stylua # formatter
+
+      # typescript/javascript
+      nodejs # compiler
+      nodePackages_latest.typescript-language-server # lsp
+      nodePackages_latest.eslint_d # linter
+      nodePackages_latest.prettier # formatter
+
+      # c#
+      omnisharp-roslyn # lsp
+
+      # python
+      nodePackages_latest.pyright # lsp
+      # black # formatter
+      ruff-lsp # linter/formatter
+      # ruff # linter/formatter
+      python311 # compiler
+      python311Packages.pip # package manager
+
+      # java
+      jdt-language-server # lsp
+
+      # json
+      nodePackages_latest.vscode-json-languageserver # lsp
       # jsonls
-      yaml-language-server
-      nodePackages_latest.vscode-json-languageserver
-      # yamllint
-      nodePackages_latest.bash-language-server
-      nodePackages_latest.grammarly-languageserver
-      nil
-      statix
-      alejandra
-      deadnix
-      marksman
+
+      # yaml
+      yaml-language-server # lsp
+      # yamllint # linter
+
+      # bash
+      nodePackages_latest.bash-language-server # lsp
+
+      # prose
+      # nodePackages_latest.grammarly-languageserver
+
+      # nix
+      # inputs.nixd.packages.${pkgs.hostPlatform.system}.default # lsp
+      nil # lsp
+      statix # linter
+      alejandra # formatter
+      deadnix # linter
+
+      # markdown
+      taplo # lsp
+      # marksman # lsp
     ]
     ++ lib.optionals pkgs.stdenv.isLinux [
-      gdb
-      cudaPackages.cudatoolkit
-      insomnia
+      # misc
+      gdb # debugger
+      # cudaPackages.cudatoolkit
+      # insomnia
     ];
 }

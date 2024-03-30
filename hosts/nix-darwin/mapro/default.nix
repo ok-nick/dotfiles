@@ -60,6 +60,9 @@ in {
 
       "qtspim" # platform not supported in nixpkgs
       "google-chrome" # platform not supported in nixpkgs
+      "figma" # not packged in nixpkgs
+      "vmware-fusion" # not packaged in nixpkgs
+      "airmedia" # not packaged in nixpkgs
     ];
     masApps = {
       Xcode = 497799835; # homebrew itself needs it

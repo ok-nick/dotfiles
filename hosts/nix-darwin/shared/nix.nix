@@ -15,7 +15,8 @@
     package = pkgs.nix;
 
     settings = {
-      auto-optimise-store = true;
+      # https://github.com/NixOS/nix/issues/7273
+      auto-optimise-store = false;
       experimental-features = ["nix-command" "flakes"];
       substituters = [
         "https://nix-community.cachix.org"

@@ -13,7 +13,11 @@
       key = "CFC1F23DFE7B706B";
     };
     extraConfig = {
-      # feature.manyFiles = true; # NOTE: causes issues with `cargo doc`
+      feature.manyFiles = true; # NOTE: causes issues with `cargo doc`
+      core = {
+        fsmonitor = true;
+        untrackedcache = true;
+      };
       init.defaultBranch = "main";
     };
   };
