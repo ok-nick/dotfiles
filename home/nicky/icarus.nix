@@ -6,9 +6,9 @@
   imports = [
     ../shared/nix.nix
 
-    ../shared/desktop/wms/hyprland
-    # ../shared/desktop/wms/sway
-    ../shared/desktop/wayland.nix
+    ../shared/desktop/wms/hyprland.nix
+    # ../shared/desktop/wms/sway.nix
+    ../shared/desktop/wayland
 
     ../shared/desktop
     ../shared/desktop/discord.nix

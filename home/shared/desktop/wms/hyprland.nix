@@ -6,11 +6,6 @@
 }: let
   grimblast = inputs.hyprland-contrib.packages.${pkgs.hostPlatform.system}.grimblast;
 in {
-  imports = [
-    ./common
-    ./common/wayland
-  ];
-
   home.packages = [
     grimblast
     pkgs.jaq
