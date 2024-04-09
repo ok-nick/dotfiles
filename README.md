@@ -5,6 +5,7 @@ A summation of all my system/program dotfile configurations.
 ## Devices
 | Name | Device | RAM | CPU | GPU |
 | - | - | - | - | - |
+| isotope | Virtual Machine | ? | ? | ? |
 | mapro | Macbook Pro 14" | 18GB | M3 Pro | Integrated |
 | icarus | Razer Blade 15" | 16GB | i7-10875H | RTX 2080 Super |
 

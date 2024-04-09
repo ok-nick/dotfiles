@@ -48,6 +48,10 @@
         specialArgs = {inherit inputs outputs;};
         modules = [./hosts/nixos/icarus];
       };
+      isotope = nixpkgs.lib.nixosSystem {
+        specialArgs = {inherit inputs outputs;};
+        modules = [./hosts/nixos/isotope];
+      };
     };
 
     darwinConfigurations = {
@@ -68,6 +72,11 @@
         extraSpecialArgs = {inherit inputs outputs;};
         pkgs = nixpkgs.legacyPackages.aarch64-darwin;
         modules = [./home/nicky/mapro.nix];
+      };
+      "nicky@isotope" = home-manager.lib.homeManagerConfiguration {
+        extraSpecialArgs = {inherit inputs outputs;};
+        pkgs = nixpkgs.legacyPackages.aarch64-linux;
+        modules = [./home/nicky/isotope.nix];
       };
     };
 

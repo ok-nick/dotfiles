@@ -1,8 +1,9 @@
 name: update
 on:
   workflow_dispatch:
-  schedule:
-    - cron: "0 0 * * 0" # Sunday at midnight
+  # TODO: I want to ensure updates are fully tested before committed
+  # schedule:
+    # - cron: "0 0 * * 0" # Sunday at midnight
 
 jobs:
   build:
