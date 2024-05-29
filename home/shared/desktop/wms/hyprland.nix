@@ -36,7 +36,8 @@ in {
       }
 
       # TODO: configure in icarus.nix
-      device:elan0406:00-04f3:30a6-touchpad {
+      device {
+         name = "elan0406:00-04f3:30a6-touchpad"
          accel_profile = "flat"
          clickfinger_behavior = true
          disable_while_typing = true
@@ -210,7 +211,7 @@ in {
       # windowrulev2=nomaximizerequest,class:^(firefox)$,title:(.*Bitwarden.*)
       # windowrulev2=float,class:^(firefox)$,title:^(Extension: (Bitwarden - Free Password Manager) - Bitwarden — Mozilla Firefox)$
       # TODO: temp fix for bitwarden, check hyprland discord
-      windowrulev2=nomaximizerequest,class:^(firefox)$
+      # windowrulev2=nomaximizerequest,class:^(firefox)$
       windowrulev2=float,class:^(.blueman-manager-wrapped)$
       windowrulev2=float,class:^(nm-connection-editor)$
       windowrulev2=float,class:^(pavucontrol)$

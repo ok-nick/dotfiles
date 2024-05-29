@@ -2,9 +2,10 @@
 
 A summation of all my system/program dotfile configurations.
 
-## Devices
+## Hosts
 | Name | Device | RAM | CPU | GPU |
 | - | - | - | - | - |
+| dob | Macbook Pro 16" | 32GB | M1 Max | Integrated |
 | isotope | Virtual Machine | ? | ? | ? |
 | mapro | Macbook Pro 14" | 18GB | M3 Pro | Integrated |
 | icarus | Razer Blade 15" | 16GB | i7-10875H | RTX 2080 Super |
@@ -55,7 +56,7 @@ A summation of all my system/program dotfile configurations.
     ├── pkgs                    # custom packages
     │   └── ...
     ├── .gitignore
-    ├── .sops.yaml              # TODO
+    ├── .sops.yml               # TODO
     ├── flake.lock
     ├── flake.nix               # entry point for everything flakes
     ├── LICENSE

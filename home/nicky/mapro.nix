@@ -65,6 +65,8 @@
     element-desktop
     zoom-us
     slack
+    utm
+    c2patool
   ];
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion

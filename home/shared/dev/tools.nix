@@ -8,6 +8,8 @@
     [
       # cli tools
       gnumake
+      cargo-binstall
+      cargo-cross
       # python311Packages.jupyter
       sqlx-cli
       # cargo-shuttle
@@ -73,7 +75,7 @@
       nodePackages_latest.bash-language-server # lsp
 
       # prose
-      # nodePackages_latest.grammarly-languageserver
+      # nodePackages_latest.grammarly-languageserver # lsp
 
       # nix
       # inputs.nixd.packages.${pkgs.hostPlatform.system}.default # lsp
@@ -85,11 +87,19 @@
       # markdown
       taplo # lsp
       # marksman # lsp
+
+      # verilog
+      svls # lsp
+      svlint # linter
+      verilog # compiler
     ]
     ++ lib.optionals pkgs.stdenv.isLinux [
       # misc
       gdb # debugger
       # cudaPackages.cudatoolkit
       # insomnia
+
+      # verilog
+      verible # lsp/linter/formatter/etc.
     ];
 }

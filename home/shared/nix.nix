@@ -22,6 +22,7 @@
   };
 
   home = rec {
+    # TODO: unhardcode username
     username = "nicky";
     homeDirectory =
       if pkgs.stdenv.isDarwin

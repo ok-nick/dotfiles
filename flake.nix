@@ -60,6 +60,11 @@
         system = "aarch64-darwin";
         modules = [./hosts/nix-darwin/mapro];
       };
+      dob = nix-darwin.lib.darwinSystem {
+        specialArgs = {inherit inputs outputs;};
+        system = "aarch64-darwin";
+        modules = [./hosts/nix-darwin/dob];
+      };
     };
 
     homeConfigurations = {
@@ -78,6 +83,11 @@
         pkgs = nixpkgs.legacyPackages.aarch64-linux;
         modules = [./home/nicky/isotope.nix];
       };
+      "nicky@dob" = home-manager.lib.homeManagerConfiguration {
+        extraSpecialArgs = {inherit inputs outputs;};
+        pkgs = nixpkgs.legacyPackages.aarch64-darwin;
+        modules = [./home/nicky/dob.nix];
+      };
     };
 
     # TODO: make function to auto create this
@@ -85,6 +95,7 @@
     checks = {
       aarch64-darwin = {
         "mapro" = self.darwinConfigurations.mapro.system;
+        "dob" = self.darwinConfigurations.mapro.system;
 
         # "nicky@mapro" = self.homeConfigurations."nicky@mapro".activationPackage;
       };

@@ -16,7 +16,7 @@
       kanagawa-nvim
       vim-hardtime
 
-      suda-vim
+      vim-suda
       zen-mode-nvim
       vim-markdown-composer
 

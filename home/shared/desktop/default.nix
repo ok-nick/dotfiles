@@ -34,11 +34,8 @@
     ]
     ++ lib.optionals pkgs.stdenv.isLinux [
       yubikey-manager-qt # TODO: move to feature
-      bitwarden
-      vial
       libsForQt5.kdenlive
       winetricks
-      wineWowPackages.waylandFull
       polkit_gnome
       libsForQt5.polkit-kde-agent
       gnome.gnome-disk-utility
@@ -49,5 +46,10 @@
       pavucontrol
       xclip
       gimp
+    ]
+    ++ lib.optionals (pkgs.stdenv.isLinux && pkgs.stdenv.isx86_64) [
+      bitwarden
+      vial
+      wineWowPackages.waylandFull
     ];
 }

@@ -7,8 +7,20 @@
     enable = true;
     defaultEditor = true;
     package = inputs.helix.packages.${pkgs.hostPlatform.system}.default;
+    themes = {
+      kanagawa-custom = {
+        inherits = "kanagawa";
+        # the default one is indistinguishable from the cursor line
+        "ui.selection" = {
+          bg = "sumiInk4";
+        };
+        "ui.selection.primary" = {
+          bg = "sumiInk4";
+        };
+      };
+    };
     settings = {
-      theme = "kanagawa";
+      theme = "kanagawa-custom";
       editor = {
         mouse = false;
         middle-click-paste = false;
@@ -52,11 +64,12 @@
           config = {
             check = {
               command = "clippy";
+              allTargets = true;
               # allFeatures = true;
-              targets = [
-                "aarch64-apple-darwin"
-                "x86_64-pc-windows-msvc"
-              ];
+              # targets = [
+              # "aarch64-apple-darwin"
+              # "x86_64-pc-windows-msvc"
+              # ];
             };
             #     rustfmt = {
             #       enableRangeFormatting = true;
@@ -115,21 +128,23 @@
           command = "vscode-eslint-language-server";
           args = ["--stdio"];
           config = {
+            quiet = false;
             validate = "on";
             rulesCustomizations = [];
             run = "onSave";
             problems = {shortenToSingleLine = false;};
             nodePath = "";
+            onIgnoredFiles = "off";
             experimental = {
               useFlatConfig = false;
             };
             codeAction = {
               disableRuleComment = {
-                enable = false;
+                enable = true;
                 location = "separateLine";
               };
               showDocumentation = {
-                enable = false;
+                enable = true;
               };
             };
           };
@@ -186,6 +201,9 @@
           command = "clangd";
           args = ["--clang-tidy"];
         };
+        svls = {
+          command = "svls";
+        };
       };
       language = [
         {
@@ -215,6 +233,15 @@
         }
         {
           name = "typescript";
+          language-servers = ["typescript-language-server" "eslint"];
+          auto-format = true;
+          formatter = {
+            command = "prettier";
+            args = ["--parser" "typescript"];
+          };
+        }
+        {
+          name = "tsx";
           language-servers = ["typescript-language-server" "eslint"];
           auto-format = true;
           formatter = {
@@ -262,6 +289,16 @@
           auto-format = true;
           formatter = {
             command = "typst-fmt";
+          };
+        }
+        {
+          name = "verilog";
+          # TODO: can also try: https://github.com/chipsalliance/verible
+          language-servers = ["svls"];
+          auto-format = true;
+          formatter = {
+            command = "verible-verilog-format";
+            args = ["-"];
           };
         }
       ];

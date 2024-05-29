@@ -2,7 +2,8 @@
   programs.alacritty = {
     enable = true;
     settings = {
-      window.decorations = "buttonless";
+      # window.decorations = "buttonless";
+      window.decorations = "none";
       font = {
         size = 12;
         normal = {

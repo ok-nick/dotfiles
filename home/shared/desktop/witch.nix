@@ -14,7 +14,7 @@
       };
       "Orientation" = 1;
       "Sort Order" = 3;
-      "Spaces" = true;
+      "Spaces" = false;
       "Tabs" = false;
     };
   in {

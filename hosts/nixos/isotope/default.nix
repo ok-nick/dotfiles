@@ -17,6 +17,14 @@
   time.timeZone = "America/New_York";
   i18n.defaultLocale = "en_US.UTF-8";
 
+  networking.networkmanager.enable = true;
+  users.users.temp = {
+    isNormalUser = true;
+    description = "nick";
+    extraGroups = ["networkmanager" "wheel"];
+    packages = with pkgs; [];
+  };
+
   hardware.enableRedistributableFirmware = true;
   services = {
     blueman.enable = true;
@@ -26,7 +34,7 @@
   hardware = {
     opengl = {
       enable = true;
-      driSupport32Bit = true;
+      # driSupport32Bit = true;
       setLdLibraryPath = true;
     };
     pulseaudio.enable = false;
@@ -36,9 +44,7 @@
     };
   };
 
-  virtualisation.vmware = {
-    guest.enable = true;
-  };
+  virtualisation.vmware.guest.enable = true;
 
   security = {
     polkit.enable = true;
