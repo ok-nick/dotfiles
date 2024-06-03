@@ -23,6 +23,8 @@
       yabai -m rule --add app="^Discord$" title="^Discord Updater$" manage=off
       yabai -m rule --add app="^Discord Canary$" title="^Discord Updater$" manage=off
       yabai -m rule --add app="^Minecraft$" manage=off
+      yabai -m rule --add app="^FaceTime$" manage=off
+      yabai -m rule --add app="^Music$" title="^MiniPlayer$" manage=off
 
       # 10 spaces for 0-9
       yabai -m space --create
