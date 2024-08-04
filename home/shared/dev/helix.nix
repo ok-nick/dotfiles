@@ -25,6 +25,7 @@
         mouse = false;
         middle-click-paste = false;
         cursorline = true;
+        # auto-pairs = false;
         idle-timeout = 0;
         lsp = {
           display-messages = true;

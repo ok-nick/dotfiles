@@ -16,6 +16,7 @@
       ];
       nix_shell = {
         format = "[nix:]($style)";
+        heuristic = true;
       };
       character = {
         success_symbol = "[:\\)](bold green)";

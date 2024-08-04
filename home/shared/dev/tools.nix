@@ -45,15 +45,15 @@
 
       # typescript/javascript
       nodejs # compiler
-      nodePackages_latest.typescript-language-server # lsp
-      nodePackages_latest.eslint_d # linter
+      typescript-language-server # lsp
+      eslint_d # linter
       nodePackages_latest.prettier # formatter
 
       # c#
       omnisharp-roslyn # lsp
 
       # python
-      nodePackages_latest.pyright # lsp
+      pyright # lsp
       # black # formatter
       ruff-lsp # linter/formatter
       # ruff # linter/formatter
@@ -72,7 +72,7 @@
       # yamllint # linter
 
       # bash
-      nodePackages_latest.bash-language-server # lsp
+      bash-language-server # lsp
 
       # prose
       # nodePackages_latest.grammarly-languageserver # lsp

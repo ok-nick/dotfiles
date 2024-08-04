@@ -1,4 +1,4 @@
-{
+{pkgs, ...}: {
   services.yabai = {
     enable = true;
     enableScriptingAddition = true;
@@ -25,18 +25,36 @@
       yabai -m rule --add app="^Minecraft$" manage=off
       yabai -m rule --add app="^FaceTime$" manage=off
       yabai -m rule --add app="^Music$" title="^MiniPlayer$" manage=off
+      yabai -m rule --add app="^Photo Booth$" manage=off
+
+      # delete >10 spaces
+      for _ in $(yabai -m query --spaces | ${pkgs.jq}/bin/jq '.[].index | select(. > 10)'); do
+        yabai -m space --destroy 11
+      done
+
+      function preallocate_space {
+        local idx="$1"
+        local space=
+
+        space=$(yabai -m query --spaces --space "$idx")
+        if [ -z "$space" ]; then
+          yabai -m space --create
+        fi
+      }
 
       # 10 spaces for 0-9
-      yabai -m space --create
-      yabai -m space --create
-      yabai -m space --create
-      yabai -m space --create
-      yabai -m space --create
-      yabai -m space --create
-      yabai -m space --create
-      yabai -m space --create
-      yabai -m space --create
-      yabai -m space --create
+      preallocate_space 1
+      preallocate_space 2
+      preallocate_space 3
+      preallocate_space 4
+      preallocate_space 5
+      preallocate_space 6
+      preallocate_space 7
+      preallocate_space 8
+      preallocate_space 9
+      preallocate_space 10
+
+      ${pkgs.jankyborders}/bin/borders active_color=0xffe1e3e4 style=square width=4.0 &
     '';
   };
 }

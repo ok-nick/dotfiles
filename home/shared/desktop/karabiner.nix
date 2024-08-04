@@ -253,6 +253,26 @@
                 }
               ];
             }
+            {
+              description = "mod-M to fn-3 to open mission control";
+              manipulators = [
+                {
+                  type = "basic";
+                  from = {
+                    key_code = "m";
+                    modifiers = {
+                      mandatory = ["${mod}"];
+                    };
+                  };
+                  to = [
+                    {
+                      apple_vendor_keyboard_key_code = "mission_control";
+                      modifiers = ["fn"];
+                    }
+                  ];
+                }
+              ];
+            }
             # {
             #   description = "Cmd-V to Cmd-Shift-Option-V, paste unformatted";
             #   manipulators = [

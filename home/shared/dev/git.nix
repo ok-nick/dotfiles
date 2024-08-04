@@ -6,6 +6,7 @@
     delta = {
       enable = true;
     };
+    # NOTE: causes issues where I have to input passphrase multiple times
     # lfs.enable = true;
     signing = {
       signByDefault = true;

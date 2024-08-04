@@ -65,6 +65,7 @@ in {
       "airmedia" # not packaged in nixpkgs
       "spaceid" # not packaged in nixpkgs
       "docker" # platform not supported in nixpkgs
+      "steam" # platform not supported in nixpkgs
     ];
     masApps = {
       Xcode = 497799835; # homebrew itself needs it
@@ -85,6 +86,7 @@ in {
   # environment.systemPackages = with pkgs; [coreutils];
 
   # TODO: disable adding period on double space (and externel monitor auto off thing)
+  # TODO: defaults write com.apple.Safari IncludeInternalDebugMenu 1 (allows to change tab ordering -> next to current and the other settings in the menu to apply it)
   system.defaults = {
     NSGlobalDomain = {
       ApplePressAndHoldEnabled = false;
