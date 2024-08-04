@@ -133,7 +133,6 @@
     opengl = {
       enable = true;
       driSupport32Bit = true;
-      setLdLibraryPath = true;
     };
     openrazer = {
       enable = false;
