@@ -1,4 +1,9 @@
-{pkgs, ...}: {
+{
+  lib,
+  config,
+  pkgs,
+  ...
+}: {
   imports = [
     ../shared/nix.nix
 
@@ -37,20 +42,40 @@
   # https://gist.github.com/Jimbly/9471958
   # https://gist.github.com/hym3242/4ade5dbcabbe547f3d78687897b8ddfe
   # https://gist.github.com/hym3242/8e8bc10a2fed8e55973c500f1798c234
+  #
+  # NOTE: https://gist.github.com/trusktr/1e5e516df4e8032cbc3d?permalink_comment_id=5123916#gistcomment-5123916
+  # need to disable mission control keybind to get it to work ^
   # targets.darwin.keybindings = {
   #   # ctrl + delete
-  #   "^\UF728" = "deleteWordBackward:";
+  #   "^\\UF728" = "deleteWordBackward:";
   #   # ctrl + left arrow
-  #   "^\UF702" = "moveWordBackward:";
+  #   "^\\UF702" = "moveWordBackward:";
   #   # ctrl + right arrow
-  #   "^\UF703" = "moveWordForward:";
-  #   # shift + ctrl + left arrow
-  #   "$^\UF702" = "moveWordBackwardAndModifySelection:";
+  #   "^\\UF703" = "moveWordForward:";
+  #   # shift + ctrl + left arrowgs
+  #   "$^\\UF702" = "moveWordBackwardAndModifySelection:";
   #   # shift + ctrl + right arrow
-  #   "$^\UF703" = "moveWordForwardAndModifySelection:";
+  #   "$^\\UF703" = "moveWordForwardAndModifySelection:";
 
   #   # TODO: ^[ ^] move par
   # };
+
+  # TODO: https://github.com/nix-community/home-manager/issues/6120
+  home.activation.setCocoaKeybindingsOverride = let
+    keybindings_path = "${config.home.homeDirectory}/Library/KeyBindings/DefaultKeyBinding.dict";
+  in
+    lib.hm.dag.entryAfter ["writeBoundary"] ''
+      ${pkgs.coreutils}/bin/cat > ${keybindings_path} << EOF
+      {
+        "^\UF728" = "deleteWordBackward:";
+        "^\U007F" = "deleteWordBackward:";
+        "^\UF702" = "moveWordBackward:";
+        "^\UF703" = "moveWordForward:";
+        "^$\UF702" = "moveWordBackwardAndModifySelection:";
+        "^$\UF703" = "moveWordForwardAndModifySelection:";
+      }
+      EOF
+    '';
 
   # https://github.com/nix-community/comma
   # pretty cool stuff
@@ -66,8 +91,9 @@
     element-desktop
     zoom-us
     slack
-    utm
     c2patool
+    wireshark
+    cmake
   ];
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion

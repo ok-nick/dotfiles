@@ -1,7 +1,7 @@
 {pkgs, ...}: {
   services.skhd = {
     # NOTE: moved to karabiner-elements via home-manager, skhd is difficult to use, less maintained, and has less features
-    enable = false;
+    enable = true;
     skhdConfig = let
       # the least intrusive modifier
       mod = "alt";

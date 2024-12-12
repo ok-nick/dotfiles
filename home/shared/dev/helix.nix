@@ -25,11 +25,19 @@
         mouse = false;
         middle-click-paste = false;
         cursorline = true;
+        end-of-line-diagnostics = "error";
         # auto-pairs = false;
         idle-timeout = 0;
         lsp = {
           display-messages = true;
           auto-signature-help = false; # https://github.com/helix-editor/helix/discussions/6710
+        };
+        inline-diagnostics = {
+          cursor-line = "hint";
+          # other-lines = "error";
+        };
+        smart-tab = {
+          enable = false;
         };
         indent-guides = {
           render = true;

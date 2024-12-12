@@ -1,8 +1,4 @@
-{
-  pkgs,
-  outputs,
-  ...
-}: let
+{outputs, ...}: let
   # TODO: make module var
   name = "mapro";
 in {
@@ -15,8 +11,10 @@ in {
     ../shared/homebrew.nix
     ../shared/fish.nix
     ../shared/shell.nix
-    ../shared/skhd.nix
-    ../shared/yabai.nix
+    # ../shared/skhd.nix
+    ../shared/jankyborders.nix
+    # ../shared/yabai.nix
+    ../shared/aerospace.nix
     ../shared/apps.nix
     ../shared/karabiner.nix
 
@@ -44,21 +42,25 @@ in {
 
       "spim" # platform not supported in nixpkgs
       # "verible" # platform not supported in nixpkgs
+
+      "ns-3" # marked as broken in nixpkgs for darwin
     ];
     taps = [
       # "chipsalliance/verible"
     ];
     casks = [
       "firefox" # platform not supported in nixpkgs
+
       # TODO: to prevent microsoft-autoupdate from running do below (automate it)
       # sudo rm -rf /Library/Application\ Support/Microsoft/MAU2.0
       # sudo rm /Library/LaunchAgents/com.microsoft.update.agent.plist
       # sudo rm /Library/LaunchDaemons/com.microsoft.autoupdate.helper.plist
-      "microsoft-office" # not packaged in nixpkgs
+      # "microsoft-office" # not packaged in nixpkgs
+
       "yubico-yubikey-manager" # platform not supported in nixpkgs
       "karabiner-elements" # not packaged in nixpkgs
 
-      "qtspim" # platform not supported in nixpkgs
+      # "qtspim" # platform not supported in nixpkgs
       "google-chrome" # platform not supported in nixpkgs
       "figma" # not packged in nixpkgs
       "vmware-fusion" # not packaged in nixpkgs
@@ -66,11 +68,19 @@ in {
       "spaceid" # not packaged in nixpkgs
       "docker" # platform not supported in nixpkgs
       "steam" # platform not supported in nixpkgs
+      "wireshark-chmodbpf" # not packaged in nixpkgs
+      "obs" # platform not supported in nixpkgs
     ];
     masApps = {
       Xcode = 497799835; # homebrew itself needs it
       Bitwarden = 1352778147; # for safari extension
       AdGuard = 1440147259; # for safari extension
+
+      # The brew-packaged one has annoying Microsoft auto-update program that always appears.
+      "Microsoft Word" = 462054704;
+      "Microsoft Outlook" = 985367838;
+      "Microsoft Excel" = 462058435;
+      "Microsoft PowerPoint" = 462062816;
     };
   };
 
@@ -99,6 +109,10 @@ in {
       AppleInterfaceStyle = "Dark";
 
       NSDocumentSaveNewDocumentsToCloud = false;
+      # removs animations for better wm experience
+      NSAutomaticWindowAnimationsEnabled = false;
+      # drag window from anywhere (doesn't work in sequoia)
+      # NSWindowShouldDragOnGesture = true;
     };
     ".GlobalPreferences" = {
       # disable mouse acceleration

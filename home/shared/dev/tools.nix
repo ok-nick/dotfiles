@@ -9,7 +9,7 @@
       # cli tools
       gnumake
       cargo-binstall
-      cargo-cross
+      # cargo-cross
       # python311Packages.jupyter
       sqlx-cli
       # cargo-shuttle
@@ -20,7 +20,7 @@
       # postman
       ripgrep
       fd
-      jetbrains.idea-community
+      # jetbrains.idea-community
       thefuck
 
       # misc
@@ -29,7 +29,7 @@
       lldb # debugger
 
       # C/C++
-      gcc # compiler
+      # gcc # compiler
       clang-tools # compiler/formatter/etc.
 
       # typst

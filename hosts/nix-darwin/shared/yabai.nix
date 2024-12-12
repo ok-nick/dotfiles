@@ -26,6 +26,10 @@
       yabai -m rule --add app="^FaceTime$" manage=off
       yabai -m rule --add app="^Music$" title="^MiniPlayer$" manage=off
       yabai -m rule --add app="^Photo Booth$" manage=off
+      yabai -m rule --add app="^Cisco Secure Client$" manage=off
+      yabai -m rule --add app="^CleanShot X$" manage=off
+      yabai -m rule --add app="^FaceTime$" manage=off
+      yabai -m rule --add app="^Microsoft AutoUpdate$" manage=off
 
       # delete >10 spaces
       for _ in $(yabai -m query --spaces | ${pkgs.jq}/bin/jq '.[].index | select(. > 10)'); do

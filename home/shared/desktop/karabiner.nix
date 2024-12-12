@@ -199,7 +199,7 @@
               ];
             }
             {
-              description = "Screenshot copy to clipboard rebind";
+              description = "Scerenshot area";
               manipulators = [
                 {
                   type = "basic";
@@ -213,6 +213,26 @@
                     {
                       key_code = "4";
                       # add left_control to copy directly to clipboard
+                      modifiers = ["left_command" "left_shift"];
+                    }
+                  ];
+                }
+              ];
+            }
+            {
+              description = "Screenshot window (CleanShot X)";
+              manipulators = [
+                {
+                  type = "basic";
+                  from = {
+                    key_code = "a";
+                    modifiers = {
+                      mandatory = ["${mod}" "left_shift"];
+                    };
+                  };
+                  to = [
+                    {
+                      key_code = "6";
                       modifiers = ["left_command" "left_shift"];
                     }
                   ];
@@ -313,833 +333,895 @@
             #     }
             #   ];
             # }
+            {
+              description = "move Safari window left";
+              manipulators = [
+                {
+                  type = "basic";
+                  from = {
+                    key_code = "right_arrow";
+                    modifiers = {
+                      mandatory = ["left_option" "left_shift" "left_control"];
+                    };
+                  };
+                  to = [
+                    {
+                      shell_command = ''
+                        osascript -e 'tell application "Safari"
+                            set currentTabIndex to index of current tab of front window
+                            set totalTabs to count of tabs of front window
+                            if currentTabIndex < totalTabs then
+                                set nextTabIndex to currentTabIndex + 1
+                                tell front window
+                                    set currentTab to tab currentTabIndex
+                                    set nextTab to tab nextTabIndex
+                                    move nextTab to before currentTab
+                                end tell
+                            end if
+                        end tell'
+                      '';
+                    }
+                  ];
+                }
+              ];
+            }
+            {
+              description = "move Safari window left";
+              manipulators = [
+                {
+                  type = "basic";
+                  from = {
+                    key_code = "left_arrow";
+                    modifiers = {
+                      mandatory = ["left_option" "left_shift" "left_control"];
+                    };
+                  };
+                  to = [
+                    {
+                      shell_command = ''
+                        osascript -e 'tell application "Safari"
+                            set currentTabIndex to index of current tab of front window
+                            if currentTabIndex > 1 then
+                                tell front window
+                                    set currentTab to tab currentTabIndex
+                                    set previousTab to tab (currentTabIndex - 1)
+                                    move previousTab to after currentTab
+                                end tell
+                            end if
+                        end tell'
+                      '';
+                    }
+                  ];
+                }
+              ];
+            }
 
-            {
-              # TODO: apple trackpads aren't currently supported with karabiner
-              description = "change hide application to yabai move modifier option+button1";
-              manipulators = [
-                {
-                  type = "basic";
-                  from = {
-                    pointing_button = "button1";
-                    modifiers = {
-                      mandatory = ["left_option"];
-                    };
-                  };
-                  to = [
-                    {
-                      pointing_button = "button1";
-                      modifiers = ["fn"];
-                    }
-                  ];
-                }
-              ];
-            }
-            {
-              description = "change hide application to yabai resize modifier option+button2";
-              manipulators = [
-                {
-                  type = "basic";
-                  from = {
-                    pointing_button = "button2";
-                    modifiers = {
-                      mandatory = ["left_option"];
-                    };
-                  };
-                  to = [
-                    {
-                      pointing_button = "button2";
-                      modifiers = ["fn"];
-                    }
-                  ];
-                }
-              ];
-            }
-            {
-              description = "yabai focus left 1";
-              manipulators = [
-                {
-                  type = "basic";
-                  from = {
-                    key_code = "left_arrow";
-                    modifiers = {
-                      mandatory = ["${mod}"];
-                    };
-                  };
-                  to = [
-                    {
-                      shell_command = "${pkgs.yabai}/bin/yabai -m window --focus west || ${pkgs.yabai}/bin/yabai -m display --focus west";
-                    }
-                  ];
-                }
-              ];
-            }
-            {
-              description = "yabai focus left 2";
-              manipulators = [
-                {
-                  type = "basic";
-                  from = {
-                    key_code = "h";
-                    modifiers = {
-                      mandatory = ["${mod}"];
-                    };
-                  };
-                  to = [
-                    {
-                      shell_command = "${pkgs.yabai}/bin/yabai -m window --focus west || ${pkgs.yabai}/bin/yabai -m display --focus west";
-                    }
-                  ];
-                }
-              ];
-            }
-            {
-              description = "yabai focus right 1";
-              manipulators = [
-                {
-                  type = "basic";
-                  from = {
-                    key_code = "right_arrow";
-                    modifiers = {
-                      mandatory = ["${mod}"];
-                    };
-                  };
-                  to = [
-                    {
-                      shell_command = "${pkgs.yabai}/bin/yabai -m window --focus east || ${pkgs.yabai}/bin/yabai -m display --focus east";
-                    }
-                  ];
-                }
-              ];
-            }
-            {
-              description = "yabai focus right 2";
-              manipulators = [
-                {
-                  type = "basic";
-                  from = {
-                    key_code = "l";
-                    modifiers = {
-                      mandatory = ["${mod}"];
-                    };
-                  };
-                  to = [
-                    {
-                      shell_command = "${pkgs.yabai}/bin/yabai -m window --focus east || ${pkgs.yabai}/bin/yabai -m display --focus east";
-                    }
-                  ];
-                }
-              ];
-            }
-            {
-              description = "yabai focus up 1";
-              manipulators = [
-                {
-                  type = "basic";
-                  from = {
-                    key_code = "up_arrow";
-                    modifiers = {
-                      mandatory = ["${mod}"];
-                    };
-                  };
-                  to = [
-                    {
-                      shell_command = "${pkgs.yabai}/bin/yabai -m window --focus north || ${pkgs.yabai}/bin/yabai -m display --focus north";
-                    }
-                  ];
-                }
-              ];
-            }
-            {
-              description = "yabai focus up 2";
-              manipulators = [
-                {
-                  type = "basic";
-                  from = {
-                    key_code = "k";
-                    modifiers = {
-                      mandatory = ["${mod}"];
-                    };
-                  };
-                  to = [
-                    {
-                      shell_command = "${pkgs.yabai}/bin/yabai -m window --focus north || ${pkgs.yabai}/bin/yabai -m display --focus north";
-                    }
-                  ];
-                }
-              ];
-            }
-            {
-              description = "yabai focus down 1";
-              manipulators = [
-                {
-                  type = "basic";
-                  from = {
-                    key_code = "down_arrow";
-                    modifiers = {
-                      mandatory = ["${mod}"];
-                    };
-                  };
-                  to = [
-                    {
-                      shell_command = "${pkgs.yabai}/bin/yabai -m window --focus south || ${pkgs.yabai}/bin/yabai -m display --focus south";
-                    }
-                  ];
-                }
-              ];
-            }
-            {
-              description = "yabai focus down 2";
-              manipulators = [
-                {
-                  type = "basic";
-                  from = {
-                    key_code = "j";
-                    modifiers = {
-                      mandatory = ["${mod}"];
-                    };
-                  };
-                  to = [
-                    {
-                      shell_command = "${pkgs.yabai}/bin/yabai -m window --focus south || ${pkgs.yabai}/bin/yabai -m display --focus south";
-                    }
-                  ];
-                }
-              ];
-            }
-            {
-              description = "yabai move left 1";
-              manipulators = [
-                {
-                  type = "basic";
-                  from = {
-                    key_code = "left_arrow";
-                    modifiers = {
-                      mandatory = ["${mod}" "left_shift"];
-                    };
-                  };
-                  to = [
-                    {
-                      shell_command = "${pkgs.yabai}/bin/yabai -m window --warp west";
-                    }
-                  ];
-                }
-              ];
-            }
-            {
-              description = "yabai move left 2";
-              manipulators = [
-                {
-                  type = "basic";
-                  from = {
-                    key_code = "h";
-                    modifiers = {
-                      mandatory = ["${mod}" "left_shift"];
-                    };
-                  };
-                  to = [
-                    {
-                      shell_command = "${pkgs.yabai}/bin/yabai -m window --warp west";
-                    }
-                  ];
-                }
-              ];
-            }
-            {
-              description = "yabai move right 1";
-              manipulators = [
-                {
-                  type = "basic";
-                  from = {
-                    key_code = "right_arrow";
-                    modifiers = {
-                      mandatory = ["${mod}" "left_shift"];
-                    };
-                  };
-                  to = [
-                    {
-                      shell_command = "${pkgs.yabai}/bin/yabai -m window --warp east";
-                    }
-                  ];
-                }
-              ];
-            }
-            {
-              description = "yabai move right 2";
-              manipulators = [
-                {
-                  type = "basic";
-                  from = {
-                    key_code = "l";
-                    modifiers = {
-                      mandatory = ["${mod}" "left_shift"];
-                    };
-                  };
-                  to = [
-                    {
-                      shell_command = "${pkgs.yabai}/bin/yabai -m window --warp east";
-                    }
-                  ];
-                }
-              ];
-            }
-            {
-              description = "yabai move up 1";
-              manipulators = [
-                {
-                  type = "basic";
-                  from = {
-                    key_code = "up_arrow";
-                    modifiers = {
-                      mandatory = ["${mod}" "left_shift"];
-                    };
-                  };
-                  to = [
-                    {
-                      shell_command = "${pkgs.yabai}/bin/yabai -m window --warp north";
-                    }
-                  ];
-                }
-              ];
-            }
-            {
-              description = "yabai move up 2";
-              manipulators = [
-                {
-                  type = "basic";
-                  from = {
-                    key_code = "k";
-                    modifiers = {
-                      mandatory = ["${mod}" "left_shift"];
-                    };
-                  };
-                  to = [
-                    {
-                      shell_command = "${pkgs.yabai}/bin/yabai -m window --warp north";
-                    }
-                  ];
-                }
-              ];
-            }
-            {
-              description = "yabai move down 1";
-              manipulators = [
-                {
-                  type = "basic";
-                  from = {
-                    key_code = "down_arrow";
-                    modifiers = {
-                      mandatory = ["${mod}" "left_shift"];
-                    };
-                  };
-                  to = [
-                    {
-                      shell_command = "${pkgs.yabai}/bin/yabai -m window --warp south";
-                    }
-                  ];
-                }
-              ];
-            }
-            {
-              description = "yabai move down 2";
-              manipulators = [
-                {
-                  type = "basic";
-                  from = {
-                    key_code = "j";
-                    modifiers = {
-                      mandatory = ["${mod}" "left_shift"];
-                    };
-                  };
-                  to = [
-                    {
-                      shell_command = "${pkgs.yabai}/bin/yabai -m window --warp south";
-                    }
-                  ];
-                }
-              ];
-            }
-            {
-              description = "yabai float";
-              manipulators = [
-                {
-                  type = "basic";
-                  from = {
-                    key_code = "spacebar";
-                    modifiers = {
-                      mandatory = [
-                        "${mod}"
-                        "left_shift"
-                      ];
-                    };
-                  };
-                  to = [
-                    {
-                      shell_command = "${pkgs.yabai}/bin/yabai -m window --toggle float";
-                    }
-                  ];
-                }
-              ];
-            }
-            {
-              description = "yabai maximize";
-              manipulators = [
-                {
-                  type = "basic";
-                  from = {
-                    key_code = "f";
-                    modifiers = {
-                      mandatory = ["${mod}"];
-                    };
-                  };
-                  to = [
-                    {
-                      shell_command = "${pkgs.yabai}/bin/yabai -m window --toggle zoom-fullscreen";
-                    }
-                  ];
-                }
-              ];
-            }
-            {
-              description = "yabai fullscreen";
-              manipulators = [
-                {
-                  type = "basic";
-                  from = {
-                    key_code = "f";
-                    modifiers = {
-                      mandatory = [
-                        "${mod}"
-                        "left_shift"
-                      ];
-                    };
-                  };
-                  to = [
-                    {
-                      shell_command = "${pkgs.yabai}/bin/yabai -m window --toggle native-fullscreen";
-                    }
-                  ];
-                }
-              ];
-            }
-            {
-              description = "yabai toggle";
-              manipulators = [
-                {
-                  type = "basic";
-                  from = {
-                    key_code = "t";
-                    modifiers = {
-                      mandatory = ["${mod}"];
-                    };
-                  };
-                  to = [
-                    {
-                      shell_command = "\"[ \"bsp\" = \"bsp\" ] && ${pkgs.yabai}/bin/yabai -m space --layout float || ${pkgs.yabai}/bin/yabai -m space --layout bsp";
-                    }
-                  ];
-                }
-              ];
-            }
-            {
-              description = "yabai toggle split";
-              manipulators = [
-                {
-                  type = "basic";
-                  from = {
-                    key_code = "v";
-                    modifiers = {
-                      mandatory = ["${mod}"];
-                    };
-                  };
-                  to = [
-                    {
-                      shell_command = "${pkgs.yabai}/bin/yabai -m window --toggle split";
-                    }
-                  ];
-                }
-              ];
-            }
-            {
-              description = "yabai focus space 1";
-              manipulators = [
-                {
-                  type = "basic";
-                  from = {
-                    key_code = "1";
-                    modifiers = {
-                      mandatory = ["${mod}"];
-                    };
-                  };
-                  to = [
-                    {
-                      shell_command = "${pkgs.yabai}/bin/yabai -m space --focus 1";
-                    }
-                  ];
-                }
-              ];
-            }
-            {
-              description = "yabai focus space 2";
-              manipulators = [
-                {
-                  type = "basic";
-                  from = {
-                    key_code = "2";
-                    modifiers = {
-                      mandatory = ["${mod}"];
-                    };
-                  };
-                  to = [
-                    {
-                      shell_command = "${pkgs.yabai}/bin/yabai -m space --focus 2";
-                    }
-                  ];
-                }
-              ];
-            }
-            {
-              description = "yabai focus space 3";
-              manipulators = [
-                {
-                  type = "basic";
-                  from = {
-                    key_code = "3";
-                    modifiers = {
-                      mandatory = ["${mod}"];
-                    };
-                  };
-                  to = [
-                    {
-                      shell_command = "${pkgs.yabai}/bin/yabai -m space --focus 3";
-                    }
-                  ];
-                }
-              ];
-            }
-            {
-              description = "yabai focus space 4";
-              manipulators = [
-                {
-                  type = "basic";
-                  from = {
-                    key_code = "4";
-                    modifiers = {
-                      mandatory = ["${mod}"];
-                    };
-                  };
-                  to = [
-                    {
-                      shell_command = "${pkgs.yabai}/bin/yabai -m space --focus 4";
-                    }
-                  ];
-                }
-              ];
-            }
-            {
-              description = "yabai focus space 5";
-              manipulators = [
-                {
-                  type = "basic";
-                  from = {
-                    key_code = "5";
-                    modifiers = {
-                      mandatory = ["${mod}"];
-                    };
-                  };
-                  to = [
-                    {
-                      shell_command = "${pkgs.yabai}/bin/yabai -m space --focus 5";
-                    }
-                  ];
-                }
-              ];
-            }
-            {
-              description = "yabai focus space 6";
-              manipulators = [
-                {
-                  type = "basic";
-                  from = {
-                    key_code = "6";
-                    modifiers = {
-                      mandatory = ["${mod}"];
-                    };
-                  };
-                  to = [
-                    {
-                      shell_command = "${pkgs.yabai}/bin/yabai -m space --focus 6";
-                    }
-                  ];
-                }
-              ];
-            }
-            {
-              description = "yabai focus space 7";
-              manipulators = [
-                {
-                  type = "basic";
-                  from = {
-                    key_code = "7";
-                    modifiers = {
-                      mandatory = ["${mod}"];
-                    };
-                  };
-                  to = [
-                    {
-                      shell_command = "${pkgs.yabai}/bin/yabai -m space --focus 7";
-                    }
-                  ];
-                }
-              ];
-            }
-            {
-              description = "yabai focus space 8";
-              manipulators = [
-                {
-                  type = "basic";
-                  from = {
-                    key_code = "8";
-                    modifiers = {
-                      mandatory = ["${mod}"];
-                    };
-                  };
-                  to = [
-                    {
-                      shell_command = "${pkgs.yabai}/bin/yabai -m space --focus 8";
-                    }
-                  ];
-                }
-              ];
-            }
-            {
-              description = "yabai focus space 9";
-              manipulators = [
-                {
-                  type = "basic";
-                  from = {
-                    key_code = "9";
-                    modifiers = {
-                      mandatory = ["${mod}"];
-                    };
-                  };
-                  to = [
-                    {
-                      shell_command = "${pkgs.yabai}/bin/yabai -m space --focus 9";
-                    }
-                  ];
-                }
-              ];
-            }
-            {
-              description = "yabai focus space 0";
-              manipulators = [
-                {
-                  type = "basic";
-                  from = {
-                    key_code = "0";
-                    modifiers = {
-                      mandatory = ["${mod}"];
-                    };
-                  };
-                  to = [
-                    {
-                      shell_command = "${pkgs.yabai}/bin/yabai -m space --focus 10";
-                    }
-                  ];
-                }
-              ];
-            }
-            {
-              description = "yabai move window to space 1";
-              manipulators = [
-                {
-                  type = "basic";
-                  from = {
-                    key_code = "1";
-                    modifiers = {
-                      mandatory = ["${mod}" "left_shift"];
-                    };
-                  };
-                  to = [
-                    {
-                      shell_command = "${pkgs.yabai}/bin/yabai -m window --space 1";
-                    }
-                  ];
-                }
-              ];
-            }
-            {
-              description = "yabai move window to space 2";
-              manipulators = [
-                {
-                  type = "basic";
-                  from = {
-                    key_code = "2";
-                    modifiers = {
-                      mandatory = ["${mod}" "left_shift"];
-                    };
-                  };
-                  to = [
-                    {
-                      shell_command = "${pkgs.yabai}/bin/yabai -m window --space 2";
-                    }
-                  ];
-                }
-              ];
-            }
-            {
-              description = "yabai move window to space 3";
-              manipulators = [
-                {
-                  type = "basic";
-                  from = {
-                    key_code = "3";
-                    modifiers = {
-                      mandatory = ["${mod}" "left_shift"];
-                    };
-                  };
-                  to = [
-                    {
-                      shell_command = "${pkgs.yabai}/bin/yabai -m window --space 3";
-                    }
-                  ];
-                }
-              ];
-            }
-            {
-              description = "yabai move window to space 4";
-              manipulators = [
-                {
-                  type = "basic";
-                  from = {
-                    key_code = "4";
-                    modifiers = {
-                      mandatory = ["${mod}" "left_shift"];
-                    };
-                  };
-                  to = [
-                    {
-                      shell_command = "${pkgs.yabai}/bin/yabai -m window --space 4";
-                    }
-                  ];
-                }
-              ];
-            }
-            {
-              description = "yabai move window to space 5";
-              manipulators = [
-                {
-                  type = "basic";
-                  from = {
-                    key_code = "5";
-                    modifiers = {
-                      mandatory = ["${mod}" "left_shift"];
-                    };
-                  };
-                  to = [
-                    {
-                      shell_command = "${pkgs.yabai}/bin/yabai -m window --space 5";
-                    }
-                  ];
-                }
-              ];
-            }
-            {
-              description = "yabai move window to space 6";
-              manipulators = [
-                {
-                  type = "basic";
-                  from = {
-                    key_code = "6";
-                    modifiers = {
-                      mandatory = ["${mod}" "left_shift"];
-                    };
-                  };
-                  to = [
-                    {
-                      shell_command = "${pkgs.yabai}/bin/yabai -m window --space 6";
-                    }
-                  ];
-                }
-              ];
-            }
-            {
-              description = "yabai move window to space 7";
-              manipulators = [
-                {
-                  type = "basic";
-                  from = {
-                    key_code = "7";
-                    modifiers = {
-                      mandatory = ["${mod}" "left_shift"];
-                    };
-                  };
-                  to = [
-                    {
-                      shell_command = "${pkgs.yabai}/bin/yabai -m window --space 7";
-                    }
-                  ];
-                }
-              ];
-            }
-            {
-              description = "yabai move window to space 8";
-              manipulators = [
-                {
-                  type = "basic";
-                  from = {
-                    key_code = "8";
-                    modifiers = {
-                      mandatory = ["${mod}" "left_shift"];
-                    };
-                  };
-                  to = [
-                    {
-                      shell_command = "${pkgs.yabai}/bin/yabai -m window --space 8";
-                    }
-                  ];
-                }
-              ];
-            }
-            {
-              description = "yabai move window to space 9";
-              manipulators = [
-                {
-                  type = "basic";
-                  from = {
-                    key_code = "9";
-                    modifiers = {
-                      mandatory = ["${mod}" "left_shift"];
-                    };
-                  };
-                  to = [
-                    {
-                      shell_command = "${pkgs.yabai}/bin/yabai -m window --space 9";
-                    }
-                  ];
-                }
-              ];
-            }
-            {
-              description = "yabai move window to space 0";
-              manipulators = [
-                {
-                  type = "basic";
-                  from = {
-                    key_code = "0";
-                    modifiers = {
-                      mandatory = ["${mod}" "left_shift"];
-                    };
-                  };
-                  to = [
-                    {
-                      shell_command = "${pkgs.yabai}/bin/yabai -m window --space 10";
-                    }
-                  ];
-                }
-              ];
-            }
+            #     {
+            #       # TODO: apple trackpads aren't currently supported with karabiner
+            #       description = "change hide application to yabai move modifier option+button1";
+            #       manipulators = [
+            #         {
+            #           type = "basic";
+            #           from = {
+            #             pointing_button = "button1";
+            #             modifiers = {
+            #               mandatory = ["left_option"];
+            #             };
+            #           };
+            #           to = [
+            #             {
+            #               pointing_button = "button1";
+            #               modifiers = ["fn"];
+            #             }
+            #           ];
+            #         }
+            #       ];
+            #     }
+            #     {
+            #       description = "change hide application to yabai resize modifier option+button2";
+            #       manipulators = [
+            #         {
+            #           type = "basic";
+            #           from = {
+            #             pointing_button = "button2";
+            #             modifiers = {
+            #               mandatory = ["left_option"];
+            #             };
+            #           };
+            #           to = [
+            #             {
+            #               pointing_button = "button2";
+            #               modifiers = ["fn"];
+            #             }
+            #           ];
+            #         }
+            #       ];
+            #     }
+            #     {
+            #       description = "yabai focus left 1";
+            #       manipulators = [
+            #         {
+            #           type = "basic";
+            #           from = {
+            #             key_code = "left_arrow";
+            #             modifiers = {
+            #               mandatory = ["${mod}"];
+            #             };
+            #           };
+            #           to = [
+            #             {
+            #               shell_command = "${pkgs.yabai}/bin/yabai -m window --focus west || ${pkgs.yabai}/bin/yabai -m display --focus west";
+            #             }
+            #           ];
+            #         }
+            #       ];
+            #     }
+            #     {
+            #       description = "yabai focus left 2";
+            #       manipulators = [
+            #         {
+            #           type = "basic";
+            #           from = {
+            #             key_code = "h";
+            #             modifiers = {
+            #               mandatory = ["${mod}"];
+            #             };
+            #           };
+            #           to = [
+            #             {
+            #               shell_command = "${pkgs.yabai}/bin/yabai -m window --focus west || ${pkgs.yabai}/bin/yabai -m display --focus west";
+            #             }
+            #           ];
+            #         }
+            #       ];
+            #     }
+            #     {
+            #       description = "yabai focus right 1";
+            #       manipulators = [
+            #         {
+            #           type = "basic";
+            #           from = {
+            #             key_code = "right_arrow";
+            #             modifiers = {
+            #               mandatory = ["${mod}"];
+            #             };
+            #           };
+            #           to = [
+            #             {
+            #               shell_command = "${pkgs.yabai}/bin/yabai -m window --focus east || ${pkgs.yabai}/bin/yabai -m display --focus east";
+            #             }
+            #           ];
+            #         }
+            #       ];
+            #     }
+            #     {
+            #       description = "yabai focus right 2";
+            #       manipulators = [
+            #         {
+            #           type = "basic";
+            #           from = {
+            #             key_code = "l";
+            #             modifiers = {
+            #               mandatory = ["${mod}"];
+            #             };
+            #           };
+            #           to = [
+            #             {
+            #               shell_command = "${pkgs.yabai}/bin/yabai -m window --focus east || ${pkgs.yabai}/bin/yabai -m display --focus east";
+            #             }
+            #           ];
+            #         }
+            #       ];
+            #     }
+            #     {
+            #       description = "yabai focus up 1";
+            #       manipulators = [
+            #         {
+            #           type = "basic";
+            #           from = {
+            #             key_code = "up_arrow";
+            #             modifiers = {
+            #               mandatory = ["${mod}"];
+            #             };
+            #           };
+            #           to = [
+            #             {
+            #               shell_command = "${pkgs.yabai}/bin/yabai -m window --focus north || ${pkgs.yabai}/bin/yabai -m display --focus north";
+            #             }
+            #           ];
+            #         }
+            #       ];
+            #     }
+            #     {
+            #       description = "yabai focus up 2";
+            #       manipulators = [
+            #         {
+            #           type = "basic";
+            #           from = {
+            #             key_code = "k";
+            #             modifiers = {
+            #               mandatory = ["${mod}"];
+            #             };
+            #           };
+            #           to = [
+            #             {
+            #               shell_command = "${pkgs.yabai}/bin/yabai -m window --focus north || ${pkgs.yabai}/bin/yabai -m display --focus north";
+            #             }
+            #           ];
+            #         }
+            #       ];
+            #     }
+            #     {
+            #       description = "yabai focus down 1";
+            #       manipulators = [
+            #         {
+            #           type = "basic";
+            #           from = {
+            #             key_code = "down_arrow";
+            #             modifiers = {
+            #               mandatory = ["${mod}"];
+            #             };
+            #           };
+            #           to = [
+            #             {
+            #               shell_command = "${pkgs.yabai}/bin/yabai -m window --focus south || ${pkgs.yabai}/bin/yabai -m display --focus south";
+            #             }
+            #           ];
+            #         }
+            #       ];
+            #     }
+            #     {
+            #       description = "yabai focus down 2";
+            #       manipulators = [
+            #         {
+            #           type = "basic";
+            #           from = {
+            #             key_code = "j";
+            #             modifiers = {
+            #               mandatory = ["${mod}"];
+            #             };
+            #           };
+            #           to = [
+            #             {
+            #               shell_command = "${pkgs.yabai}/bin/yabai -m window --focus south || ${pkgs.yabai}/bin/yabai -m display --focus south";
+            #             }
+            #           ];
+            #         }
+            #       ];
+            #     }
+            #     {
+            #       description = "yabai move left 1";
+            #       manipulators = [
+            #         {
+            #           type = "basic";
+            #           from = {
+            #             key_code = "left_arrow";
+            #             modifiers = {
+            #               mandatory = ["${mod}" "left_shift"];
+            #             };
+            #           };
+            #           to = [
+            #             {
+            #               shell_command = "${pkgs.yabai}/bin/yabai -m window --warp west";
+            #             }
+            #           ];
+            #         }
+            #       ];
+            #     }
+            #     {
+            #       description = "yabai move left 2";
+            #       manipulators = [
+            #         {
+            #           type = "basic";
+            #           from = {
+            #             key_code = "h";
+            #             modifiers = {
+            #               mandatory = ["${mod}" "left_shift"];
+            #             };
+            #           };
+            #           to = [
+            #             {
+            #               shell_command = "${pkgs.yabai}/bin/yabai -m window --warp west";
+            #             }
+            #           ];
+            #         }
+            #       ];
+            #     }
+            #     {
+            #       description = "yabai move right 1";
+            #       manipulators = [
+            #         {
+            #           type = "basic";
+            #           from = {
+            #             key_code = "right_arrow";
+            #             modifiers = {
+            #               mandatory = ["${mod}" "left_shift"];
+            #             };
+            #           };
+            #           to = [
+            #             {
+            #               shell_command = "${pkgs.yabai}/bin/yabai -m window --warp east";
+            #             }
+            #           ];
+            #         }
+            #       ];
+            #     }
+            #     {
+            #       description = "yabai move right 2";
+            #       manipulators = [
+            #         {
+            #           type = "basic";
+            #           from = {
+            #             key_code = "l";
+            #             modifiers = {
+            #               mandatory = ["${mod}" "left_shift"];
+            #             };
+            #           };
+            #           to = [
+            #             {
+            #               shell_command = "${pkgs.yabai}/bin/yabai -m window --warp east";
+            #             }
+            #           ];
+            #         }
+            #       ];
+            #     }
+            #     {
+            #       description = "yabai move up 1";
+            #       manipulators = [
+            #         {
+            #           type = "basic";
+            #           from = {
+            #             key_code = "up_arrow";
+            #             modifiers = {
+            #               mandatory = ["${mod}" "left_shift"];
+            #             };
+            #           };
+            #           to = [
+            #             {
+            #               shell_command = "${pkgs.yabai}/bin/yabai -m window --warp north";
+            #             }
+            #           ];
+            #         }
+            #       ];
+            #     }
+            #     {
+            #       description = "yabai move up 2";
+            #       manipulators = [
+            #         {
+            #           type = "basic";
+            #           from = {
+            #             key_code = "k";
+            #             modifiers = {
+            #               mandatory = ["${mod}" "left_shift"];
+            #             };
+            #           };
+            #           to = [
+            #             {
+            #               shell_command = "${pkgs.yabai}/bin/yabai -m window --warp north";
+            #             }
+            #           ];
+            #         }
+            #       ];
+            #     }
+            #     {
+            #       description = "yabai move down 1";
+            #       manipulators = [
+            #         {
+            #           type = "basic";
+            #           from = {
+            #             key_code = "down_arrow";
+            #             modifiers = {
+            #               mandatory = ["${mod}" "left_shift"];
+            #             };
+            #           };
+            #           to = [
+            #             {
+            #               shell_command = "${pkgs.yabai}/bin/yabai -m window --warp south";
+            #             }
+            #           ];
+            #         }
+            #       ];
+            #     }
+            #     {
+            #       description = "yabai move down 2";
+            #       manipulators = [
+            #         {
+            #           type = "basic";
+            #           from = {
+            #             key_code = "j";
+            #             modifiers = {
+            #               mandatory = ["${mod}" "left_shift"];
+            #             };
+            #           };
+            #           to = [
+            #             {
+            #               shell_command = "${pkgs.yabai}/bin/yabai -m window --warp south";
+            #             }
+            #           ];
+            #         }
+            #       ];
+            #     }
+            #     {
+            #       description = "yabai float";
+            #       manipulators = [
+            #         {
+            #           type = "basic";
+            #           from = {
+            #             key_code = "spacebar";
+            #             modifiers = {
+            #               mandatory = [
+            #                 "${mod}"
+            #                 "left_shift"
+            #               ];
+            #             };
+            #           };
+            #           to = [
+            #             {
+            #               shell_command = "${pkgs.yabai}/bin/yabai -m window --toggle float";
+            #             }
+            #           ];
+            #         }
+            #       ];
+            #     }
+            #     {
+            #       description = "yabai maximize";
+            #       manipulators = [
+            #         {
+            #           type = "basic";
+            #           from = {
+            #             key_code = "f";
+            #             modifiers = {
+            #               mandatory = ["${mod}"];
+            #             };
+            #           };
+            #           to = [
+            #             {
+            #               shell_command = "${pkgs.yabai}/bin/yabai -m window --toggle zoom-fullscreen";
+            #             }
+            #           ];
+            #         }
+            #       ];
+            #     }
+            #     {
+            #       description = "yabai fullscreen";
+            #       manipulators = [
+            #         {
+            #           type = "basic";
+            #           from = {
+            #             key_code = "f";
+            #             modifiers = {
+            #               mandatory = [
+            #                 "${mod}"
+            #                 "left_shift"
+            #               ];
+            #             };
+            #           };
+            #           to = [
+            #             {
+            #               shell_command = "${pkgs.yabai}/bin/yabai -m window --toggle native-fullscreen";
+            #             }
+            #           ];
+            #         }
+            #       ];
+            #     }
+            #     {
+            #       description = "yabai toggle";
+            #       manipulators = [
+            #         {
+            #           type = "basic";
+            #           from = {
+            #             key_code = "t";
+            #             modifiers = {
+            #               mandatory = ["${mod}"];
+            #             };
+            #           };
+            #           to = [
+            #             {
+            #               shell_command = "\"[ \"bsp\" = \"bsp\" ] && ${pkgs.yabai}/bin/yabai -m space --layout float || ${pkgs.yabai}/bin/yabai -m space --layout bsp";
+            #             }
+            #           ];
+            #         }
+            #       ];
+            #     }
+            #     {
+            #       description = "yabai toggle split";
+            #       manipulators = [
+            #         {
+            #           type = "basic";
+            #           from = {
+            #             key_code = "v";
+            #             modifiers = {
+            #               mandatory = ["${mod}"];
+            #             };
+            #           };
+            #           to = [
+            #             {
+            #               shell_command = "${pkgs.yabai}/bin/yabai -m window --toggle split";
+            #             }
+            #           ];
+            #         }
+            #       ];
+            #     }
+            #     {
+            #       description = "yabai focus space 1";
+            #       manipulators = [
+            #         {
+            #           type = "basic";
+            #           from = {
+            #             key_code = "1";
+            #             modifiers = {
+            #               mandatory = ["${mod}"];
+            #             };
+            #           };
+            #           to = [
+            #             {
+            #               shell_command = "${pkgs.yabai}/bin/yabai -m space --focus 1";
+            #             }
+            #           ];
+            #         }
+            #       ];
+            #     }
+            #     {
+            #       description = "yabai focus space 2";
+            #       manipulators = [
+            #         {
+            #           type = "basic";
+            #           from = {
+            #             key_code = "2";
+            #             modifiers = {
+            #               mandatory = ["${mod}"];
+            #             };
+            #           };
+            #           to = [
+            #             {
+            #               shell_command = "${pkgs.yabai}/bin/yabai -m space --focus 2";
+            #             }
+            #           ];
+            #         }
+            #       ];
+            #     }
+            #     {
+            #       description = "yabai focus space 3";
+            #       manipulators = [
+            #         {
+            #           type = "basic";
+            #           from = {
+            #             key_code = "3";
+            #             modifiers = {
+            #               mandatory = ["${mod}"];
+            #             };
+            #           };
+            #           to = [
+            #             {
+            #               shell_command = "${pkgs.yabai}/bin/yabai -m space --focus 3";
+            #             }
+            #           ];
+            #         }
+            #       ];
+            #     }
+            #     {
+            #       description = "yabai focus space 4";
+            #       manipulators = [
+            #         {
+            #           type = "basic";
+            #           from = {
+            #             key_code = "4";
+            #             modifiers = {
+            #               mandatory = ["${mod}"];
+            #             };
+            #           };
+            #           to = [
+            #             {
+            #               shell_command = "${pkgs.yabai}/bin/yabai -m space --focus 4";
+            #             }
+            #           ];
+            #         }
+            #       ];
+            #     }
+            #     {
+            #       description = "yabai focus space 5";
+            #       manipulators = [
+            #         {
+            #           type = "basic";
+            #           from = {
+            #             key_code = "5";
+            #             modifiers = {
+            #               mandatory = ["${mod}"];
+            #             };
+            #           };
+            #           to = [
+            #             {
+            #               shell_command = "${pkgs.yabai}/bin/yabai -m space --focus 5";
+            #             }
+            #           ];
+            #         }
+            #       ];
+            #     }
+            #     {
+            #       description = "yabai focus space 6";
+            #       manipulators = [
+            #         {
+            #           type = "basic";
+            #           from = {
+            #             key_code = "6";
+            #             modifiers = {
+            #               mandatory = ["${mod}"];
+            #             };
+            #           };
+            #           to = [
+            #             {
+            #               shell_command = "${pkgs.yabai}/bin/yabai -m space --focus 6";
+            #             }
+            #           ];
+            #         }
+            #       ];
+            #     }
+            #     {
+            #       description = "yabai focus space 7";
+            #       manipulators = [
+            #         {
+            #           type = "basic";
+            #           from = {
+            #             key_code = "7";
+            #             modifiers = {
+            #               mandatory = ["${mod}"];
+            #             };
+            #           };
+            #           to = [
+            #             {
+            #               shell_command = "${pkgs.yabai}/bin/yabai -m space --focus 7";
+            #             }
+            #           ];
+            #         }
+            #       ];
+            #     }
+            #     {
+            #       description = "yabai focus space 8";
+            #       manipulators = [
+            #         {
+            #           type = "basic";
+            #           from = {
+            #             key_code = "8";
+            #             modifiers = {
+            #               mandatory = ["${mod}"];
+            #             };
+            #           };
+            #           to = [
+            #             {
+            #               shell_command = "${pkgs.yabai}/bin/yabai -m space --focus 8";
+            #             }
+            #           ];
+            #         }
+            #       ];
+            #     }
+            #     {
+            #       description = "yabai focus space 9";
+            #       manipulators = [
+            #         {
+            #           type = "basic";
+            #           from = {
+            #             key_code = "9";
+            #             modifiers = {
+            #               mandatory = ["${mod}"];
+            #             };
+            #           };
+            #           to = [
+            #             {
+            #               shell_command = "${pkgs.yabai}/bin/yabai -m space --focus 9";
+            #             }
+            #           ];
+            #         }
+            #       ];
+            #     }
+            #     {
+            #       description = "yabai focus space 0";
+            #       manipulators = [
+            #         {
+            #           type = "basic";
+            #           from = {
+            #             key_code = "0";
+            #             modifiers = {
+            #               mandatory = ["${mod}"];
+            #             };
+            #           };
+            #           to = [
+            #             {
+            #               shell_command = "${pkgs.yabai}/bin/yabai -m space --focus 10";
+            #             }
+            #           ];
+            #         }
+            #       ];
+            #     }
+            #     {
+            #       description = "yabai move window to space 1";
+            #       manipulators = [
+            #         {
+            #           type = "basic";
+            #           from = {
+            #             key_code = "1";
+            #             modifiers = {
+            #               mandatory = ["${mod}" "left_shift"];
+            #             };
+            #           };
+            #           to = [
+            #             {
+            #               shell_command = "${pkgs.yabai}/bin/yabai -m window --space 1";
+            #             }
+            #           ];
+            #         }
+            #       ];
+            #     }
+            #     {
+            #       description = "yabai move window to space 2";
+            #       manipulators = [
+            #         {
+            #           type = "basic";
+            #           from = {
+            #             key_code = "2";
+            #             modifiers = {
+            #               mandatory = ["${mod}" "left_shift"];
+            #             };
+            #           };
+            #           to = [
+            #             {
+            #               shell_command = "${pkgs.yabai}/bin/yabai -m window --space 2";
+            #             }
+            #           ];
+            #         }
+            #       ];
+            #     }
+            #     {
+            #       description = "yabai move window to space 3";
+            #       manipulators = [
+            #         {
+            #           type = "basic";
+            #           from = {
+            #             key_code = "3";
+            #             modifiers = {
+            #               mandatory = ["${mod}" "left_shift"];
+            #             };
+            #           };
+            #           to = [
+            #             {
+            #               shell_command = "${pkgs.yabai}/bin/yabai -m window --space 3";
+            #             }
+            #           ];
+            #         }
+            #       ];
+            #     }
+            #     {
+            #       description = "yabai move window to space 4";
+            #       manipulators = [
+            #         {
+            #           type = "basic";
+            #           from = {
+            #             key_code = "4";
+            #             modifiers = {
+            #               mandatory = ["${mod}" "left_shift"];
+            #             };
+            #           };
+            #           to = [
+            #             {
+            #               shell_command = "${pkgs.yabai}/bin/yabai -m window --space 4";
+            #             }
+            #           ];
+            #         }
+            #       ];
+            #     }
+            #     {
+            #       description = "yabai move window to space 5";
+            #       manipulators = [
+            #         {
+            #           type = "basic";
+            #           from = {
+            #             key_code = "5";
+            #             modifiers = {
+            #               mandatory = ["${mod}" "left_shift"];
+            #             };
+            #           };
+            #           to = [
+            #             {
+            #               shell_command = "${pkgs.yabai}/bin/yabai -m window --space 5";
+            #             }
+            #           ];
+            #         }
+            #       ];
+            #     }
+            #     {
+            #       description = "yabai move window to space 6";
+            #       manipulators = [
+            #         {
+            #           type = "basic";
+            #           from = {
+            #             key_code = "6";
+            #             modifiers = {
+            #               mandatory = ["${mod}" "left_shift"];
+            #             };
+            #           };
+            #           to = [
+            #             {
+            #               shell_command = "${pkgs.yabai}/bin/yabai -m window --space 6";
+            #             }
+            #           ];
+            #         }
+            #       ];
+            #     }
+            #     {
+            #       description = "yabai move window to space 7";
+            #       manipulators = [
+            #         {
+            #           type = "basic";
+            #           from = {
+            #             key_code = "7";
+            #             modifiers = {
+            #               mandatory = ["${mod}" "left_shift"];
+            #             };
+            #           };
+            #           to = [
+            #             {
+            #               shell_command = "${pkgs.yabai}/bin/yabai -m window --space 7";
+            #             }
+            #           ];
+            #         }
+            #       ];
+            #     }
+            #     {
+            #       description = "yabai move window to space 8";
+            #       manipulators = [
+            #         {
+            #           type = "basic";
+            #           from = {
+            #             key_code = "8";
+            #             modifiers = {
+            #               mandatory = ["${mod}" "left_shift"];
+            #             };
+            #           };
+            #           to = [
+            #             {
+            #               shell_command = "${pkgs.yabai}/bin/yabai -m window --space 8";
+            #             }
+            #           ];
+            #         }
+            #       ];
+            #     }
+            #     {
+            #       description = "yabai move window to space 9";
+            #       manipulators = [
+            #         {
+            #           type = "basic";
+            #           from = {
+            #             key_code = "9";
+            #             modifiers = {
+            #               mandatory = ["${mod}" "left_shift"];
+            #             };
+            #           };
+            #           to = [
+            #             {
+            #               shell_command = "${pkgs.yabai}/bin/yabai -m window --space 9";
+            #             }
+            #           ];
+            #         }
+            #       ];
+            #     }
+            #     {
+            #       description = "yabai move window to space 0";
+            #       manipulators = [
+            #         {
+            #           type = "basic";
+            #           from = {
+            #             key_code = "0";
+            #             modifiers = {
+            #               mandatory = ["${mod}" "left_shift"];
+            #             };
+            #           };
+            #           to = [
+            #             {
+            #               shell_command = "${pkgs.yabai}/bin/yabai -m window --space 10";
+            #             }
+            #           ];
+            #         }
+            #       ];
+            #     }
           ];
         };
       }
