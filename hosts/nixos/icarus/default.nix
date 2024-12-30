@@ -83,19 +83,19 @@
         HandlePowerKey=suspend
       '';
     };
-    xserver = {
-      libinput = {
-        enable = true;
-        touchpad = {
-          # TODO: sway shares the same config
-          clickMethod = "clickfinger";
-          accelProfile = "flat";
-          accelSpeed = "0.5";
-          disableWhileTyping = true;
-          middleEmulation = false;
-          naturalScrolling = true;
-        };
+    libinput = {
+      enable = true;
+      touchpad = {
+        # TODO: sway shares the same config
+        clickMethod = "clickfinger";
+        accelProfile = "flat";
+        accelSpeed = "0.5";
+        disableWhileTyping = true;
+        middleEmulation = false;
+        naturalScrolling = true;
       };
+    };
+    xserver = {
       displayManager = {
         startx.enable = true;
         # defaultSession = "none+i3";
@@ -119,6 +119,8 @@
 
   hardware = {
     nvidia = {
+      # TODO: test open on/off
+      open = true;
       prime = {
         offload.enable = true;
         # sync.enable = true;
@@ -130,9 +132,9 @@
         finegrained = true;
       };
     };
-    opengl = {
+    graphics = {
       enable = true;
-      driSupport32Bit = true;
+      enable32Bit = true;
     };
     openrazer = {
       enable = false;

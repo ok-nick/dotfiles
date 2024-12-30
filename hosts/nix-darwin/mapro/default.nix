@@ -1,4 +1,8 @@
-{outputs, ...}: let
+{
+  outputs,
+  config,
+  ...
+}: let
   # TODO: make module var
   name = "mapro";
 in {
@@ -40,14 +44,15 @@ in {
     brews = [
       "mas"
 
-      "spim" # platform not supported in nixpkgs
+      # "spim" # platform not supported in nixpkgs
       # "verible" # platform not supported in nixpkgs
 
-      "ns-3" # marked as broken in nixpkgs for darwin
+      # "ns-3" # marked as broken in nixpkgs for darwin
     ];
-    taps = [
-      # "chipsalliance/verible"
-    ];
+    # taps = [
+    # "chipsalliance/verible"
+    # ];
+    taps = builtins.attrNames config.nix-homebrew.taps;
     casks = [
       "firefox" # platform not supported in nixpkgs
 
@@ -65,7 +70,7 @@ in {
       "figma" # not packged in nixpkgs
       "vmware-fusion" # not packaged in nixpkgs
       "airmedia" # not packaged in nixpkgs
-      "spaceid" # not packaged in nixpkgs
+      # "spaceid" # not packaged in nixpkgs
       "docker" # platform not supported in nixpkgs
       "steam" # platform not supported in nixpkgs
       "wireshark-chmodbpf" # not packaged in nixpkgs

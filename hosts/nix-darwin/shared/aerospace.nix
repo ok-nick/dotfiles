@@ -3,7 +3,7 @@
     # NOTE: https://nikitabobko.github.io/AeroSpace/guide#a-note-on-displays-have-separate-spaces
     spaces.spans-displays = true;
     # NOTE: https://nikitabobko.github.io/AeroSpace/guide#a-note-on-mission-control
-    dock.expose-group-by-app = true;
+    dock.expose-group-apps = true;
   };
 
   services.aerospace = {
@@ -21,13 +21,26 @@
       default-root-container-layout = "tiles";
       default-root-container-orientation = "auto";
 
-      # TODO: https://github.com/LnL7/nix-darwin/pull/1168
-      # on-window-detected = [
-      #   {
-      #     "if.app-id" = "com.apple.FaceTime";
-      #     run = "layout floating";
-      #   }
-      # ];
+      on-window-detected = [
+        {
+          "if" = {
+            app-id = "com.apple.FaceTime";
+          };
+          run = "layout floating";
+        }
+        {
+          "if" = {
+            app-id = "com.aspyr.civ6.steam";
+          };
+          run = "layout floating";
+        }
+        {
+          "if" = {
+            app-id = "com.Facepunch-Studios-LTD.Rust";
+          };
+          run = "layout floating";
+        }
+      ];
 
       mode.main.binding = {
         # All possible keys:
