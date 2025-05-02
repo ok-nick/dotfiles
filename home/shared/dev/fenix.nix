@@ -23,4 +23,8 @@
     # too many problems w/ fenix and it's easier to switch around quickly with rustup
     rustup
   ];
+
+  home.sessionPath = [
+    "$HOME/.cargo/bin"
+  ];
 }

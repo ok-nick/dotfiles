@@ -1,3 +1,3 @@
 {pkgs, ...}: {
-  linearmouse = pkgs.callPackage ./linearmouse.nix {};
+  # linearmouse = pkgs.callPackage ./linearmouse.nix {};
 }

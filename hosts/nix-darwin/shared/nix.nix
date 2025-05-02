@@ -4,8 +4,6 @@
   inputs,
   ...
 }: {
-  services.nix-daemon.enable = true;
-
   nixpkgs = {
     overlays = [];
     config.allowUnfree = true;
@@ -28,11 +26,12 @@
     };
     gc = {
       automatic = true;
-      # dates = "weekly";
       interval = {
-        Weekday = 7;
+        Weekday = 0;
+        Hour = 0;
+        Minute = 0;
       };
-      options = "--delete-old";
+      options = "--delete-older-than 7d";
     };
 
     # This will add each flake input as a registry

@@ -2,6 +2,7 @@
   lib,
   config,
   pkgs,
+  outputs,
   ...
 }: {
   imports = [
@@ -16,7 +17,7 @@
     ../shared/desktop/font.nix
     ../shared/desktop/karabiner.nix
     ../shared/desktop/witch.nix
-    ../shared/desktop/syncthing.nix
+    # ../shared/desktop/syncthing.nix
 
     ../shared/dev/alacritty.nix
     ../shared/dev/bottom.nix
@@ -33,6 +34,11 @@
     ../shared/dev/starship.nix
     ../shared/dev/tools.nix
     ../shared/dev/zsh.nix
+  ];
+
+  nixpkgs.overlays = [
+    outputs.overlays.additions
+    outputs.overlays.modifications
   ];
 
   # wallpaper = "/persist/work/smiley.png";
@@ -61,21 +67,26 @@
   # };
 
   # TODO: https://github.com/nix-community/home-manager/issues/6120
-  home.activation.setCocoaKeybindingsOverride = let
-    keybindings_path = "${config.home.homeDirectory}/Library/KeyBindings/DefaultKeyBinding.dict";
-  in
-    lib.hm.dag.entryAfter ["writeBoundary"] ''
-      ${pkgs.coreutils}/bin/cat > ${keybindings_path} << EOF
-      {
-        "^\UF728" = "deleteWordBackward:";
-        "^\U007F" = "deleteWordBackward:";
-        "^\UF702" = "moveWordBackward:";
-        "^\UF703" = "moveWordForward:";
-        "^$\UF702" = "moveWordBackwardAndModifySelection:";
-        "^$\UF703" = "moveWordForwardAndModifySelection:";
-      }
-      EOF
-    '';
+  home = {
+    activation.setCocoaKeybindingsOverride = let
+      keybindings_path = "${config.home.homeDirectory}/Library/KeyBindings/DefaultKeyBinding.dict";
+    in
+      lib.hm.dag.entryAfter ["writeBoundary"] ''
+        ${pkgs.coreutils}/bin/cat > ${keybindings_path} << EOF
+        {
+          "^\UF728" = "deleteWordBackward:";
+          "^\U007F" = "deleteWordBackward:";
+          "^\UF702" = "moveWordBackward:";
+          "^\UF703" = "moveWordForward:";
+          "^$\UF702" = "moveWordBackwardAndModifySelection:";
+          "^$\UF703" = "moveWordForwardAndModifySelection:";
+        }
+        EOF
+      '';
+
+    # remove "Last login" line when opening terminal
+    file.".hushlogin".text = "";
+  };
 
   # https://github.com/nix-community/comma
   # pretty cool stuff
@@ -92,8 +103,11 @@
     zoom-us
     slack
     c2patool
-    wireshark
+    # wireshark
     cmake
+    # TODO: temp
+    # python312Packages.jupyterlab
+    # iina
   ];
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion

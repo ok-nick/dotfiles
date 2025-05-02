@@ -62,6 +62,7 @@
     #   openFirewall = true;
     #   settings.PasswordAuthentication = true;
     # };
+    #
 
     upower.enable = true;
     geoclue2.enable = true;

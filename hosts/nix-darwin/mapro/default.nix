@@ -38,6 +38,13 @@ in {
     outputs.overlays.modifications
   ];
 
+  # TODO: install mobileconfig https://github.com/paulmillr/encrypted-dns/blob/master/profiles/cloudflare-https.mobileconfig
+  # TODO: move to file
+  # networking = {
+  #   knownNetworkServices = ["Wi-Fi" "USB 10/100/1000 LAN" "AX88179"];
+  #   dns = ["1.1.1.1" "1.0.0.1"];
+  # };
+
   # security.pam.enableSudoTouchIdAuth = true;
 
   homebrew = {
@@ -48,6 +55,7 @@ in {
       # "verible" # platform not supported in nixpkgs
 
       # "ns-3" # marked as broken in nixpkgs for darwin
+      "gforth" # broken in nixpkgs
     ];
     # taps = [
     # "chipsalliance/verible"
@@ -73,8 +81,20 @@ in {
       # "spaceid" # not packaged in nixpkgs
       "docker" # platform not supported in nixpkgs
       "steam" # platform not supported in nixpkgs
-      "wireshark-chmodbpf" # not packaged in nixpkgs
+      # "wireshark-chmodbpf" # not packaged in nixpkgs
+      "wireshark" # broken on platform
       "obs" # platform not supported in nixpkgs
+      "squeak" # platform not supported in nixpkgs
+      "arduino-ide" # platform not supported in nixpkgs
+      "racket" # broken on platform
+      # TODO: add iina plist config for:
+      #       at launch: do nothing
+      #       enable quit after all windows are closed
+      #       disable playlist history and open recent
+      #       disable play next item automatically
+      #       resize the window to fit video size: disabled
+      #       set iina as the default application
+      "iina" # finder open with broken with nixpkgs
     ];
     masApps = {
       Xcode = 497799835; # homebrew itself needs it
@@ -99,6 +119,30 @@ in {
 
   # TODO: will there be conflicts?
   # environment.systemPackages = with pkgs; [coreutils];
+
+  # TODO: for configuring spotlight search results
+  # defaults write com.apple.Spotlight orderedItems -array ''
+  # defaults write com.apple.Spotlight orderedItems -array-add '{ enabled = 1; name = APPLICATIONS; }'
+  # defaults write com.apple.Spotlight orderedItems -array-add '{ enabled = 0; name = SYSTEM_PREFS; }'
+  # defaults write com.apple.Spotlight orderedItems -array-add '{ enabled = 0; name = MENU_SPOTLIGHT_SUGGESTIONS; }'
+  # defaults write com.apple.Spotlight orderedItems -array-add '{ enabled = 1; name = MENU_CONVERSION; }'
+  # defaults write com.apple.Spotlight orderedItems -array-add '{ enabled = 1; name = MENU_EXPRESSION; }'
+  # defaults write com.apple.Spotlight orderedItems -array-add '{ enabled = 1; name = MENU_DEFINITION; }'
+  # defaults write com.apple.Spotlight orderedItems -array-add '{ enabled = 0; name = MENU_OTHER; }'
+  # defaults write com.apple.Spotlight orderedItems -array-add '{ enabled = 0; name = DIRECTORIES; }'
+  # defaults write com.apple.Spotlight orderedItems -array-add '{ enabled = 0; name = DOCUMENTS; }'
+  # defaults write com.apple.Spotlight orderedItems -array-add '{ enabled = 0; name = PRESENTATIONS; }'
+  # defaults write com.apple.Spotlight orderedItems -array-add '{ enabled = 0; name = SPREADSHEETS; }'
+  # defaults write com.apple.Spotlight orderedItems -array-add '{ enabled = 0; name = PDF; }'
+  # defaults write com.apple.Spotlight orderedItems -array-add '{ enabled = 0; name = EVENT_TODO; }'
+  # defaults write com.apple.Spotlight orderedItems -array-add '{ enabled = 0; name = BOOKMARKS; }'
+  # defaults write com.apple.Spotlight orderedItems -array-add '{ enabled = 0; name = CONTACT; }'
+  # defaults write com.apple.Spotlight orderedItems -array-add '{ enabled = 0; name = MESSAGES; }'
+  # defaults write com.apple.Spotlight orderedItems -array-add '{ enabled = 0; name = IMAGES; }'
+  # defaults write com.apple.Spotlight orderedItems -array-add '{ enabled = 0; name = MOVIES; }'
+  # defaults write com.apple.Spotlight orderedItems -array-add '{ enabled = 0; name = MUSIC; }'
+  # defaults write com.apple.Spotlight orderedItems -array-add '{ enabled = 0; name = FONTS; }'
+  # defaults write com.apple.Spotlight orderedItems -array-add '{ enabled = 0; name = SOURCE; }'
 
   # TODO: disable adding period on double space (and externel monitor auto off thing)
   # TODO: defaults write com.apple.Safari IncludeInternalDebugMenu 1 (allows to change tab ordering -> next to current and the other settings in the menu to apply it)
@@ -166,6 +210,94 @@ in {
       autohide-time-modifier = 0.0;
       show-recents = false;
     };
+    # "com.apple.Spotlight" = {
+    #   orderedItems = [
+    #     {
+    #       name = "APPLICATIONS";
+    #       enabled = true;
+    #     }
+    #     {
+    #       name = "SYSTEM_PREFS";
+    #       enabled = false;
+    #     }
+    #     {
+    #       name = "MENU_SPOTLIGHT_SUGGESTIONS";
+    #       enabled = false;
+    #     }
+    #     {
+    #       name = "MENU_CONVERSION";
+    #       enabled = true;
+    #     }
+    #     {
+    #       name = "MENU_EXPRESSION";
+    #       enabled = true;
+    #     }
+    #     {
+    #       name = "MENU_DEFINITION";
+    #       enabled = true;
+    #     }
+    #     {
+    #       name = "MENU_OTHER";
+    #       enabled = false;
+    #     }
+    #     {
+    #       name = "DIRECTORIES";
+    #       enabled = false;
+    #     }
+    #     {
+    #       name = "DOCUMENTS";
+    #       enabled = false;
+    #     }
+    #     {
+    #       name = "PRESENTATIONS";
+    #       enabled = false;
+    #     }
+    #     {
+    #       name = "SPREADSHEETS";
+    #       enabled = false;
+    #     }
+    #     {
+    #       name = "PDF";
+    #       enabled = false;
+    #     }
+    #     {
+    #       name = "EVENT_TODO";
+    #       enabled = false;
+    #     }
+    #     {
+    #       name = "BOOKMARKS";
+    #       enabled = false;
+    #     }
+    #     {
+    #       name = "CONTACT";
+    #       enabled = false;
+    #     }
+    #     {
+    #       name = "MESSAGES";
+    #       enabled = false;
+    #     }
+    #     {
+    #       name = "IMAGES";
+    #       enabled = false;
+    #     }
+    #     {
+    #       name = "MOVIES";
+    #       enabled = false;
+    #     }
+    #     {
+    #       name = "MUSIC";
+    #       enabled = false;
+    #     }
+    #     {
+    #       name = "FONTS";
+    #       enabled = false;
+    #     }
+    #     {
+    #       name = "SOURCE";
+    #       enabled = false;
+    #     }
+    #   ];
+    # };
   };
 
   system.stateVersion = 4;

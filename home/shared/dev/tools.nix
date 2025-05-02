@@ -34,8 +34,8 @@
 
       # typst
       typst # compiler
-      typst-lsp # lsp
-      typst-fmt # formatter
+      tinymist # lsp
+      typstyle # formatter
 
       # lua
       lua-language-server # lsp
@@ -55,10 +55,11 @@
       # python
       pyright # lsp
       # black # formatter
-      ruff-lsp # linter/formatter
-      # ruff # linter/formatter
+      # ruff-lsp # linter/formatter
+      ruff # linter/formatter
       python311 # compiler
       python311Packages.pip # package manager
+      uv # better package manager
 
       # java
       jdt-language-server # lsp
@@ -89,9 +90,18 @@
       # marksman # lsp
 
       # verilog
-      svls # lsp
-      svlint # linter
-      verilog # compiler
+      # svls # lsp
+      # svlint # linter
+      # verilog # compiler
+
+      # swift
+      sourcekit-lsp
+      swift-format
+
+      # go
+      go
+      gopls
+      golangci-lint
     ]
     ++ lib.optionals pkgs.stdenv.isLinux [
       # misc
@@ -100,6 +110,6 @@
       # insomnia
 
       # verilog
-      verible # lsp/linter/formatter/etc.
+      # verible # lsp/linter/formatter/etc.
     ];
 }

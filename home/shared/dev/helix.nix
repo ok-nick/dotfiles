@@ -7,20 +7,8 @@
     enable = true;
     defaultEditor = true;
     package = inputs.helix.packages.${pkgs.hostPlatform.system}.default;
-    themes = {
-      kanagawa-custom = {
-        inherits = "kanagawa";
-        # the default one is indistinguishable from the cursor line
-        "ui.selection" = {
-          bg = "sumiInk4";
-        };
-        "ui.selection.primary" = {
-          bg = "sumiInk4";
-        };
-      };
-    };
     settings = {
-      theme = "kanagawa-custom";
+      theme = "kanagawa";
       editor = {
         mouse = false;
         middle-click-paste = false;
@@ -196,13 +184,15 @@
             };
           };
         };
-        ruff-lsp = {
-          command = "ruff-lsp";
+        ruff = {
           config = {
             settings = {
               fixAll = false;
               organizeImports = false; # do it auto, remove the annoying popup
-              lint.run = "onSave";
+              lint = {
+                run = "onSave";
+                extendSelect = ["I"];
+              };
             };
           };
         };
@@ -241,6 +231,14 @@
           };
         }
         {
+          name = "racket";
+          auto-format = true;
+          formatter = {
+            command = "raco";
+            args = ["fmt"];
+          };
+        }
+        {
           name = "typescript";
           language-servers = ["typescript-language-server" "eslint"];
           auto-format = true;
@@ -274,6 +272,11 @@
           formatter = {command = "clang-format";};
         }
         {
+          name = "cpp";
+          auto-format = true;
+          formatter = {command = "clang-format";};
+        }
+        {
           name = "nix";
           language-servers = ["nil" "statix"];
           auto-format = true;
@@ -290,14 +293,14 @@
         }
         {
           name = "python";
-          language-servers = ["pyright" "ruff-lsp"];
+          language-servers = ["ruff" "pyright"];
           auto-format = true;
         }
         {
           name = "typst";
           auto-format = true;
           formatter = {
-            command = "typst-fmt";
+            command = "typstyle";
           };
         }
         {

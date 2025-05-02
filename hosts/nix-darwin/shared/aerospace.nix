@@ -6,6 +6,7 @@
     dock.expose-group-apps = true;
   };
 
+  # TODO: add aerospace-swipe
   services.aerospace = {
     enable = true;
     settings = {
@@ -37,6 +38,12 @@
         {
           "if" = {
             app-id = "com.Facepunch-Studios-LTD.Rust";
+          };
+          run = "layout floating";
+        }
+        {
+          "if" = {
+            app-id = "com.apple.ScreenSharing";
           };
           run = "layout floating";
         }

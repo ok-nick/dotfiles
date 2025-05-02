@@ -8,7 +8,7 @@
     ../shared/desktop/font.nix
     ../shared/desktop/karabiner.nix
     ../shared/desktop/witch.nix
-    ../shared/desktop/syncthing.nix
+    # ../shared/desktop/syncthing.nix
 
     ../shared/dev/alacritty.nix
     ../shared/dev/bottom.nix
