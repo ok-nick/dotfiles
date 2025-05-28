@@ -5,6 +5,7 @@ A summation of all my system/program dotfile configurations.
 ## Hosts
 | Name | Device | RAM | CPU | GPU |
 | - | - | - | - | - |
+| good | Macbook Pro 16" | 48GB | M4 Max | Integrated |
 | dob | Macbook Pro 16" | 32GB | M1 Max | Integrated |
 | isotope | Virtual Machine | ? | ? | ? |
 | mapro | Macbook Pro 14" | 18GB | M3 Pro | Integrated |

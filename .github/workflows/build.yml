@@ -22,8 +22,8 @@ jobs:
       # always run all platforms disregarding failure
       fail-fast: false
       matrix:
-        # macos-14 is aarch64-darwin (silicone)
-        os: [ubuntu-latest, macos-14]
+        # macos-14 is aarch64-darwin (silicon)
+        os: [ubuntu-latest, macos-latest]
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4

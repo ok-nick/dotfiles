@@ -10,6 +10,9 @@
   services.aerospace = {
     enable = true;
     settings = {
+      # https://github.com/nikitabobko/AeroSpace/issues/568
+      after-startup-command = ["layout tiles"];
+
       on-focused-monitor-changed = ["move-mouse monitor-lazy-center"];
 
       enable-normalization-flatten-containers = true;
@@ -133,6 +136,7 @@
       };
 
       mode.service.binding = {
+        alt-shift-w = "mode main";
         alt-shift-h = ["join-with left" "mode main"];
         alt-shift-j = ["join-with down" "mode main"];
         alt-shift-k = ["join-with up" "mode main"];

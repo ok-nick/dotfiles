@@ -57,96 +57,96 @@
 
         complex_modifications = {
           rules = [
-            # {
-            #   description = "ctrl+left and ctrl+right to move left/right word";
-            #   manipulators = [
-            #     {
-            #       type = "basic";
-            #       from = {
-            #         key_code = "left_arrow";
-            #         modifiers = {
-            #           mandatory = ["left_control"];
-            #         };
-            #       };
-            #       to = [
-            #         {
-            #           key_code = "left_arrow";
-            #           modifiers = ["left_option"];
-            #         }
-            #       ];
-            #     }
-            #     {
-            #       type = "basic";
-            #       from = {
-            #         key_code = "right_arrow";
-            #         modifiers = {
-            #           mandatory = ["left_control"];
-            #         };
-            #       };
-            #       to = [
-            #         {
-            #           key_code = "right_arrow";
-            #           modifiers = ["left_option"];
-            #         }
-            #       ];
-            #     }
-            #   ];
-            # }
-            # {
-            #   description = "ctrl+shift+left and ctrl+shift+right to select left/right word";
-            #   manipulators = [
-            #     {
-            #       type = "basic";
-            #       from = {
-            #         key_code = "left_arrow";
-            #         modifiers = {
-            #           mandatory = ["left_control" "left_shift"];
-            #         };
-            #       };
-            #       to = [
-            #         {
-            #           key_code = "left_arrow";
-            #           modifiers = ["left_option" "left_shift"];
-            #         }
-            #       ];
-            #     }
-            #     {
-            #       type = "basic";
-            #       from = {
-            #         key_code = "right_arrow";
-            #         modifiers = {
-            #           mandatory = ["left_control" "left_shift"];
-            #         };
-            #       };
-            #       to = [
-            #         {
-            #           key_code = "right_arrow";
-            #           modifiers = ["left_option" "left_shift"];
-            #         }
-            #       ];
-            #     }
-            #   ];
-            # }
-            # {
-            #   description = "ctrl+backspace to delete previous word";
-            #   manipulators = [
-            #     {
-            #       type = "basic";
-            #       from = {
-            #         key_code = "delete_or_backspace";
-            #         modifiers = {
-            #           mandatory = ["left_control"];
-            #         };
-            #       };
-            #       to = [
-            #         {
-            #           key_code = "delete_or_backspace";
-            #           modifiers = ["left_option"];
-            #         }
-            #       ];
-            #     }
-            #   ];
-            # }
+            {
+              description = "ctrl+left and ctrl+right to move left/right word";
+              manipulators = [
+                {
+                  type = "basic";
+                  from = {
+                    key_code = "left_arrow";
+                    modifiers = {
+                      mandatory = ["left_control"];
+                    };
+                  };
+                  to = [
+                    {
+                      key_code = "left_arrow";
+                      modifiers = ["left_option"];
+                    }
+                  ];
+                }
+                {
+                  type = "basic";
+                  from = {
+                    key_code = "right_arrow";
+                    modifiers = {
+                      mandatory = ["left_control"];
+                    };
+                  };
+                  to = [
+                    {
+                      key_code = "right_arrow";
+                      modifiers = ["left_option"];
+                    }
+                  ];
+                }
+              ];
+            }
+            {
+              description = "ctrl+shift+left and ctrl+shift+right to select left/right word";
+              manipulators = [
+                {
+                  type = "basic";
+                  from = {
+                    key_code = "left_arrow";
+                    modifiers = {
+                      mandatory = ["left_control" "left_shift"];
+                    };
+                  };
+                  to = [
+                    {
+                      key_code = "left_arrow";
+                      modifiers = ["left_option" "left_shift"];
+                    }
+                  ];
+                }
+                {
+                  type = "basic";
+                  from = {
+                    key_code = "right_arrow";
+                    modifiers = {
+                      mandatory = ["left_control" "left_shift"];
+                    };
+                  };
+                  to = [
+                    {
+                      key_code = "right_arrow";
+                      modifiers = ["left_option" "left_shift"];
+                    }
+                  ];
+                }
+              ];
+            }
+            {
+              description = "ctrl+backspace to delete previous word";
+              manipulators = [
+                {
+                  type = "basic";
+                  from = {
+                    key_code = "delete_or_backspace";
+                    modifiers = {
+                      mandatory = ["left_control"];
+                    };
+                  };
+                  to = [
+                    {
+                      key_code = "delete_or_backspace";
+                      modifiers = ["left_option"];
+                    }
+                  ];
+                }
+              ];
+            }
             {
               description = "open safari";
               manipulators = [
@@ -166,6 +166,17 @@
 
                       # here we only call "make new document" if safari isn't already running, that way it doesn't open two windows on start
                       shell_command = "/usr/bin/osascript -e 'if application \"Safari\" is running then' -e 'tell application \"Safari\" to make new document' -e 'else' -e 'tell application \"Safari\" to activate' -e 'end if'";
+                      #   shell_command = ''
+                      #     /usr/bin/osascript \
+                      #     -e 'tell application \"Safari\"' \
+                      #     -e 'if running then' \
+                      #     -e 'make new document' \
+                      #     -e 'activate' \
+                      #     -e 'else' \
+                      #     -e 'activate' \
+                      #     -e 'end if' \
+                      #     -e 'end tell'
+                      #   '';
                     }
                   ];
                 }

@@ -68,21 +68,22 @@
 
   # TODO: https://github.com/nix-community/home-manager/issues/6120
   home = {
-    activation.setCocoaKeybindingsOverride = let
-      keybindings_path = "${config.home.homeDirectory}/Library/KeyBindings/DefaultKeyBinding.dict";
-    in
-      lib.hm.dag.entryAfter ["writeBoundary"] ''
-        ${pkgs.coreutils}/bin/cat > ${keybindings_path} << EOF
-        {
-          "^\UF728" = "deleteWordBackward:";
-          "^\U007F" = "deleteWordBackward:";
-          "^\UF702" = "moveWordBackward:";
-          "^\UF703" = "moveWordForward:";
-          "^$\UF702" = "moveWordBackwardAndModifySelection:";
-          "^$\UF703" = "moveWordForwardAndModifySelection:";
-        }
-        EOF
-      '';
+    # TODO: doesn't really work on things like google docs
+    # activation.setCocoaKeybindingsOverride = let
+    #   keybindings_path = "${config.home.homeDirectory}/Library/KeyBindings/DefaultKeyBinding.dict";
+    # in
+    #   lib.hm.dag.entryAfter ["writeBoundary"] ''
+    #     ${pkgs.coreutils}/bin/cat > ${keybindings_path} << EOF
+    #     {
+    #       "^\UF728" = "deleteWordBackward:";
+    #       "^\U007F" = "deleteWordBackward:";
+    #       "^\UF702" = "moveWordBackward:";
+    #       "^\UF703" = "moveWordForward:";
+    #       "^$\UF702" = "moveWordBackwardAndModifySelection:";
+    #       "^$\UF703" = "moveWordForwardAndModifySelection:";
+    #     }
+    #     EOF
+    #   '';
 
     # remove "Last login" line when opening terminal
     file.".hushlogin".text = "";
@@ -108,6 +109,7 @@
     # TODO: temp
     # python312Packages.jupyterlab
     # iina
+    nh
   ];
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
