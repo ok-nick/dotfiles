@@ -13,8 +13,8 @@ jobs:
 
       # install nix
       - uses: DeterminateSystems/nix-installer-action@main
-      # cache packages
-      - uses: DeterminateSystems/magic-nix-cache-action@main
+      # # cache packages
+      # - uses: DeterminateSystems/magic-nix-cache-action@main
       # info on flake dependencies beforehand
       - uses: DeterminateSystems/flake-checker-action@main
         env:
