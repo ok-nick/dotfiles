@@ -17,7 +17,7 @@
         # auto-pairs = false;
         idle-timeout = 0;
         lsp = {
-          display-messages = true;
+          display-progress-messages = true;
           auto-signature-help = false; # https://github.com/helix-editor/helix/discussions/6710
         };
         inline-diagnostics = {
@@ -45,11 +45,17 @@
         # ];
       };
       # only works in modes, not things like fuzzy searching
-      # keys = {
-      #   insert = {
-      #     "C-[" = "normal_mode";
-      #   };
-      # };
+      keys = {
+        normal = {
+          "%" = ["save_selection" "select_all"];
+          "n" = ["save_selection" "search_next"];
+          "N" = ["save_selection" "search_prev"];
+        };
+        insert = {
+          "esc" = ["save_selection" "normal_mode"];
+          # "C-[" = "normal_mode";
+        };
+      };
     };
     languages = {
       language-server = {

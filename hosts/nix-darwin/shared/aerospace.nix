@@ -99,10 +99,10 @@
         alt-shift-j = "move down";
         alt-shift-k = "move up";
         alt-shift-l = "move right";
-        alt-shift-left = "move left";
-        alt-shift-down = "move down";
-        alt-shift-up = "move up";
-        alt-shift-right = "move right";
+        # alt-shift-left = "move left";
+        # alt-shift-down = "move down";
+        # alt-shift-up = "move up";
+        # alt-shift-right = "move right";
 
         alt-shift-minus = "resize smart -50";
         alt-shift-equal = "resize smart +50";

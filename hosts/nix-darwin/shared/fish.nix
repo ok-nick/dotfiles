@@ -21,14 +21,14 @@
         ${pkgs.nix-your-shell}/bin/nix-your-shell fish | source
       end
     '';
-    # https://github.com/LnL7/nix-darwin/issues/122#issuecomment-1659465635
-    loginShellInit = let
-      dquote = str: "\"" + str + "\"";
+    # # https://github.com/LnL7/nix-darwin/issues/122#issuecomment-1659465635
+    # loginShellInit = let
+    #   dquote = str: "\"" + str + "\"";
 
-      makeBinPathList = map (path: path + "/bin");
-    in ''
-      fish_add_path --move --prepend --path ${lib.concatMapStringsSep " " dquote (makeBinPathList config.environment.profiles)}
-      set fish_user_paths $fish_user_paths
-    '';
+    #   makeBinPathList = map (path: path + "/bin");
+    # in ''
+    #   fish_add_path --move --prepend --path ${lib.concatMapStringsSep " " dquote (makeBinPathList config.environment.profiles)}
+    #   set fish_user_paths $fish_user_paths
+    # '';
   };
 }

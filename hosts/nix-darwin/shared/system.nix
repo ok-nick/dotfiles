@@ -43,6 +43,12 @@
       NSAutomaticWindowAnimationsEnabled = false;
       # drag window from anywhere (doesn't work in sequoia)
       # NSWindowShouldDragOnGesture = true;
+
+      NSAutomaticSpellingCorrectionEnabled = false;
+      NSAutomaticPeriodSubstitutionEnabled = false;
+      NSAutomaticCapitalizationEnabled = false;
+
+      "com.apple.sound.beep.feedback" = 1;
     };
     ".GlobalPreferences" = {
       # disable mouse acceleration
@@ -88,12 +94,30 @@
 
       # resmoves that annoying file extension change warning
       FXEnableExtensionChangeWarning = false;
+
+      # show all file extensions
+      AppleShowAllExtensions = true;
+
+      # show hidden files
+      AppleShowAllFiles = true;
+
+      # show home folder when first opened
+      NewWindowTarget = "Home";
+
+      # show full filepath in window title
+      _FXShowPosixPathInTitle = true;
     };
     dock = {
       autohide = true;
       autohide-delay = 0.0;
       autohide-time-modifier = 0.0;
       show-recents = false;
+
+      # disable hot corners
+      wvous-tl-corner = 1;
+      wvous-tr-corner = 1;
+      wvous-bl-corner = 1;
+      wvous-br-corner = 1;
     };
     # "com.apple.Spotlight" = {
     #   orderedItems = [

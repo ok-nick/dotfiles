@@ -39,12 +39,20 @@ in {
     outputs.overlays.modifications
   ];
 
+  # TODO: other stuff:
+  # * disable help improve spotlight
+  # * disable show spotlight in menu bar
+  # * use home-manager as a nixos/darwin module
+  # * change spotlight open keybind to opt+d
+  # * package and add config for aerospace-swipe
+  # * cleanshotx config
+  # * iina config
+  # * fix setting fish shell as default (nix-darwin issue) need to set users.knownUsers and set the user.user.<name>.uid (hardcoded)
+  # * mac mouse fix config
+  # * remove safari home page stuff
+  # * spotlight ignore list everything but applications
+
   # TODO: install mobileconfig https://github.com/paulmillr/encrypted-dns/blob/master/profiles/cloudflare-https.mobileconfig
-  # TODO: move to file
-  # networking = {
-  #   knownNetworkServices = ["Wi-Fi" "USB 10/100/1000 LAN" "AX88179"];
-  #   dns = ["1.1.1.1" "1.0.0.1"];
-  # };
 
   # security.pam.enableSudoTouchIdAuth = true;
 
@@ -97,6 +105,7 @@ in {
       #       set iina as the default application
       "iina" # finder open with broken with nixpkgs
       "mac-mouse-fix"
+      "cleanshot"
     ];
     masApps = {
       Xcode = 497799835; # homebrew itself needs it
