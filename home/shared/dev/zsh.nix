@@ -29,8 +29,6 @@
       bindkey "^[[1;5D" backward-word
       bindkey "^z" undo
       bindkey "^y" redo
-
-      eval "$(${pkgs.thefuck}/bin/thefuck --alias)"
     '';
     initExtraBeforeCompInit = ''
       setopt GLOB_DOTS

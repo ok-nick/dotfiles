@@ -18,7 +18,7 @@
 
       vim-suda
       zen-mode-nvim
-      vim-markdown-composer
+      # vim-markdown-composer
 
       telescope-nvim
       telescope-fzf-native-nvim

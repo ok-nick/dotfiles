@@ -131,5 +131,5 @@ in {
   # TODO: will there be conflicts?
   # environment.systemPackages = with pkgs; [coreutils];
 
-  system.stateVersion = 4;
+  system.stateVersion = 6;
 }

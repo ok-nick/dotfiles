@@ -57,5 +57,5 @@ in {
   # home-manager, programs.zsh.enableCompletion
   environment.pathsToLink = ["/share/zsh"];
 
-  system.stateVersion = 4;
+  system.stateVersion = 6;
 }

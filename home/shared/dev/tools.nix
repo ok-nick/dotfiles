@@ -21,7 +21,7 @@
       ripgrep
       fd
       # jetbrains.idea-community
-      thefuck
+      # thefuck
 
       # misc
       vscode-langservers-extracted # many lsps
