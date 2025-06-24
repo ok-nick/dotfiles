@@ -1,4 +1,5 @@
 {
+  lib,
   pkgs,
   config,
   ...
@@ -19,27 +20,29 @@
       size = 5000000;
       save = 5000000;
     };
-    initExtra = ''
-      # force emacs mode (prevents ESC going to vi mode)
-      bindkey -e
+    initContent = lib.mkMerge [
+      (lib.mkOrder 550 ''
+        setopt GLOB_DOTS
+        setopt MENU_COMPLETE
+        unsetopt HIST_VERIFY
 
-      bindkey '^f' autosuggest-accept
+        zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+        zstyle ':completion:*' completer _extensions _complete _approximate
 
-      bindkey "^[[1;5C" forward-word
-      bindkey "^[[1;5D" backward-word
-      bindkey "^z" undo
-      bindkey "^y" redo
-    '';
-    initExtraBeforeCompInit = ''
-      setopt GLOB_DOTS
-      setopt MENU_COMPLETE
-      unsetopt HIST_VERIFY
+        zstyle ':completion:*' use-cache on
+        zstyle ':completion:*' cache-path "${config.xdg.configHome}/zsh/.zcompcache"
+      '')
+      (lib.mkOrder 1000 ''
+        # force emacs mode (prevents ESC going to vi mode)
+        bindkey -e
 
-      zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
-      zstyle ':completion:*' completer _extensions _complete _approximate
+        bindkey '^f' autosuggest-accept
 
-      zstyle ':completion:*' use-cache on
-      zstyle ':completion:*' cache-path "${config.xdg.configHome}/zsh/.zcompcache"
-    '';
+        bindkey "^[[1;5C" forward-word
+        bindkey "^[[1;5D" backward-word
+        bindkey "^z" undo
+        bindkey "^y" redo
+      '')
+    ];
   };
 }

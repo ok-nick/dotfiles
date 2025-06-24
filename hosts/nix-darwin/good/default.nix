@@ -3,6 +3,7 @@
 in {
   imports = [
     ../../shared/nix.nix
+    ../../shared/home-manager.nix
 
     ../shared/nix.nix
     ../shared/modules.nix
@@ -29,6 +30,9 @@ in {
     outputs.overlays.additions
     outputs.overlays.modifications
   ];
+
+  home-manager.users.nicky =
+    import ../../../home/nicky/good.nix;
 
   homebrew = {
     brews = [

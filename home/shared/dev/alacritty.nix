@@ -3,7 +3,10 @@
     enable = true;
     settings = {
       # window.decorations = "buttonless";
-      window.decorations = "none";
+      window = {
+        decorations = "none";
+        option_as_alt = "Both";
+      };
       font = {
         size = 12;
         normal = {

@@ -50,6 +50,7 @@
           "%" = ["save_selection" "select_all"];
           "n" = ["save_selection" "search_next"];
           "N" = ["save_selection" "search_prev"];
+          "g" = {x = [":sh ${pkgs.gh}/bin/gh browse %{buffer_name}:%{cursor_line} -c%sh{latest_pushed_commit}"];};
         };
         insert = {
           "esc" = ["save_selection" "normal_mode"];

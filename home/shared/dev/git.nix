@@ -20,6 +20,7 @@
       #   # untrackedcache = true;
       # };
       init.defaultBranch = "main";
+      pull.ff = "only";
     };
   };
 }

@@ -5,10 +5,10 @@
 }: {
   imports = [outputs.homeManagerModules];
 
-  nixpkgs.config = {
-    allowUnfree = true;
-    allowUnfreePredicate = _: true;
-  };
+  # nixpkgs.config = {
+  #   allowUnfree = true;
+  #   allowUnfreePredicate = _: true;
+  # };
 
   programs = {
     home-manager.enable = true;
@@ -24,9 +24,9 @@
   home = rec {
     # TODO: unhardcode username
     username = "nicky";
-    homeDirectory =
-      if pkgs.stdenv.isDarwin
-      then "/Users/${username}"
-      else "/home/${username}";
+    # homeDirectory =
+    #   if pkgs.stdenv.isDarwin
+    #   then "/Users/${username}"
+    #   else "/home/${username}";
   };
 }

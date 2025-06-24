@@ -196,8 +196,7 @@
                   to = [
                     {
                       # TODO: for some reason yabai doesn't register the window when using ${pkgs.alacritty}/bin/alacritty
-                      # shell_command = "/usr/bin/open -na /Applications/Alacritty.app";
-                      shell_command = "/usr/bin/open -na ${config.home.profileDirectory}/applications/Alacritty.app";
+                      shell_command = "/usr/bin/open -na ${pkgs.alacritty}/Applications/Alacritty.app";
                     }
                   ];
                 }

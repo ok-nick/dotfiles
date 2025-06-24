@@ -1,6 +1,4 @@
 {
-  lib,
-  config,
   pkgs,
   outputs,
   ...
@@ -36,10 +34,10 @@
     ../shared/dev/zsh.nix
   ];
 
-  nixpkgs.overlays = [
-    outputs.overlays.additions
-    outputs.overlays.modifications
-  ];
+  # nixpkgs.overlays = [
+  #   outputs.overlays.additions
+  #   outputs.overlays.modifications
+  # ];
 
   # wallpaper = "/persist/work/smiley.png";
   terminal = "${pkgs.alacritty}/bin/alacritty";

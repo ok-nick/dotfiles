@@ -8,6 +8,7 @@
 in {
   imports = [
     ../../shared/nix.nix
+    ../../shared/home-manager.nix
     ../../shared/sops.nix
 
     ../shared/nix.nix
@@ -38,6 +39,9 @@ in {
     outputs.overlays.additions
     outputs.overlays.modifications
   ];
+
+  home-manager.users.nicky =
+    import ../../../home/nicky/mapro.nix;
 
   # TODO: other stuff:
   # * disable help improve spotlight
