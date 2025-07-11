@@ -95,10 +95,10 @@
         # alt-up = "focus --boundaries all-monitors-outer-frame up";
         # alt-right = "focus --boundaries all-monitors-outer-frame right";
 
-        alt-shift-h = "move left";
-        alt-shift-j = "move down";
-        alt-shift-k = "move up";
-        alt-shift-l = "move right";
+        alt-shift-h = "move --boundaries all-monitors-outer-frame left";
+        alt-shift-j = "move --boundaries all-monitors-outer-frame down";
+        alt-shift-k = "move --boundaries all-monitors-outer-frame up";
+        alt-shift-l = "move --boundaries all-monitors-outer-frame right";
         # alt-shift-left = "move left";
         # alt-shift-down = "move down";
         # alt-shift-up = "move up";
@@ -135,16 +135,25 @@
         alt-shift-w = "mode service";
       };
 
-      mode.service.binding = {
-        alt-shift-w = "mode main";
-        alt-shift-h = ["join-with left" "mode main"];
-        alt-shift-j = ["join-with down" "mode main"];
-        alt-shift-k = ["join-with up" "mode main"];
-        alt-shift-l = ["join-with right" "mode main"];
-        alt-shift-left = ["join-with left" "mode main"];
-        alt-shift-down = ["join-with down" "mode main"];
-        alt-shift-up = ["join-with up" "mode main"];
-        alt-shift-right = ["join-with right" "mode main"];
+      mode = {
+        service.binding = {
+          alt-shift-w = "mode main";
+
+          alt-h = ["swap left" "mode main"];
+          alt-j = ["swap down" "mode main"];
+          alt-k = ["swap up" "mode main"];
+          alt-l = ["swap right" "mode main"];
+
+          alt-shift-h = ["join-with left" "mode main"];
+          alt-shift-j = ["join-with down" "mode main"];
+          alt-shift-k = ["join-with up" "mode main"];
+          alt-shift-l = ["join-with right" "mode main"];
+
+          # alt-shift-left = ["join-with left" "mode main"];
+          # alt-shift-down = ["join-with down" "mode main"];
+          # alt-shift-up = ["join-with up" "mode main"];
+          # alt-shift-right = ["join-with right" "mode main"];
+        };
       };
     };
   };

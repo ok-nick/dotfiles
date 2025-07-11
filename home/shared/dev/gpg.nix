@@ -3,9 +3,9 @@
   lib,
   ...
 }: {
-  services.gpg-agent = lib.mkIf pkgs.stdenv.isLinux {
+  services.gpg-agent = {
     enable = true;
-    pinentryPackage = pkgs.pinentry-gnome3;
+    pinentryPackage = lib.mkIf pkgs.stdenv.isLinux pkgs.pinentry-gnome3;
   };
 
   programs = {

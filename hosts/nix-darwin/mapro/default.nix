@@ -55,6 +55,7 @@ in {
   # * mac mouse fix config
   # * remove safari home page stuff
   # * spotlight ignore list everything but applications
+  # * mouse sensitivity
 
   # TODO: install mobileconfig https://github.com/paulmillr/encrypted-dns/blob/master/profiles/cloudflare-https.mobileconfig
 
@@ -110,6 +111,7 @@ in {
       "iina" # finder open with broken with nixpkgs
       "mac-mouse-fix"
       "cleanshot"
+      "stremio"
     ];
     masApps = {
       Xcode = 497799835; # homebrew itself needs it
