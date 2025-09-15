@@ -49,7 +49,8 @@ in {
     masApps = {
       # Xcode = 497799835; # homebrew itself needs it
       Bitwarden = 1352778147; # for safari extension
-      AdGuard = 1440147259; # for safari extension
+      # AdGuard = 1440147259; # for safari extension
+      "uBlock Origin Lite" = 6745342698; # for safari extension
     };
   };
 

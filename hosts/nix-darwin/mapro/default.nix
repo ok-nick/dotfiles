@@ -56,6 +56,7 @@ in {
   # * remove safari home page stuff
   # * spotlight ignore list everything but applications
   # * mouse sensitivity
+  # * set "sudo pmset -a tcpkeepalive 0" to fix waking external monitor during sleep issue (I hope)
 
   # TODO: install mobileconfig https://github.com/paulmillr/encrypted-dns/blob/master/profiles/cloudflare-https.mobileconfig
 
@@ -116,7 +117,8 @@ in {
     masApps = {
       Xcode = 497799835; # homebrew itself needs it
       Bitwarden = 1352778147; # for safari extension
-      AdGuard = 1440147259; # for safari extension
+      # AdGuard = 1440147259; # for safari extension
+      "uBlock Origin Lite" = 6745342698; # for safari extension
 
       # The brew-packaged one has annoying Microsoft auto-update program that always appears.
       "Microsoft Word" = 462054704;

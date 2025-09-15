@@ -1,6 +1,6 @@
 {pkgs, ...}: {
   programs.neovim = {
-    enable = true;
+    enable = false;
     # defaultEditor = true;
     plugins = with pkgs.vimPlugins; [
       plenary-nvim

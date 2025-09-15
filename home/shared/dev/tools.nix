@@ -27,6 +27,7 @@
       vscode-langservers-extracted # many lsps
       efm-langserver # generic lsp
       lldb # debugger
+      typos-lsp # typos lsp
 
       # C/C++
       # gcc # compiler
@@ -65,7 +66,7 @@
       jdt-language-server # lsp
 
       # json
-      nodePackages_latest.vscode-json-languageserver # lsp
+      # nodePackages_latest.vscode-json-languageserver # lsp
       # jsonls
 
       # yaml
@@ -80,6 +81,7 @@
 
       # nix
       # inputs.nixd.packages.${pkgs.hostPlatform.system}.default # lsp
+      # nixd
       nil # lsp
       statix # linter
       alejandra # formatter

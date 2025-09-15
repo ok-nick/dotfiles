@@ -12,7 +12,7 @@
       enable = true;
     };
     historySubstringSearch.enable = true;
-    dotDir = ".config/zsh";
+    dotDir = "${config.xdg.configHome}/zsh";
     history = {
       path = "${config.xdg.configHome}/zsh/.zsh_history";
       extended = true;

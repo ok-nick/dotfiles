@@ -2,8 +2,10 @@
   description = "My NixOS configuration";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    nixpkgs-untested.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+    # TODO: ofr some reason nixos-unstable isn't cached for nix-darwin
+    nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+    # nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    # nixpkgs-untested.url = "github:nixos/nixpkgs/nixpkgs-unstable";
 
     nix-darwin = {
       url = "github:LnL7/nix-darwin";
@@ -39,7 +41,7 @@
     sops-nix.url = "github:Mic92/sops-nix";
     # fufexan.url = "github:fufexan/dotfiles";
     # gross.url = "github:fufexan/gross";
-    mac-app-util.url = "github:hraban/mac-app-util";
+    # mac-app-util.url = "github:hraban/mac-app-util";
   };
 
   outputs = {

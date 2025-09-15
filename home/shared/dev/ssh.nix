@@ -7,6 +7,8 @@
 
   programs.ssh = {
     enable = true;
+    # Added due to warning that it will be removed in the future.
+    enableDefaultConfig = false;
     # addKeysToAgent = "yes";
     matchBlocks = {
       "github.com-ok-nick" = {

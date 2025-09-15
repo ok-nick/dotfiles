@@ -153,9 +153,6 @@
             };
           };
         };
-        nixd = {
-          command = "nixd";
-        };
         statix = {
           command = "efm-langserver";
           config = {
@@ -210,15 +207,23 @@
         svls = {
           command = "svls";
         };
+        typos = {
+          command = "typos-lsp";
+        };
       };
       language = [
         {
+          name = "rust";
+          language-servers = ["rust-analyzer" "typos"];
+        }
+        {
           name = "java";
+          language-servers = ["jdt-language-server" "typos"];
           auto-format = true;
-          language-servers = ["jdt-language-server"];
         }
         {
           name = "yaml";
+          language-servers = ["yaml-language-server" "typos"];
           formatter = {
             auto-format = true;
             command = "prettier";
@@ -227,10 +232,12 @@
         }
         {
           name = "toml";
+          language-servers = ["taplo" "typos"];
           auto-format = true;
         }
         {
           name = "json";
+          language-servers = ["vscode-json-language-server" "typos"];
           auto-format = true;
           formatter = {
             command = "prettier";
@@ -247,7 +254,7 @@
         }
         {
           name = "typescript";
-          language-servers = ["typescript-language-server" "eslint"];
+          language-servers = ["typescript-language-server" "eslint" "typos"];
           auto-format = true;
           formatter = {
             command = "prettier";
@@ -256,7 +263,7 @@
         }
         {
           name = "tsx";
-          language-servers = ["typescript-language-server" "eslint"];
+          language-servers = ["typescript-language-server" "eslint" "typos"];
           auto-format = true;
           formatter = {
             command = "prettier";
@@ -265,7 +272,7 @@
         }
         {
           name = "javascript";
-          language-servers = ["typescript-language-server" "eslint"];
+          language-servers = ["typescript-language-server" "eslint" "typos"];
           auto-format = true;
           formatter = {
             command = "prettier";
@@ -274,24 +281,25 @@
         }
         {
           name = "c";
+          language-servers = ["clangd" "typos"];
           auto-format = true;
-          language-servers = ["clangd"];
           formatter = {command = "clang-format";};
         }
         {
           name = "cpp";
+          language-servers = ["clangd" "typos"];
           auto-format = true;
           formatter = {command = "clang-format";};
         }
         {
           name = "nix";
-          language-servers = ["nil" "statix"];
+          language-servers = ["nil" "statix" "typos"];
           auto-format = true;
           formatter = {command = "alejandra";};
         }
         {
           name = "lua";
-          language-servers = ["lua-language-server" "selene"];
+          language-servers = ["lua-language-server" "selene" "typos"];
           auto-format = true;
           formatter = {
             command = "stylua";
@@ -300,12 +308,13 @@
         }
         {
           name = "python";
-          language-servers = ["ruff" "pyright"];
+          language-servers = ["ruff" "pyright" "typos"];
           auto-format = true;
         }
         {
           name = "typst";
           auto-format = true;
+          language-servers = ["tinymist" "typos"];
           formatter = {
             command = "typstyle";
           };

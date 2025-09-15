@@ -1,3 +1,3 @@
 {inputs, ...}: {
-  imports = [inputs.mac-app-util.darwinModules.default];
+  # imports = [inputs.mac-app-util.darwinModules.default];
 }
