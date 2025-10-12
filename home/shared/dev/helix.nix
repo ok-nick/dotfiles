@@ -47,13 +47,26 @@
       # only works in modes, not things like fuzzy searching
       keys = {
         normal = {
-          "%" = ["save_selection" "select_all"];
-          "n" = ["save_selection" "search_next"];
-          "N" = ["save_selection" "search_prev"];
-          "g" = {x = [":sh ${pkgs.gh}/bin/gh browse %{buffer_name}:%{cursor_line} -c%sh{latest_pushed_commit}"];};
+          "%" = [
+            "save_selection"
+            "select_all"
+          ];
+          "n" = [
+            "save_selection"
+            "search_next"
+          ];
+          "N" = [
+            "save_selection"
+            "search_prev"
+          ];
+          "g" = {
+            x = [":sh ${pkgs.gh}/bin/gh browse %{buffer_name}:%{cursor_line} -c%sh{latest_pushed_commit}"];
+          };
         };
         insert = {
-          "esc" = ["save_selection" "normal_mode"];
+          # TODO: crashes helix when save_selection is added and writing to the end of a Rust file (sometimes)
+          # https://github.com/helix-editor/helix/issues/12582
+          # "esc" = ["save_selection" "normal_mode"];
           # "C-[" = "normal_mode";
         };
       };
@@ -62,14 +75,17 @@
       language-server = {
         jdt-language-server = {
           command = "jdt-language-server";
-          args = ["-data" "."];
+          args = [
+            "-data"
+            "."
+          ];
         };
         rust-analyzer = {
           config = {
             check = {
               command = "clippy";
+              features = "all";
               allTargets = true;
-              # allFeatures = true;
               # targets = [
               # "aarch64-apple-darwin"
               # "x86_64-pc-windows-msvc"
@@ -136,7 +152,9 @@
             validate = "on";
             rulesCustomizations = [];
             run = "onSave";
-            problems = {shortenToSingleLine = false;};
+            problems = {
+              shortenToSingleLine = false;
+            };
             nodePath = "";
             onIgnoredFiles = "off";
             experimental = {
@@ -210,6 +228,10 @@
         typos = {
           command = "typos-lsp";
         };
+        crates-lsp = {
+          command = "crates-lsp";
+          except-features = ["format"];
+        };
       };
       language = [
         {
@@ -227,13 +249,23 @@
           formatter = {
             auto-format = true;
             command = "prettier";
-            args = ["--parser" "yaml"];
+            args = [
+              "--parser"
+              "yaml"
+            ];
           };
         }
         {
           name = "toml";
-          language-servers = ["taplo" "typos"];
+          language-servers = ["taplo" "crates-lsp" "typos"];
           auto-format = true;
+          formatter = {
+            command = "taplo";
+            args = [
+              "fmt"
+              "-"
+            ];
+          };
         }
         {
           name = "json";
@@ -241,7 +273,10 @@
           auto-format = true;
           formatter = {
             command = "prettier";
-            args = ["--parser" "json"];
+            args = [
+              "--parser"
+              "json"
+            ];
           };
         }
         {
@@ -258,7 +293,10 @@
           auto-format = true;
           formatter = {
             command = "prettier";
-            args = ["--parser" "typescript"];
+            args = [
+              "--parser"
+              "typescript"
+            ];
           };
         }
         {
@@ -267,7 +305,10 @@
           auto-format = true;
           formatter = {
             command = "prettier";
-            args = ["--parser" "typescript"];
+            args = [
+              "--parser"
+              "typescript"
+            ];
           };
         }
         {
@@ -276,26 +317,35 @@
           auto-format = true;
           formatter = {
             command = "prettier";
-            args = ["--parser" "typescript"];
+            args = [
+              "--parser"
+              "typescript"
+            ];
           };
         }
         {
           name = "c";
           language-servers = ["clangd" "typos"];
           auto-format = true;
-          formatter = {command = "clang-format";};
+          formatter = {
+            command = "clang-format";
+          };
         }
         {
           name = "cpp";
           language-servers = ["clangd" "typos"];
           auto-format = true;
-          formatter = {command = "clang-format";};
+          formatter = {
+            command = "clang-format";
+          };
         }
         {
           name = "nix";
           language-servers = ["nil" "statix" "typos"];
           auto-format = true;
-          formatter = {command = "alejandra";};
+          formatter = {
+            command = "alejandra";
+          };
         }
         {
           name = "lua";

@@ -14,7 +14,7 @@
     # ../shared/desktop/firefox.nix
     ../shared/desktop/font.nix
     ../shared/desktop/karabiner.nix
-    ../shared/desktop/witch.nix
+    # ../shared/desktop/witch.nix
     # ../shared/desktop/syncthing.nix
 
     ../shared/dev/alacritty.nix
@@ -83,6 +83,7 @@
     #     EOF
     #   '';
 
+    # TODO: generalize this into module
     # remove "Last login" line when opening terminal
     file.".hushlogin".text = "";
   };

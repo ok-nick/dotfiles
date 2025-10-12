@@ -1,4 +1,8 @@
-{inputs, ...}: {
+{
+  inputs,
+  config,
+  ...
+}: {
   imports = [inputs.nix-homebrew.darwinModules.nix-homebrew];
 
   # environment.systemPath = [/opt/homebrew/bin];
@@ -7,6 +11,8 @@
     enable = true;
     # use the nix brewfile for everything homebrew commands
     global.brewfile = true;
+    # https://github.com/zhaofengli/nix-homebrew/issues/5
+    taps = builtins.attrNames config.nix-homebrew.taps;
     onActivation = {
       # updates stuff on rebuild
       # autoUpdate = true;

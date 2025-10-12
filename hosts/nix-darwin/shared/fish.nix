@@ -21,7 +21,7 @@
         ${pkgs.nix-your-shell}/bin/nix-your-shell fish | source
       end
     '';
-    # # https://github.com/LnL7/nix-darwin/issues/122#issuecomment-1659465635
+    # https://github.com/LnL7/nix-darwin/issues/122#issuecomment-1659465635
     # loginShellInit = let
     #   dquote = str: "\"" + str + "\"";
 

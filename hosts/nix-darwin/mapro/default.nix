@@ -56,7 +56,7 @@ in {
   # * remove safari home page stuff
   # * spotlight ignore list everything but applications
   # * mouse sensitivity
-  # * set "sudo pmset -a tcpkeepalive 0" to fix waking external monitor during sleep issue (I hope)
+  # * package crates-lsp
 
   # TODO: install mobileconfig https://github.com/paulmillr/encrypted-dns/blob/master/profiles/cloudflare-https.mobileconfig
 

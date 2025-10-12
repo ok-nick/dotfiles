@@ -7,7 +7,7 @@
     ../shared/desktop/discord.nix
     ../shared/desktop/font.nix
     ../shared/desktop/karabiner.nix
-    ../shared/desktop/witch.nix
+    # ../shared/desktop/witch.nix
     # ../shared/desktop/syncthing.nix
 
     ../shared/dev/alacritty.nix
@@ -30,11 +30,17 @@
   # wallpaper = "/persist/work/smiley.png";
   terminal = "${pkgs.alacritty}/bin/alacritty";
 
+  home = {
+    # remove "Last login" line when opening terminal
+    file.".hushlogin".text = "";
+  };
+
   home.packages = with pkgs; [
     cachix
     element-desktop
     zoom-us
     c2patool
+    cmake
   ];
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion

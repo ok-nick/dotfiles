@@ -36,7 +36,7 @@ in {
 
   homebrew = {
     brews = [
-      "mas"
+      "llvm" # used for stable clang path for c2pa-rs WASM dev
     ];
     casks = [
       "firefox" # platform not supported in nixpkgs
@@ -45,13 +45,9 @@ in {
       "docker" # platform not supported in nixpkgs
       "iina" # finder open with broken with nixpkgs
       "mac-mouse-fix"
+      # "cleanshot"
+      "bitwarden" # no access to app store
     ];
-    masApps = {
-      # Xcode = 497799835; # homebrew itself needs it
-      Bitwarden = 1352778147; # for safari extension
-      # AdGuard = 1440147259; # for safari extension
-      "uBlock Origin Lite" = 6745342698; # for safari extension
-    };
   };
 
   programs = {

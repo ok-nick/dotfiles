@@ -22,6 +22,7 @@
       fd
       # jetbrains.idea-community
       # thefuck
+      rust-cbindgen
 
       # misc
       vscode-langservers-extracted # many lsps
@@ -32,6 +33,7 @@
       # C/C++
       # gcc # compiler
       clang-tools # compiler/formatter/etc.
+      ninja # build system
 
       # typst
       typst # compiler

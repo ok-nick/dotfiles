@@ -5,6 +5,7 @@
       add_newline = false;
       format = lib.concatStrings [
         "$nix_shell"
+        "$python"
         "$username"
         "$hostname"
         "$directory"
