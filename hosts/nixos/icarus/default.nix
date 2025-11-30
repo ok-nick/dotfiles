@@ -64,6 +64,7 @@
     # };
     #
 
+    pulseaudio.enable = false;
     upower.enable = true;
     geoclue2.enable = true;
     blueman.enable = true;
@@ -80,9 +81,9 @@
     };
     fwupd.enable = true;
     logind = {
-      extraConfig = ''
-        HandlePowerKey=suspend
-      '';
+      settings.Login = {
+        HandlePowerKey = "suspend";
+      };
     };
     libinput = {
       enable = true;
@@ -143,7 +144,6 @@
     };
     system76.power-daemon.enable = true;
     keyboard.qmk.enable = true;
-    pulseaudio.enable = false;
     bluetooth = {
       enable = true;
       powerOnBoot = false;

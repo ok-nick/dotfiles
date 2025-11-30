@@ -27,6 +27,7 @@
 
   hardware.enableRedistributableFirmware = true;
   services = {
+    pulseaudio.enable = false;
     blueman.enable = true;
     dbus.packages = [pkgs.gcr]; # for `services.gpg-agent.pinentryFlavor`
   };
@@ -36,7 +37,6 @@
       enable = true;
       # enable32Bit = true;
     };
-    pulseaudio.enable = false;
     bluetooth = {
       enable = true;
       powerOnBoot = false;
