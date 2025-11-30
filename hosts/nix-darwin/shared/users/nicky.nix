@@ -7,7 +7,7 @@
   users.users.nicky = {
     home = /Users/nicky;
     # found by calling "id -u" this is needed for knownUsers which is needed to set fish as default shell
-    uid = 503;
+    uid = 501;
     shell = pkgs.fish;
   };
 }

@@ -9,6 +9,7 @@
       # cli tools
       gnumake
       cargo-binstall
+      cargo-show-asm
       # cargo-cross
       # python311Packages.jupyter
       sqlx-cli

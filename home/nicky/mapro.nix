@@ -9,7 +9,7 @@
     # TODO: disperse desktop/default.nix
     ../shared/desktop
     ../shared/desktop/apps.nix
-    ../shared/desktop/discord.nix
+    # ../shared/desktop/discord.nix
     # https://github.com/bandithedoge/nixpkgs-firefox-darwin
     # ../shared/desktop/firefox.nix
     ../shared/desktop/font.nix

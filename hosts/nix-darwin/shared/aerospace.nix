@@ -10,10 +10,16 @@
   services.aerospace = {
     enable = true;
     settings = {
+      config-version = 2;
+
       # https://github.com/nikitabobko/AeroSpace/issues/568
       after-startup-command = ["layout tiles"];
 
       on-focused-monitor-changed = ["move-mouse monitor-lazy-center"];
+
+      # https://github.com/nikitabobko/AeroSpace/discussions/996
+      # https://github.com/nikitabobko/AeroSpace/issues/999
+      persistent-workspaces = [];
 
       enable-normalization-flatten-containers = true;
       # fixes the weird toggle split
@@ -47,6 +53,19 @@
         {
           "if" = {
             app-id = "com.apple.ScreenSharing";
+          };
+          run = "layout floating";
+        }
+        {
+          "if" = {
+            app-id = "com.apple.finder";
+          };
+          run = "layout floating";
+        }
+        # for testing fowin
+        {
+          "if" = {
+            app-name-regex-substring = "^window_";
           };
           run = "layout floating";
         }

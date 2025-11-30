@@ -9,12 +9,12 @@
     #     sha256 = "sha256-gmJwoht/Tfm5qMecmq1N6PSAIfWOqsvuHU8VDJY8bLw=";
     #   };
     # });
-    aerospace = prev.aerospace.overrideAttrs (_: rec {
-      version = "0.19.2-Beta";
-      src = final.fetchzip {
-        url = "https://github.com/nikitabobko/AeroSpace/releases/download/v${version}/AeroSpace-v${version}.zip";
-        sha256 = "sha256-6RyGw84GhGwULzN0ObjsB3nzRu1HYQS/qoCvzVWOYWQ=";
-      };
-    });
+    # aerospace = prev.aerospace.overrideAttrs (_: rec {
+    #   version = "0.19.2-Beta";
+    #   src = final.fetchzip {
+    #     url = "https://github.com/nikitabobko/AeroSpace/releases/download/v${version}/AeroSpace-v${version}.zip";
+    #     sha256 = "sha256-6RyGw84GhGwULzN0ObjsB3nzRu1HYQS/qoCvzVWOYWQ=";
+    #   };
+    # });
   };
 }

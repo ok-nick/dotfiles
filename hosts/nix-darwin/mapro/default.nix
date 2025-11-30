@@ -57,6 +57,7 @@ in {
   # * spotlight ignore list everything but applications
   # * mouse sensitivity
   # * package crates-lsp
+  # * opt-d open app search
 
   # TODO: install mobileconfig https://github.com/paulmillr/encrypted-dns/blob/master/profiles/cloudflare-https.mobileconfig
 
@@ -94,10 +95,10 @@ in {
       "vmware-fusion" # not packaged in nixpkgs
       # "airmedia" # not packaged in nixpkgs
       # "spaceid" # not packaged in nixpkgs
-      "docker" # platform not supported in nixpkgs
+      "docker-desktop" # platform not supported in nixpkgs
       "steam" # platform not supported in nixpkgs
       # "wireshark-chmodbpf" # not packaged in nixpkgs
-      "wireshark" # broken on platform
+      "wireshark-app" # broken on platform
       "obs" # platform not supported in nixpkgs
       # "squeak" # platform not supported in nixpkgs
       # "arduino-ide" # platform not supported in nixpkgs
@@ -113,6 +114,7 @@ in {
       "mac-mouse-fix"
       "cleanshot"
       "stremio"
+      "discord" # not working with spotlight w/ home-manager
     ];
     masApps = {
       Xcode = 497799835; # homebrew itself needs it

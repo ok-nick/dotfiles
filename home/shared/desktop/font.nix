@@ -5,12 +5,10 @@
     # font-manager
 
     corefonts
-    vistafonts
+    vista-fonts
 
     # ibm-plex
     noto-fonts
-    noto-fonts-extra
-    noto-fonts-emoji
     # material-symbols # eww-hyperland
     # jost # eww-hyperland
     font-awesome # swappy

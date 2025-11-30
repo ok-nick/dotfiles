@@ -2,7 +2,7 @@
   description = "My NixOS configuration";
 
   inputs = {
-    # TODO: ofr some reason nixos-unstable isn't cached for nix-darwin
+    # TODO: for some reason nixos-unstable isn't cached for nix-darwin
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     # nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     # nixpkgs-untested.url = "github:nixos/nixpkgs/nixpkgs-unstable";
@@ -32,16 +32,17 @@
       flake = false;
     };
 
-    # hyprland.url = "github:hyprwm/Hyprland";
-    hyprland-contrib.url = "github:hyprwm/contrib";
     helix.url = "github:helix-editor/helix";
-    razer-laptop-control.url = "github:Razer-Linux/razer-laptop-control-no-dkms";
-    fenix.url = "github:nix-community/fenix";
-    nixd.url = "github:nix-community/nixd";
-    sops-nix.url = "github:Mic92/sops-nix";
+    # fenix.url = "github:nix-community/fenix";
+    # nixd.url = "github:nix-community/nixd";
+    # sops-nix.url = "github:Mic92/sops-nix";
     # fufexan.url = "github:fufexan/dotfiles";
     # gross.url = "github:fufexan/gross";
     # mac-app-util.url = "github:hraban/mac-app-util";
+    # hyprland.url = "github:hyprwm/Hyprland";
+
+    hyprland-contrib.url = "github:hyprwm/contrib";
+    # razer-laptop-control.url = "github:Razer-Linux/razer-laptop-control-no-dkms";
   };
 
   outputs = {

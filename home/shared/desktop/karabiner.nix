@@ -37,7 +37,7 @@
             };
             mouse_flip_vertical_wheel = true;
           }
-          # flip scroll direction on mouse
+          # flip scroll direction on mouse wireless
           {
             ignore = false;
             identifiers = {
@@ -45,6 +45,18 @@
               is_keyboard = false;
               is_pointing_device = true;
               product_id = 183;
+              vendor_id = 5426;
+            };
+            mouse_flip_vertical_wheel = true;
+          }
+          # flip scroll direction on mouse wired
+          {
+            ignore = false;
+            identifiers = {
+              is_game_pad = false;
+              is_keyboard = false;
+              is_pointing_device = true;
+              product_id = 182;
               vendor_id = 5426;
             };
             mouse_flip_vertical_wheel = true;

@@ -22,7 +22,7 @@
     ../shared/nix.nix
     ../shared/modules.nix
     ../shared/network.nix
-    ../shared/razer.nix
+    # ../shared/razer.nix
     ../shared/cec.nix
     ../shared/printing.nix
     ../shared/pipewire.nix
