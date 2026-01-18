@@ -160,7 +160,7 @@
               ];
             }
             {
-              description = "open safari";
+              description = "open firefox";
               manipulators = [
                 {
                   type = "basic";
@@ -172,28 +172,66 @@
                   };
                   to = [
                     {
-                      # the commented command has issues like opening a completely new safari instance (which can get annoying
-                      # with the background apps), reopening all opened tabs again (duplicated), and is very slow
-                      # shell_command = "/usr/bin/open -na /Applications/Safari.app";
-
-                      # here we only call "make new document" if safari isn't already running, that way it doesn't open two windows on start
-                      shell_command = "/usr/bin/osascript -e 'if application \"Safari\" is running then' -e 'tell application \"Safari\" to make new document' -e 'else' -e 'tell application \"Safari\" to activate' -e 'end if'";
-                      #   shell_command = ''
-                      #     /usr/bin/osascript \
-                      #     -e 'tell application \"Safari\"' \
-                      #     -e 'if running then' \
-                      #     -e 'make new document' \
-                      #     -e 'activate' \
-                      #     -e 'else' \
-                      #     -e 'activate' \
-                      #     -e 'end if' \
-                      #     -e 'end tell'
-                      #   '';
+                      shell_command = "open -n -a firefox";
                     }
                   ];
                 }
               ];
             }
+            {
+              description = "open private firefox";
+              manipulators = [
+                {
+                  type = "basic";
+                  from = {
+                    key_code = "n";
+                    modifiers = {
+                      mandatory = ["${mod}" "left_shift"];
+                    };
+                  };
+                  to = [
+                    {
+                      shell_command = "open -n -a firefox --args -private-window";
+                    }
+                  ];
+                }
+              ];
+            }
+            # {
+            #   description = "open safari";
+            #   manipulators = [
+            #     {
+            #       type = "basic";
+            #       from = {
+            #         key_code = "n";
+            #         modifiers = {
+            #           mandatory = ["${mod}"];
+            #         };
+            #       };
+            #       to = [
+            #         {
+            #           # the commented command has issues like opening a completely new safari instance (which can get annoying
+            #           # with the background apps), reopening all opened tabs again (duplicated), and is very slow
+            #           # shell_command = "/usr/bin/open -na /Applications/Safari.app";
+
+            #           # here we only call "make new document" if safari isn't already running, that way it doesn't open two windows on start
+            #           shell_command = "/usr/bin/osascript -e 'if application \"Safari\" is running then' -e 'tell application \"Safari\" to make new document' -e 'else' -e 'tell application \"Safari\" to activate' -e 'end if'";
+            #           #   shell_command = ''
+            #           #     /usr/bin/osascript \
+            #           #     -e 'tell application \"Safari\"' \
+            #           #     -e 'if running then' \
+            #           #     -e 'make new document' \
+            #           #     -e 'activate' \
+            #           #     -e 'else' \
+            #           #     -e 'activate' \
+            #           #     -e 'end if' \
+            #           #     -e 'end tell'
+            #           #   '';
+            #         }
+            #       ];
+            #     }
+            #   ];
+            # }
             {
               description = "open alacritty";
               manipulators = [

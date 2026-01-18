@@ -9,13 +9,14 @@
     profiles.nicky = {
       isDefault = true;
       settings = {
+        "browser.tabs.insertAfterCurrent" = true;
         "browser.shell.checkDefaultBrowser" = false;
         "browser.shell.defaultBrowserCheckCount" = 1;
         "media.ffmpeg.vaapi.enabled" = true;
         "gfx.webrender.all" = true;
         "webgl.force-enabled" = true;
         "browser.aboutConfig.showWarning" = false;
-        "browser.toolbars.bookmarks.visbility" = "never";
+        "browser.toolbars.bookmarks.visibility" = "never";
         "extensions.pocket.enabled" = false;
         "browser.download.autohideButton" = false;
         "browser.tabs.firefox-view" = false;

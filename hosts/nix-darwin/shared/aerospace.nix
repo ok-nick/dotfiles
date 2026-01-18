@@ -1,7 +1,8 @@
 {...}: {
   system.defaults = {
     # NOTE: https://nikitabobko.github.io/AeroSpace/guide#a-note-on-displays-have-separate-spaces
-    spaces.spans-displays = true;
+    # spaces.spans-displays = true;
+    spaces.spans-displays = false; # I'd rather have bugs and keep this disabled
     # NOTE: https://nikitabobko.github.io/AeroSpace/guide#a-note-on-mission-control
     dock.expose-group-apps = true;
   };
