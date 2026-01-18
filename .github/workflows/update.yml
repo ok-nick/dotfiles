@@ -3,13 +3,13 @@ on:
   workflow_dispatch:
   # TODO: I want to ensure updates are fully tested before committed
   # schedule:
-    # - cron: "0 0 * * 0" # Sunday at midnight
+  # - cron: "0 0 * * 0" # Sunday at midnight
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
       # install nix
       - uses: DeterminateSystems/nix-installer-action@main
@@ -17,8 +17,9 @@ jobs:
       # - uses: DeterminateSystems/magic-nix-cache-action@main
       # info on flake dependencies beforehand
       - uses: DeterminateSystems/flake-checker-action@main
-        env:
-          FLAKE_CHECKER_NO_TELEMETRY: true
+        with:
+          fail-mode: true
+          send-statistics: false
         # TODO: run `nix flake check` on all platforms and if it works after update, submit PR
         # update flake and send PR
       - uses: DeterminateSystems/update-flake-lock@main

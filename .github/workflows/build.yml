@@ -8,13 +8,6 @@ on:
       - "flake.nix"
       - ".sops.yml"
       - ".github/workflows/build.yml"
-  pull_request:
-    paths:
-      - "src/**/*.nix"
-      - "flake.lock"
-      - "flake.nix"
-      - ".sops.yml"
-      - ".github/workflows/build.yml"
 
 jobs:
   check:
@@ -26,7 +19,7 @@ jobs:
         os: [ubuntu-latest, macos-latest]
     runs-on: ${{ matrix.os }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
       # install nix
       - uses: DeterminateSystems/nix-installer-action@main
@@ -34,8 +27,9 @@ jobs:
       # - uses: DeterminateSystems/magic-nix-cache-action@main
       # info on flake dependencies
       - uses: DeterminateSystems/flake-checker-action@main
-        env:
-          FLAKE_CHECKER_NO_TELEMETRY: true
+        with:
+          fail-mode: true
+          send-statistics: false
         # validate all outputs
       - name: Validate flake outputs
         # Building uses too much storage (more than available on GitHub runners) and passing --not-build
