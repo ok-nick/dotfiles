@@ -30,6 +30,7 @@ jobs:
         with:
           fail-mode: true
           send-statistics: false
+          check-outdated: false
         # validate all outputs
       - name: Validate flake outputs
         # Building uses too much storage (more than available on GitHub runners) and passing --not-build
