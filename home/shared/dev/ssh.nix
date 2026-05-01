@@ -11,13 +11,20 @@
     enableDefaultConfig = false;
     # addKeysToAgent = "yes";
     matchBlocks = {
+      "*" = lib.mkIf pkgs.stdenv.isDarwin {
+        extraOptions = {
+          IdentityAgent = "\"~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock\"";
+        };
+      };
+
       "github.com-ok-nick" = {
         hostname = "github.com";
         user = "git";
-        identityFile = "~/.ssh/id_ed25519";
 
         extraOptions = {
           UseKeychain = lib.mkIf pkgs.stdenv.isDarwin "yes";
+          # Avoid checking all keys on disk.
+          IdentitiesOnly = "yes";
         };
       };
     };

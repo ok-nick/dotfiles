@@ -1,4 +1,5 @@
 {
+  inputs,
   outputs,
   config,
   ...
@@ -63,6 +64,11 @@ in {
 
   # security.pam.enableSudoTouchIdAuth = true;
 
+  # nix-homebrew = {
+  #   taps = {
+  #     "acsandmann/homebrew-tap" = inputs.acsandmann-tap;
+  #   };
+  # };
   homebrew = {
     brews = [
       "mas"
@@ -72,6 +78,7 @@ in {
 
       # "ns-3" # marked as broken in nixpkgs for darwin
       # "gforth" # broken in nixpkgs
+      # "rift"
     ];
     # taps = [
     # "chipsalliance/verible"
@@ -115,6 +122,7 @@ in {
       "cleanshot"
       "stremio"
       "discord" # not working with spotlight w/ home-manager
+      "1password"
     ];
     masApps = {
       Xcode = 497799835; # homebrew itself needs it

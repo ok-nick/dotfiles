@@ -31,6 +31,10 @@
       url = "github:homebrew/homebrew-bundle";
       flake = false;
     };
+    # acsandmann-tap = {
+    #   url = "github:acsandmann/homebrew-tap";
+    #   flake = false;
+    # };
 
     helix.url = "github:helix-editor/helix";
     # fenix.url = "github:nix-community/fenix";
