@@ -5,6 +5,6 @@
 }: {
   home.packages = with pkgs;
     lib.mkIf pkgs.stdenv.isLinux [
-      grapejuice
+      # grapejuice
     ];
 }

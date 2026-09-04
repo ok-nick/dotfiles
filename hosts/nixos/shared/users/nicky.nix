@@ -1,12 +1,15 @@
-{pkgs, ...}: {
+{pkgs, ...}: let
+  username = "nicky";
+in {
   # nix.settings.trusted-users = ["nicky"];
 
   users = {
     mutableUsers = false;
     users = {
-      nicky = {
+      ${username} = {
         initialPassword = "1234";
         isNormalUser = true;
+        home = "/home/${username}";
         shell = pkgs.fish;
         extraGroups = [
           "wheel"

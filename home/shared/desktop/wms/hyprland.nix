@@ -4,7 +4,7 @@
   inputs,
   ...
 }: let
-  grimblast = inputs.hyprland-contrib.packages.${pkgs.hostPlatform.system}.grimblast;
+  grimblast = inputs.hyprland-contrib.packages.${pkgs.stdenv.hostPlatform.system}.grimblast;
 in {
   home.packages = [
     grimblast
@@ -121,7 +121,7 @@ in {
       bind = $mod SHIFT, Q, killactive,
       bind = $mod SHIFT, E, exit,
       bind = $mod SHIFT, Space, togglefloating,
-      bind = $mod, D, exec, pkill rofi || ${pkgs.rofi-wayland}/bin/rofi -show drun
+      bind = $mod, D, exec, pkill rofi || ${pkgs.rofi}/bin/rofi -show drun
       bind = $mod, V, togglesplit, # dwindle
       bind = $mod, N, exec, ${pkgs.firefox}/bin/firefox
       bind = $mod, P, exec, ${pkgs.firefox}/bin/firefox --private-window

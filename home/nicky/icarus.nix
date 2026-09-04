@@ -78,7 +78,9 @@
   # https://gitlab.com/w0lff/shikane/-/tree/master/
   services.kanshi = {
     enable = true;
-    profiles = {
+    settings = lib.mapAttrsToList (name: profile: {
+      profile = profile // {inherit name;};
+    }) {
       # TODO: I can't specify my vizio TV as monitor name beacuse of comma in it, it's a bug
       docked = {
         # TODO: set in sway settings

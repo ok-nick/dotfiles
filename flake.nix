@@ -66,6 +66,11 @@
       "x86_64-darwin"
     ];
     forAllSystems = nixpkgs.lib.genAttrs systems;
+    pkgsFor = system:
+      import nixpkgs {
+        inherit system;
+        config.allowUnfree = true;
+      };
   in {
     packages = forAllSystems (system: import ./pkgs nixpkgs.legacyPackages.${system});
     formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.alejandra);
@@ -103,22 +108,22 @@
     homeConfigurations = {
       "nicky@icarus" = home-manager.lib.homeManagerConfiguration {
         extraSpecialArgs = {inherit inputs outputs;};
-        pkgs = nixpkgs.legacyPackages.x86_64-linux;
+        pkgs = pkgsFor "x86_64-linux";
         modules = [./home/nicky/icarus.nix];
       };
       "nicky@mapro" = home-manager.lib.homeManagerConfiguration {
         extraSpecialArgs = {inherit inputs outputs;};
-        pkgs = nixpkgs.legacyPackages.aarch64-darwin;
+        pkgs = pkgsFor "aarch64-darwin";
         modules = [./home/nicky/mapro.nix];
       };
       "nicky@isotope" = home-manager.lib.homeManagerConfiguration {
         extraSpecialArgs = {inherit inputs outputs;};
-        pkgs = nixpkgs.legacyPackages.aarch64-linux;
+        pkgs = pkgsFor "aarch64-linux";
         modules = [./home/nicky/isotope.nix];
       };
       "nicky@good" = home-manager.lib.homeManagerConfiguration {
         extraSpecialArgs = {inherit inputs outputs;};
-        pkgs = nixpkgs.legacyPackages.aarch64-darwin;
+        pkgs = pkgsFor "aarch64-darwin";
         modules = [./home/nicky/good.nix];
       };
     };
@@ -128,7 +133,7 @@
     checks = {
       aarch64-darwin = {
         "mapro" = self.darwinConfigurations.mapro.system;
-        "good" = self.darwinConfigurations.mapro.system;
+        "good" = self.darwinConfigurations.good.system;
 
         # "nicky@mapro" = self.homeConfigurations."nicky@mapro".activationPackage;
       };

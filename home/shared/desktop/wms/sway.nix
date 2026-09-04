@@ -8,7 +8,7 @@
       enable = true;
       wrapperFeatures.gtk = true;
       config = rec {
-        menu = "pkill rofi || ${pkgs.rofi-wayland}/bin/rofi -show drun";
+        menu = "pkill rofi || ${pkgs.rofi}/bin/rofi -show drun";
 
         modifier = "Mod4";
 

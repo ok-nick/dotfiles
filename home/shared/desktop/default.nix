@@ -33,12 +33,12 @@
       p7zip
     ]
     ++ lib.optionals pkgs.stdenv.isLinux [
-      yubikey-manager-qt # TODO: move to feature
-      libsForQt5.kdenlive
+      yubioath-flutter # TODO: move to feature
+      kdePackages.kdenlive
       winetricks
       polkit_gnome
-      libsForQt5.polkit-kde-agent
-      gnome.gnome-disk-utility
+      kdePackages.polkit-kde-agent-1
+      gnome-disk-utility
       xorg.xeyes
       libreoffice-fresh
       xdg-utils
@@ -48,8 +48,8 @@
       gimp
     ]
     ++ lib.optionals (pkgs.stdenv.isLinux && pkgs.stdenv.isx86_64) [
-      bitwarden
-      vial
+      bitwarden-desktop
+      # vial
       wineWowPackages.waylandFull
     ];
 }

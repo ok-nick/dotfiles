@@ -471,6 +471,44 @@
                 }
               ];
             }
+            {
+              description = "f24 to lock and sleep";
+              manipulators = [
+                {
+                  from = {key_code = "f24";};
+                  to = [
+                    {
+                      key_code = "q";
+                      modifiers = ["left_command" "left_control"];
+                    }
+                    {
+                      software_function.iokit_power_management_sleep_system.delay_milliseconds = 1000;
+                    }
+                  ];
+                  type = "basic";
+                }
+              ];
+            }
+            {
+              # handled here because aerospace stops listening to keys once disabled
+              description = "toggle aerospace";
+              manipulators = [
+                {
+                  type = "basic";
+                  from = {
+                    key_code = "t";
+                    modifiers = {
+                      mandatory = ["${mod}"];
+                    };
+                  };
+                  to = [
+                    {
+                      shell_command = "${pkgs.aerospace}/bin/aerospace enable toggle";
+                    }
+                  ];
+                }
+              ];
+            }
 
             #     {
             #       # TODO: apple trackpads aren't currently supported with karabiner

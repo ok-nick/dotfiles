@@ -2,7 +2,10 @@
   pkgs,
   outputs,
   ...
-}: {
+}: let
+  # TODO: unhardcode username
+  username = "nicky";
+in {
   imports = [outputs.homeManagerModules];
 
   # nixpkgs.config = {
@@ -21,9 +24,8 @@
     mimeApps.enable = pkgs.stdenv.isLinux;
   };
 
-  home = rec {
-    # TODO: unhardcode username
-    username = "nicky";
+  home = {
+    inherit username;
     # homeDirectory =
     #   if pkgs.stdenv.isDarwin
     #   then "/Users/${username}"

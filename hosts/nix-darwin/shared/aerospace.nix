@@ -95,7 +95,7 @@
         alt-period = "layout accordion";
 
         alt-b = "balance-sizes";
-        # NOTE: aerosapce stops listening to keys after it's disabled
+        # NOTE: aerospace stops listening to keys after it's disabled
         # alt-t = "enable toggle";
 
         alt-f = "fullscreen";

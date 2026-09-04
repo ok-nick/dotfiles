@@ -1,7 +1,7 @@
 {
   networking = {
     wireless = {
-      userControlled.enable = false;
+      userControlled = false;
       iwd = {
         enable = false;
         settings = {

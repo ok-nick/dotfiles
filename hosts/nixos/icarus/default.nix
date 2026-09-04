@@ -1,6 +1,7 @@
 {
   pkgs,
   inputs,
+  outputs,
   ...
 }: {
   imports = [
@@ -11,6 +12,7 @@
     # inputs.hardware.nixosModules.common-gpu-nvidia-disable
     inputs.hardware.nixosModules.common-pc-laptop
     inputs.hardware.nixosModules.common-pc-laptop-ssd
+    inputs.home-manager.nixosModules.home-manager
 
     ./hardware-configuration.nix
 
@@ -30,6 +32,15 @@
   ];
 
   networking.hostName = "icarus";
+
+  home-manager = {
+    extraSpecialArgs = {inherit inputs outputs;};
+    useGlobalPkgs = true;
+    useUserPackages = true;
+  };
+
+  home-manager.users.nicky =
+    import ../../../home/nicky/icarus.nix;
 
   time.timeZone = "America/New_York";
   i18n.defaultLocale = "en_US.UTF-8";

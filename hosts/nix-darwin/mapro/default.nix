@@ -123,6 +123,9 @@ in {
       "stremio"
       "discord" # not working with spotlight w/ home-manager
       "1password"
+      "claude"
+      # "sketchup"
+      "mullvad-vpn"
     ];
     masApps = {
       Xcode = 497799835; # homebrew itself needs it

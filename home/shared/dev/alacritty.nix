@@ -7,6 +7,13 @@
         decorations = "none";
         option_as_alt = "Both";
       };
+      keyboard.bindings = [
+        {
+          key = "Return";
+          mods = "Shift";
+          chars = "\n";
+        }
+      ];
       font = {
         size = 12;
         normal = {
